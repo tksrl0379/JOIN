@@ -22,6 +22,7 @@ class fragment_activity_RvAdapter (val context: Context?, val activityList: Arra
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(activityList[position], context!!)
+
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
