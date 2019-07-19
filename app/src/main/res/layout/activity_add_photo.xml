@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddPhotoActivity"
+>
+
+    <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
+                                       android:layout_height="55dp"
+                                       android:id="@+id/my_toolbar"
+    >
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
+                  android:layout_gravity="center" android:textColor="#A72C2C"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+            android:id="@+id/addphoto_image"
+            android:layout_width="100dp" android:layout_height="100dp"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:layout_below="@+id/my_toolbar"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_below="@+id/my_toolbar"
+            android:id="@+id/edittext"
+            android:layout_toRightOf="@+id/addphoto_image">
+        <EditText android:layout_width="match_parent" android:layout_height="100dp"
+                  android:id="@+id/addphoto_edit_explain"
+                  android:inputType="text" android:hint="내용"
+                  android:layout_alignStart="@+id/edittext" android:layout_below="@+id/edittext"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/addphoto_btn_upload"
+            android:text="사진 올리기" android:layout_alignParentStart="true"
+            android:layout_marginTop="158dp" android:layout_marginStart="2dp"
+            android:layout_below="@+id/edittext"
+            android:theme="@style/ButtonStyle"/>
+
+</RelativeLayout>
