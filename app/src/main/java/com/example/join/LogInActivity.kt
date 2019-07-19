@@ -98,7 +98,17 @@ class LogInActivity : AppCompatActivity() {
         }
 
 
-    }//End of onCreate
+    }// [End of onCreate]
+
+    // 자동 로그인 처리
+    override fun onStart() {
+        super.onStart()
+        var currentUser = firebaseAuth.currentUser
+        if(currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     // 일반 로그인 처리
     fun signIn(){
@@ -148,7 +158,6 @@ class LogInActivity : AppCompatActivity() {
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("ID", login_id)
                     startActivity(intent)
                 }else
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
