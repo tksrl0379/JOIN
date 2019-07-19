@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        // BottomNavigationView 버튼 등록//
+        // BottomNavigationView 버튼 등록
         navigationView.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
