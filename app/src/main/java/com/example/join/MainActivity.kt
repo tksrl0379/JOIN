@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
-        // Toolbar 버튼 등록
+        // Toolbar 버튼 등록//
         toolbar_write_btn.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
