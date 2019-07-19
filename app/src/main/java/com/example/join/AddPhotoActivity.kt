@@ -70,12 +70,13 @@ class AddPhotoActivity : AppCompatActivity() {
         val imageFileName = "JPEG_"+timeStamp + "_.png"
         // images/(imageFilename) 위치를 가리키는 참조 변수-> 를 putFile로 storage서버에 업로드
         val storageRef = storage?.reference?.child("images")?.child(imageFileName)
+        // storageRef?.putFile()의 반환값은 StorageTask
         storageRef?.putFile(photoUri!!)?.addOnSuccessListener { taskSnapshot->
             //progress_bar.visibility = View.GONE
 
             Toast.makeText(this, "성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
 
-            // firebase storage 서버에 저장된 파일 다운로드 가능
+            // firebase storage 서버에 저장된 파일 다운로드 URL 가져옴
             val uri = storageRef.downloadUrl // 왜 이런건지 알아보기
 
             val contentDTO = AddPhoto_ContentDTO()
@@ -86,11 +87,13 @@ class AddPhotoActivity : AppCompatActivity() {
             contentDTO.userId = auth?.currentUser?.email
             contentDTO.timestamp = System.currentTimeMillis()
 
+            // collection -> 테이블, document -> 기본 키. 개념임.
             firestore?.collection("images")?.document()?.set(contentDTO)
 
             setResult(RESULT_OK) // Activity.RESULT_OK???
             finish()
         }
+
             ?.addOnFailureListener {
                 //progress_bar.visibility = View.GONE
 

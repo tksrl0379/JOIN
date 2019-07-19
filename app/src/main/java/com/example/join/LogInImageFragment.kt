@@ -19,7 +19,7 @@ class LogInImageFragment : Fragment() {
 
         val login_imageView = view.findViewById<ImageView>(R.id.login_imageView)
 
-
+        // 자바에선 getArgument()
         if (arguments != null) {
             val args = arguments
             // MainActivity에서 받아온 Resource를 ImageView에 셋팅

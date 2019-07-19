@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragment_settings">
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/signout_btn" android:text="로그아웃"
-            android:theme="@style/ButtonStyle"/>
+             tools:context=".fragment_settings"
+             android:orientation="vertical">
 
-</FrameLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="100dp">
+        <ImageView android:layout_width="100dp" android:layout_height="100dp"
+                   android:id="@+id/settings_profile_iv" android:src="@drawable/ic_account_circle_black_24dp"
+                   android:layout_margin="10dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/settings_uid" android:text="user id"
+                  android:layout_toRightOf="@+id/settings_profile_iv" android:layout_centerInParent="true"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/signout_btn" android:text="로그아웃"
+                android:layout_alignParentRight="true" android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:theme="@style/ButtonStyle"
+        />
+    </RelativeLayout>
+
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="70dp">
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/Following" android:text="0"
+                  android:layout_marginLeft="30dp" android:layout_marginTop="10dp"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="팔로잉" android:layout_below="@+id/Following"
+                  android:layout_marginLeft="15dp" />
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/Follower" android:text="0"
+                  android:layout_marginLeft="50dp" android:layout_marginTop="10dp"
+                  android:layout_toRightOf="@+id/Following"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="팔로워" android:layout_below="@id/Follower"
+                  android:layout_marginLeft="70dp"/>
+
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/findfriend_btn" android:text="친구 찾기"
+                android:layout_alignParentRight="true" android:layout_margin="10dp"
+                android:theme="@style/ButtonStyle"/>
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_gravity="center"
+              android:layout_below="@id/findfriend_btn"
+              android:background="#941A1A"/>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/login_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+    >
+    </androidx.viewpager.widget.ViewPager>
+
+
+
+
+
+
+</LinearLayout>
