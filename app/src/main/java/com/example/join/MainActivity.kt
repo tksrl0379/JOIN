@@ -43,9 +43,14 @@ class MainActivity : AppCompatActivity() {
                         replace(R.id.fragment_container, fragment).commit()
                     return@OnNavigationItemSelectedListener true
                 }
-                /*
-                R.id.bnv_myactivity -> {
-                    true
+                R.id.bnv_settings -> {
+                    val fragment = fragment_settings()
+                    supportFragmentManager.beginTransaction().
+                            replace(R.id.fragment_container, fragment).commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+
+                    /*
                 }
                 R.id.bnv_activityrecord->{
                     if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
