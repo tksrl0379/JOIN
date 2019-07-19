@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/dogPhotoImg"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+
+    />
+
+    <TextView
+            android:id="@+id/dogBreedTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            android:text="Breed"
+    />
+
+    <TextView
+            android:id="@+id/dogAgeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="16sp"
+
+            android:text="Age" />
+
+    <TextView
+            android:id="@+id/dogGenderTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+
+            android:text="Gender" />
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/bnv_activity"
+            android:icon="@drawable/ic_speaker_notes_black_24dp"
+            android:title="활동" />
+    <item
+            android:id="@+id/bnv_myactivity"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="나" />
+    <item
+            android:id="@+id/bnv_activityrecord"
+            android:icon="@drawable/ic_add_circle_outline_black_24dp"
+            android:title="활동 기록" />
+    <item
+            android:id="@+id/bnv_group"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="그룹" />
+    <item
+            android:id="@+id/bnv_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="설정" />
+
+</menu>
