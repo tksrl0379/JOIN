@@ -40,6 +40,7 @@ class AddPhotoActivity : AppCompatActivity() {
         photoPickerIntent.type = "image/*"
         startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
 
+        // 앨범 호출하는 코드
         addphoto_image.setOnClickListener{
             val photoPickerIntent = Intent(Intent.ACTION_GET_CONTENT)
             photoPickerIntent.type = "image/*"
@@ -51,6 +52,7 @@ class AddPhotoActivity : AppCompatActivity() {
         }
     }
 
+    // 앨범에서 고른 사진 데이터를 전송받고 imageview에 등록
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == PICK_IMAGE_FROM_ALBUM){
             println(data?.data)
@@ -77,7 +79,7 @@ class AddPhotoActivity : AppCompatActivity() {
             Toast.makeText(this, "성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
 
             // firebase storage 서버에 저장된 파일 다운로드 URL 가져옴
-            val uri = storageRef.downloadUrl // 왜 이런건지 알아보기
+            val uri = storageRef.downloadUrl
 
             val contentDTO = AddPhoto_ContentDTO()
 
