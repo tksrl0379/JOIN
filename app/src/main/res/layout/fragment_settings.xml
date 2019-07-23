@@ -45,12 +45,12 @@
 
 
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/findfriend_btn" android:text="친구 찾기"
+                android:id="@+id/searchfriend_btn" android:text="친구 찾기"
                 android:layout_alignParentRight="true" android:layout_margin="10dp"
                 android:theme="@style/ButtonStyle"/>
         <View android:layout_width="match_parent" android:layout_height="0.5dp"
               android:layout_gravity="center"
-              android:layout_below="@id/findfriend_btn"
+              android:layout_below="@id/searchfriend_btn"
               android:background="#941A1A"/>
     </RelativeLayout>
 

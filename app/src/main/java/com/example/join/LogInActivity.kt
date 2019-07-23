@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_log_in.*
 import java.util.ArrayList
 
@@ -168,8 +169,19 @@ class LogInActivity : AppCompatActivity() {
     fun createUser(login_id : String, login_pw : String){
         firebaseAuth.createUserWithEmailAndPassword(login_id, login_pw)
             .addOnCompleteListener(this) { task ->
-                if(task.isSuccessful)
+                if(task.isSuccessful) {
                     Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    val friendListDTO = FriendListDTO()
+                    var uemail = FirebaseAuth.getInstance().currentUser!!.email
+                    var uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+                    friendListDTO.userEmail = uemail.toString()
+                    //var map = HashMap<String, Any>()
+                    //map["userEmail"] = uemail.toString()
+
+                    FirebaseFirestore.getInstance().
+                        collection("userid").document(uid).set(friendListDTO)
+                }
                 else
                     Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
             }
