@@ -93,13 +93,13 @@ class MainActivity : AppCompatActivity() {
                 reference.child("userProfileImages").child(uid)
             // 파일 업로드
             storageRef.putFile(imageUri!!).addOnSuccessListener {
+                // 파일 다운로드
                 storageRef.downloadUrl.addOnSuccessListener {uri ->
                     val map = HashMap<String, Any>()
                     map["images"] = uri.toString()
                     FirebaseFirestore.getInstance()
                         .collection("profileImages").document(uid).set(map)
                 }
-                // 왜 uri나 url은 toString()을 해줘야 하는지? addonsuccesslistener uri-> 정리하기.
             }
 
         }
