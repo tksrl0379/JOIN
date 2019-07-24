@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.auth.api.Auth
@@ -35,6 +36,15 @@ class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
+
+        // https://blog.naver.com/rjs5730/221239700311
+        // https://m.blog.naver.com/PostView.nhn?blogId=tkddlf4209&logNo=220700530627&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+        //https://blog.naver.com/rjs5730/221239700311
+
+        //val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
+        //signin_Button.startAnimation(animation)
+
+
 
         // Firebase 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance()
@@ -171,16 +181,19 @@ class LogInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
                     Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    val friendListDTO = FriendListDTO()
+
+                    // 회원가입이 성공하면 firestore에 email 및 uid 저장
+                    val userInfoDTO = UserInfoDTO()
                     var uemail = FirebaseAuth.getInstance().currentUser!!.email
                     var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
-                    friendListDTO.userEmail = uemail.toString()
+                    userInfoDTO.userEmail = uemail.toString()
+                    userInfoDTO.userId = uid
                     //var map = HashMap<String, Any>()
                     //map["userEmail"] = uemail.toString()
 
                     FirebaseFirestore.getInstance().
-                        collection("userid").document(uid).set(friendListDTO)
+                        collection("userid").document(uid).set(userInfoDTO)
                 }
                 else
                     Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()

@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.firebase.ui.auth.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -39,8 +40,9 @@ class fragment_settings : Fragment() {
     //
     private lateinit var imageprofileListenerRegistration: ListenerRegistration
 
+    // uid 선언
     var uid: String? = null
-    var currentUserUid: String? = null
+
 
 
     override fun onCreateView(
@@ -53,7 +55,7 @@ class fragment_settings : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // 유저 정보 받아오기
+        // uid 정보 받아오기
         uid = firebaseAuth?.currentUser?.uid
 
 
@@ -81,18 +83,18 @@ class fragment_settings : Fragment() {
             startActivity(intent)
         }
 
-
         return fragmentView
     } // [End of onCreateView]
+
 
 
     override fun onResume() {
         super.onResume()
         getProfileImage()
-        getProfileuid()
+        getProfileEmail()
+        getFollowing()
+        getFollower()
     }
-
-
 
     // 프로필 사진 표시
     fun getProfileImage(){
@@ -114,10 +116,28 @@ class fragment_settings : Fragment() {
         }
     }
 
-    fun getProfileuid(){
+    // 유저 이메일 표시
+    fun getProfileEmail(){
         settings_uid.text = firebaseAuth?.currentUser?.email
     }
 
+    // 팔로잉 표시
+    fun getFollowing(){
+        FirebaseFirestore.getInstance().collection("friend")
+            .document(uid!!).addSnapshotListener{ documentSnapshot, firebaseFirestoreException ->
+                val followDTO = documentSnapshot!!.toObject(FollowDTO::class.java)
 
+                fragmentView.Following.text = followDTO?.followingCount.toString()
+            }
+    }
 
+    // 팔로워 표시
+    fun getFollower(){
+        FirebaseFirestore.getInstance().collection("friend")
+            .document(uid!!).addSnapshotListener{ documentSnapshot, firebaseFirestoreException ->
+                val followDTO = documentSnapshot!!.toObject(FollowDTO::class.java)
+
+                fragmentView.Follower.text = followDTO?.followerCount.toString()
+            }
+    }
 }
