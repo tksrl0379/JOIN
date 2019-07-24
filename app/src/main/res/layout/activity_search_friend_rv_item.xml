@@ -9,6 +9,6 @@
 
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="친구 추가" android:theme="@style/ButtonStyle"
-    android:id="@+id/search_friend_rv_add_friend_btn"/>
+    android:id="@+id/search_friend_rv_add_friend_btn" />
 
 </LinearLayout>
