@@ -25,7 +25,7 @@ class IntroActivity : AppCompatActivity() {
         })
         */
         val thread = Thread(Runnable {
-            Thread.sleep(500)
+            Thread.sleep(1000)
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             finish()
