@@ -37,6 +37,7 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
+        // 애니메이션
         // https://blog.naver.com/rjs5730/221239700311
         // https://m.blog.naver.com/PostView.nhn?blogId=tkddlf4209&logNo=220700530627&proxyReferer=https%3A%2F%2Fwww.google.com%2F
         //https://blog.naver.com/rjs5730/221239700311
