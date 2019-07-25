@@ -8,36 +8,52 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class fragment_activity : Fragment() {
 
-    var dogList = arrayListOf<activityDTO>(
-        activityDTO("Chow Chow", "Male", "4", "dog00"),
-        activityDTO("Breed Pomeranian", "Female", "1", "dog01"),
-        activityDTO("Golden Retriver", "Female", "3", "dog02"),
-        activityDTO("Yorkshire Terrier", "Male", "5", "dog03"),
-        activityDTO("Pug", "Male", "4", "dog04"),
-        activityDTO("Alaskan Malamute", "Male", "7", "dog05"),
-        activityDTO("Shih Tzu", "Female", "5", "dog06")
-    )
+    // Firebase 선언
+    var user: FirebaseUser? = null
+    var firestore: FirebaseFirestore? = null
+
+    // View 객체 변수 선언
+    var mainView: View? = null
+
+    // RecyclerView 변수 선언
+    //var recyclerView: RecyclerView? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_activity, container, false)
+        // VIew 초기화 (fragment_activity.xml)
+        val mainView = inflater.inflate(R.layout.fragment_activity, container, false)
 
-        val mRecyclerView = view.findViewById(R.id.activityRecyclerView) as RecyclerView
-        mRecyclerView.setHasFixedSize(true)
-        //어댑터
-        val mAdapter = fragment_activity_RvAdapter(this.context, dogList)
-        mRecyclerView.adapter = mAdapter
-        // 레이아웃
-        mRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        // Firebase 초기화
+        user = FirebaseAuth.getInstance().currentUser
+        firestore = FirebaseFirestore.getInstance()
 
-        return view
+        // RecyclerView 초기화
+        var recyclerView = mainView.findViewById<RecyclerView>(R.id.activityRecyclerView)
+        recyclerView.setHasFixedSize(true)
+
+        val mAdapter = fragment_activity_RvAdapter()
+        recyclerView.adapter = mAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this.context)
+
+
+        return mainView
     }
 
+    //override fun onResume() {
+      //  super.onResume()
+        // 레이아웃 매니저, 어댑터 등록
+        //recyclerView!!.adapter = fragment_activity_RvAdapter()
+        //recyclerView!!.layoutManager = LinearLayoutManager(this.context)
 
+    //}
 }

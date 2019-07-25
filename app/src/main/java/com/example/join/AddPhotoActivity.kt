@@ -79,21 +79,21 @@ class AddPhotoActivity : AppCompatActivity() {
             Toast.makeText(this, "성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
 
             // firebase storage 서버에 저장된 파일 다운로드 URL 가져옴
-            val uri = storageRef.downloadUrl
+            storageRef.downloadUrl.addOnSuccessListener { uri->
+                val contentDTO = AddPhoto_ContentDTO()
 
-            val contentDTO = AddPhoto_ContentDTO()
+                contentDTO.imageUrI = uri.toString()
+                contentDTO.uid = auth?.currentUser?.uid
+                contentDTO.explain = addphoto_edit_explain.text.toString()
+                contentDTO.userId = auth?.currentUser?.email
+                contentDTO.timestamp = System.currentTimeMillis()
 
-            contentDTO.imageUrI = uri!!.toString()
-            contentDTO.uid = auth?.currentUser?.uid
-            contentDTO.explain = addphoto_edit_explain.text.toString()
-            contentDTO.userId = auth?.currentUser?.email
-            contentDTO.timestamp = System.currentTimeMillis()
+                // collection -> 테이블, document -> 기본 키. 개념임.
+                firestore?.collection("images")?.document()?.set(contentDTO)
 
-            // collection -> 테이블, document -> 기본 키. 개념임.
-            firestore?.collection("images")?.document()?.set(contentDTO)
-
-            setResult(RESULT_OK) // Activity.RESULT_OK???
-            finish()
+                setResult(RESULT_OK) // Activity.RESULT_OK???
+                finish()
+            }
         }
 
             ?.addOnFailureListener {

@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.lang.Exception
 import java.net.URI
+import java.util.*
 
 class fragment_settings : Fragment() {
 
@@ -91,7 +92,7 @@ class fragment_settings : Fragment() {
     override fun onResume() {
         super.onResume()
         getProfileImage()
-        getProfileEmail()
+        getProfileID()
         getFollowing()
         getFollower()
     }
@@ -116,9 +117,11 @@ class fragment_settings : Fragment() {
         }
     }
 
-    // 유저 이메일 표시
-    fun getProfileEmail(){
-        settings_uid.text = firebaseAuth?.currentUser?.email
+    // 유저 아이디
+    fun getProfileID(){
+        var st = StringTokenizer(firebaseAuth?.currentUser?.email, "@")
+        settings_uid.text = st.nextToken()
+
     }
 
     // 팔로잉 표시
