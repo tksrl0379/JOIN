@@ -1,6 +1,7 @@
 package com.example.join
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import kotlinx.android.synthetic.main.fragment_settings.*
+
 
 class fragment_activity : Fragment() {
 
@@ -41,7 +44,8 @@ class fragment_activity : Fragment() {
         var recyclerView = mainView.findViewById<RecyclerView>(R.id.activityRecyclerView)
         recyclerView.setHasFixedSize(true)
 
-        val mAdapter = fragment_activity_RvAdapter()
+
+        val mAdapter = fragment_activity_RvAdapter(activity as MainActivity)
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 

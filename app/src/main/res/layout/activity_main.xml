@@ -11,8 +11,15 @@
     <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
                                        android:layout_height="55dp" android:id="@+id/my_toolbar">
 
-        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:id="@+id/toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
+                       android:visibility="gone"/>
+        </FrameLayout>
+
+
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
                   android:layout_gravity="center" android:textColor="#A72C2C"/>

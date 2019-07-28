@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragment_detail"
+             android:orientation="vertical">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/detail_profile_imageview"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+        />
+        <TextView
+                android:id="@+id/detail_user_email_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/detail_profile_imageview"
+                android:layout_marginTop="10dp"
+                android:text="bwrw2347"
+                android:textStyle="bold"
+        />
+        <TextView
+                android:id="@+id/detail_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/detail_profile_imageview"
+                android:layout_marginTop="21dp" android:layout_below="@+id/detail_user_email_textview"
+                android:text="2019년 11월 30일"  android:textSize="10dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toEndOf="@+id/detail_profile_imageview"/>
+        <TextView
+                android:id="@+id/detail_title_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_profile_imageview"
+                android:layout_marginLeft="10dp" android:layout_marginTop="10dp"
+                android:text="걷기 운동(제목)" android:textStyle="bold" android:textSize="20dp"/>
+
+        <TextView
+                android:id="@+id/detail_explain_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_title_textview" android:layout_margin="10dp"
+                android:text="내용이 들어갈 자리입니다."
+        />
+
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+          android:background="@color/colorGrey" android:layout_marginTop="10dp"/>
+
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="10dp">
+
+        <TextView
+                android:id="@+id/detail_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="거리"
+        />
+
+        <TextView
+                android:id="@+id/detail_consuming_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이동시간"
+                android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
+
+        <TextView
+                android:id="@+id/detail_accumulated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="누적 고도"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40dp"
+        />
+
+        <TextView
+                android:id="@+id/detail_distance_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10.00 km"
+                android:textSize="20dp"
+                android:layout_below="@+id/detail_distance"
+                android:layout_marginLeft="15dp"
+        />
+
+        <TextView
+                android:id="@+id/detail_consuming_time_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:45"
+                android:textSize="20dp"
+                android:layout_below="@+id/detail_consuming_time"
+                android:layout_centerInParent="true"
+        />
+
+        <TextView
+                android:id="@+id/detail_accumulated_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10m"
+                android:textSize="20dp"
+                android:layout_below="@+id/detail_accumulated"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="45dp"
+        />
+
+        <View android:layout_width="0.5dp" android:layout_height="40dp"
+              android:background="@color/colorGrey"
+              android:layout_alignParentStart="true" android:layout_centerVertical="true"
+              android:layout_marginStart="132dp"/>
+
+        <View android:layout_width="0.5dp" android:layout_height="40dp"
+              android:background="@color/colorGrey"
+              android:layout_alignParentStart="true" android:layout_centerVertical="true"
+              android:layout_marginStart="275dp"/>
+
+
+
+    </RelativeLayout>
+
+
+    <ImageView android:layout_width="match_parent" android:layout_height="300dp"
+               android:layout_marginTop="20dp" android:src="@drawable/ic_account_circle_black_24dp"
+    />
+
+
+
+
+
+</LinearLayout>
