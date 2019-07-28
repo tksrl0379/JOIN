@@ -120,4 +120,22 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+    // 인터페이스 생성
+    interface OnBackPressedListener{
+        fun onBack()
+    }
+
+    private var mBackListener: OnBackPressedListener? = null
+
+    fun setOnBackPressedListener(listener: OnBackPressedListener){
+        mBackListener = listener
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed() // 이걸 없애면 뒤로가기 눌러도 Activity가 finish()되지 않음
+
+        mBackListener!!.onBack()
+    }
+
 }
