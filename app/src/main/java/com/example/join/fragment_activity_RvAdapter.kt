@@ -1,6 +1,9 @@
 package com.example.join
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,18 +16,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_activity.view.*
 import kotlinx.android.synthetic.main.fragment_activity_rv_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
+
 var imagesSnapshot: ListenerRegistration? = null
 
-class fragment_activity_RvAdapter ()
+class fragment_activity_RvAdapter (activity : MainActivity)
     : RecyclerView.Adapter<fragment_activity_RvAdapter.Holder>(){
 
     val contentDTOs: ArrayList<AddPhoto_ContentDTO>
     val contentUidList: ArrayList<String>
+
+    val mainActivity = activity
 
 
     init{
@@ -34,9 +43,11 @@ class fragment_activity_RvAdapter ()
         contentUidList = ArrayList()
 
         var uid = FirebaseAuth.getInstance().currentUser?.uid
+        // Read Query (Pull driven) : 현재 사용자 친구 정보 읽어옴
         firestore?.collection("friend")!!.document(uid!!)?.get()?.
             addOnCompleteListener{task ->
                 if(task.isSuccessful){
+                    // userDTO의 자료형은 toObject() 괄호 안에 들어가는 DTO 자료형에 맞춰줘야함.
                     var userDTO = task.result!!.toObject(FollowDTO::class.java)
                     if(userDTO?.followings != null)
                         getContents(userDTO?.followings)
@@ -45,8 +56,11 @@ class fragment_activity_RvAdapter ()
     }
 
     fun getContents(followers: MutableMap<String, Boolean>?){
-        // Read query인듯함.
-        // TimeStamp 기준 내림차순 정렬해서 가장 최신 게시물이 보여지도록 함
+        // Read Query (Push driven) : 게시글 중 친구가 올린 게시글 읽어옴
+        /* Push driven 이므로 실시간으로 업로드한 게시글을 Listener에서 인지하여
+           contentDTOs에 추가하고 notifyDataSetChanged()로 다시 RecyclerView에 그려줌.
+         */
+        // TimeStamp 기준 내림차순(DESCENDING) 정렬해서 가장 최신 게시물이 보여지도록 함
         imagesSnapshot = firestore?.collection("images")
             ?.orderBy("timestamp", Query.Direction.DESCENDING)?.
                 addSnapshotListener{querySnapshot, firebaseFirestoreException ->
@@ -67,6 +81,7 @@ class fragment_activity_RvAdapter ()
     // 어댑터를 등록할 곳의 context를 얻어올 때 parent.context?
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_activity_rv_item, parent, false)
+
         return Holder(view)
     }
 
@@ -107,8 +122,25 @@ class fragment_activity_RvAdapter ()
         Glide.with(holder.itemView.context)
             .load(contentDTOs[position].imageUrI)
             .into(viewHolder.activity_item_map_imageview)
+
+
+        // 리사이클러뷰 선택 시 프래그먼트 전환
+        viewHolder.recyclerview_layout_for_select.setOnClickListener {
+            val fragment = fragment_detail()
+
+            // 어댑터-> 프래그먼트 data 넘김 (Bundle()객체 선언해야함)
+            var bundle = Bundle()
+            bundle.putString("userUid", contentDTOs[position].uid)
+            fragment.arguments = bundle
+
+            mainActivity.supportFragmentManager.beginTransaction().
+                replace(R.id.fragment_container, fragment).commit()
+            mainActivity.main_toolbar_write_btn.visibility = View.GONE
+            mainActivity.main_toolbar_back_btn.visibility = View.VISIBLE
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
 }
 

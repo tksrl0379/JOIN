@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         // 스토리지 권한 요청
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
-        // Toolbar 버튼 등록
-        toolbar_write_btn.setOnClickListener {
+        // Toolbar Write 버튼 리스너 등록
+        main_toolbar_write_btn.setOnClickListener {
             // 권한 확인
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -41,8 +41,19 @@ class MainActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "스토리지 권한이 없습니다", Toast.LENGTH_SHORT).show()
             }
-
         }
+
+        // Toolbar Back 버튼 리스너 등록
+        main_toolbar_back_btn.setOnClickListener {
+            val fragment = fragment_activity()
+            supportFragmentManager.beginTransaction().
+                    replace(R.id.fragment_container, fragment).commit()
+
+            main_toolbar_write_btn.visibility = View.VISIBLE
+            main_toolbar_back_btn.visibility = View.GONE
+        }
+
+
 
         // BottomNavigationView 버튼 등록
         navigationView.setOnNavigationItemSelectedListener(

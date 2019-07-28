@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:id="@+id/recyclerview_layout_for_select"
               >
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textStyle="bold"
-                android:text="오후 라이딩"/>
+                android:text="걷기 운동(제목)"/>
         <TextView
                 android:id="@+id/activity_item_distance_textview"
                 android:layout_width="wrap_content"
