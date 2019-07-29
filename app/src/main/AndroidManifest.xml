@@ -13,12 +13,12 @@
             android:theme="@style/AppTheme">
         <activity android:name=".DetailActivity">
         </activity>
-        <activity android:name=".SearchFriendActivity">
+        <activity android:name=".Main.Activity.SearchFriendActivity">
         </activity>
-        <activity android:name=".AddPhotoActivity">
+        <activity android:name=".Main.Activity.AddPhotoActivity">
         </activity>
         <activity
-                android:name=".IntroActivity"
+                android:name=".Main.Activity.IntroActivity"
                 android:theme="@style/IntroTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,9 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LogInActivity">
+        <activity android:name=".LogIn.LogInActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main.Activity.MainActivity">
         </activity>
     </application>
 

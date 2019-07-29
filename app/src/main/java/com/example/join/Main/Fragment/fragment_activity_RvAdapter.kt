@@ -1,26 +1,24 @@
-package com.example.join
+package com.example.join.Main.Fragment
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.DTO.FollowDTO
+import com.example.join.Main.Activity.MainActivity
+import com.example.join.Main.Activity.firestore
+import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_activity.view.*
 import kotlinx.android.synthetic.main.fragment_activity_rv_item.view.*
 import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.*
 import kotlin.collections.ArrayList
 

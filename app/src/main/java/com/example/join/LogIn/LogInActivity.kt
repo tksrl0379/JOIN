@@ -1,20 +1,20 @@
-package com.example.join
+package com.example.join.LogIn
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
-import com.google.android.gms.auth.api.Auth
+import com.example.join.Main.Activity.MainActivity
+import com.example.join.R
+import com.example.join.DTO.UserInfoDTO
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_log_in.*

@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.DTO
 
 data class FollowDTO(
     var followerCount: Int = 0,
