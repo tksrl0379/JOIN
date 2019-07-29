@@ -1,10 +1,10 @@
-package com.example.join
+package com.example.join.Main.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import java.lang.Exception
+import com.example.join.LogIn.LogInActivity
+import com.example.join.R
 
 class IntroActivity : AppCompatActivity() {
 

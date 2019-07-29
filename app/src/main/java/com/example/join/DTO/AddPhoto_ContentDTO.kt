@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.DTO
 
 data class AddPhoto_ContentDTO (
     var explain: String? = null,

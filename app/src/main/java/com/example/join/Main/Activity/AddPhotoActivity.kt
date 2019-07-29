@@ -1,10 +1,12 @@
-package com.example.join
+package com.example.join.Main.Activity
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage

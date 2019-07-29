@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.Main.Fragment
 
 
 import android.content.Context
@@ -7,16 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.Main.Activity.MainActivity
+import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_add_photo.view.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -75,7 +73,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
 
                 // 제목
-                TODO("미구현")
+                // TODO 미구현
 
                 // 날짜
                 var date1 = SimpleDateFormat("yyyyMMdd").format(Date())
@@ -89,7 +87,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                     .into(mainView.detail_map_imageview)
 
                 // 거리
-                TODO("미구현")
+                // TODO 미구현
 
             }
         return mainView

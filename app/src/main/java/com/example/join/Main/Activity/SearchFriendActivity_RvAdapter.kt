@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.Main.Activity
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,9 @@ import android.widget.Button
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.join.DTO.FollowDTO
+import com.example.join.R
+import com.example.join.DTO.UserInfoDTO
 import com.google.firebase.firestore.FirebaseFirestore
 
 /* UserInfoDTO 를 타입으로 가지는 ArrayList에 검색결과 나온 사용자들의 이메일들을 담아서 RvAdapter에 넘겨준 후

@@ -1,30 +1,28 @@
-package com.example.join
+package com.example.join.Main.Fragment
 
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.firebase.ui.auth.data.model.User
+import com.example.join.DTO.FollowDTO
+import com.example.join.Main.Activity.SearchFriendActivity
+import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.lang.Exception
-import java.net.URI
 import java.util.*
 
 class fragment_settings : Fragment() {
