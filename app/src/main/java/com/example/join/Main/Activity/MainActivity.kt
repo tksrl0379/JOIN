@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.join.Main.Fragment.fragment_activity
 import com.example.join.Main.Fragment.fragment_settings
+import com.example.join.Map.RecordMapActivity
 import com.example.join.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -61,31 +62,28 @@ class MainActivity : AppCompatActivity() {
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
             when (item.itemId) {
+                // 활동
                 R.id.bnv_activity -> {
                     val fragment = fragment_activity()
                     supportFragmentManager.beginTransaction().
                         replace(R.id.fragment_container, fragment).commit()
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.bnv_settings -> {
-                    val fragment = fragment_settings()
-                    supportFragmentManager.beginTransaction().
-                            replace(R.id.fragment_container, fragment).commit()
+
+                // 활동 기록
+                R.id.bnv_activityrecord->{
+                    val intent = Intent(this, RecordMapActivity::class.java)
+                    startActivity(intent)
                     return@OnNavigationItemSelectedListener true
                 }
 
-                    /*
-                }
-                R.id.bnv_activityrecord->{
-                    if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED) {
-                        startActivity(Intent(this, AddPhotoActivity::class.java))
-                    }else{
-                        Toast.makeText(this, "스토리지 권한이 없습니다", Toast.LENGTH_SHORT).show()
-                    }
+                // 계정 설정
+                R.id.bnv_settings -> {
+                    val fragment = fragment_settings()
+                    supportFragmentManager.beginTransaction().
+                        replace(R.id.fragment_container, fragment).commit()
                     return@OnNavigationItemSelectedListener true
                 }
-                */
             }
             true
         })

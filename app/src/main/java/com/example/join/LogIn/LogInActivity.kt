@@ -46,7 +46,6 @@ class LogInActivity : AppCompatActivity() {
         //signin_Button.startAnimation(animation)
 
 
-
         // Firebase 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -103,13 +102,6 @@ class LogInActivity : AppCompatActivity() {
         signin_googleButton.setOnClickListener{
             google_signIn()
         }
-
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            val name = user.displayName
-        }
-
-
     }// [End of onCreate]
 
     // 자동 로그인 처리
@@ -167,7 +159,7 @@ class LogInActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(login_id, login_pw)
             .addOnCompleteListener(this){ task->
                 if(task.isSuccessful) {
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "로그인 성공입니다", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -176,12 +168,13 @@ class LogInActivity : AppCompatActivity() {
             }
     }
 
+
     // 회원가입
     fun createUser(login_id : String, login_pw : String){
         firebaseAuth.createUserWithEmailAndPassword(login_id, login_pw)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
-                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "회원가입 성공입니다", Toast.LENGTH_SHORT).show()
 
                     // 회원가입이 성공하면 firestore에 email 및 uid 저장
                     val userInfoDTO = UserInfoDTO()
