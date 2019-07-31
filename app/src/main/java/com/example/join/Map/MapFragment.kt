@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng
 
 //Jinseo Test.
 
+
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -60,10 +61,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(37.340201, 126.734721)))  //초기설정.KPU G동
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10f))
-        // onConnect()을 override 한 클래스에 mMap 객체 정보 전달
+        //  RecordMapActivity의 onConnect() 실행
         onConnectedListener.onConnect(mMap)
 
-        mMap.setOnMapLoadedCallback(){
+        mMap.setOnMapLoadedCallback{
             try{
                 mMap.isMyLocationEnabled=true   //현재위치표시 및 현재위치로 돌아올 수 있는 버튼 생성.
             }catch (e: SecurityException){}
@@ -78,7 +79,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-
+        // context -> RecordMapActivity. 프래그먼트에서 context 호출시 acitivity의 context가 불러짐.
         onConnectedListener = context as OnConnectedListener
     }
 }

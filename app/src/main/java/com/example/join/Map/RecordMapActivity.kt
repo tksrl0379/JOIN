@@ -3,6 +3,8 @@ package com.example.join.Map
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Location
+import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,7 @@ import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
 
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
@@ -53,6 +56,16 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     var mapfr: Fragment = MapFragment()       //MapFrgmt()
     var detailfr: Fragment = RecordFragment() //
+
+    // 기록 시작 버튼 클릭 여부 확인
+    var recordPressed = false
+    // 기록 시작 허가
+    var recordStart = false
+    // 이전 기록
+    var before_location = arrayOfNulls<Double>(2)
+    // 누적 거리
+    var total_distance: Double = 0.0
+
 
 
 
@@ -125,11 +138,17 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     }
 
+    // 시작 지점
     private fun StartFab() {
+
         //Todo:이곳에서 RealmData에 저장, Polyline실행
 
         recordStartFab.hide()   //시작버튼 기능 종료
         recordPauseFab.show()   //중지버튼 기능 시작.
+
+        // 레코드 버튼 눌림 확인
+        recordPressed = true
+
 
         startTimer() //액티비티에서 시간을 시작하고 변경된 값을 DetailFragmt에 전송.
 
@@ -306,7 +325,15 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         timeTask?.cancel()  //Timer의 객체로써 null일수 있기에 timetask 옆에 ? 붙음.
     }
 
-    //TODO : start 누르는 순간 realm에 기록 및 선 긋기 시작. upload 누를 시 firestore에 업로드
+
+    fun distanceCal(){
+
+
+
+    }
+
+
+    //TODO : start 누르는 순간 기록 시작. upload 누를 시 firestore에 업로드
     inner class MyLocationCallback : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             super.onLocationResult(locationResult)
@@ -315,6 +342,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             //var circleOptions = CircleOptions()
             // let 은 객체를 블록의 인자로 넘겨서 it으로 사용 가능
             //run 은 객체를 블록의 리시버로 넘겨서 따로 객체 선언 없이 암시적으로 사용 가능.
+
 
             location?.run {
 
@@ -325,12 +353,32 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                 Log.d("MapActivity", "lan:$latitude, long:$longitude")
 
-                //insertLatlng(latitude,longitude)
-                polylineOptions.add(latLng)
-                polylineOptions.width(13f)
-                polylineOptions.visible(true)   // 선이 보여질지/안보여질지 옵션. startBtn시 visible을 True로 하고 visibile이 True시 Realm에 데이터 저장.
 
-                mMap?.addPolyline(polylineOptions)
+
+                if (recordStart) {
+
+                    val arrayex = FloatArray(1)
+                    distanceBetween(latitude, longitude, before_location[0]!!, before_location[1]!!, arrayex)
+
+                    total_distance += arrayex[0]
+                    println(total_distance)
+
+                    //insertLatlng(latitude,longitude)
+                    polylineOptions.add(latLng)
+                    polylineOptions.width(13f)
+                    polylineOptions.visible(true)   // 선이 보여질지/안보여질지 옵션. startBtn시 visible을 True로 하고 visibile이 True시 Realm에 데이터 저장.
+
+                    mMap?.addPolyline(polylineOptions)
+
+
+                }
+            }
+
+            if(recordPressed) {
+                recordStart = true
+                // 이전 기록 저장
+                before_location[0] = location!!.latitude
+                before_location[1] = location!!.longitude
             }
         }
     }
