@@ -3,7 +3,6 @@ package com.example.join.Map
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Location
 import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +26,6 @@ import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
 
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
@@ -157,7 +155,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add.
-        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).commit()
+        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr).hide(detailfr).commit()
 
 
         //Todo:MapFr와 detailFr한테 시작하라는 기능을 전달해줘야한다.
@@ -201,8 +199,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
 
-        supportFragmentManager.beginTransaction().hide(detailfr).commit()
-        supportFragmentManager.beginTransaction().show(mapfr).commit()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_right,R.anim.to_left).hide(detailfr).commit()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_right,R.anim.to_left).show(mapfr).commit()
 
         mapFab.show()
         detailsFab.hide()
@@ -212,8 +210,11 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private fun MapToDetails() {
         //Todo: 이 함수가 불리면 현재 맵 프래그먼트에서 타임랩(시간,거리) 프래그먼트로 이동.
 
-        supportFragmentManager.beginTransaction().hide(mapfr).commit()
-        supportFragmentManager.beginTransaction().show(detailfr).commit()
+
+
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_left,R.anim.to_rigth).hide(mapfr).commit()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_left, R.anim.to_rigth).show(detailfr).commit()
+
 
         detailsFab.show()
         mapFab.hide()
