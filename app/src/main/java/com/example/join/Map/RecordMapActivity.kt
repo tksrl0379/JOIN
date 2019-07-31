@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
+import kotlinx.android.synthetic.main.fragment_record.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
@@ -32,6 +34,9 @@ import kotlin.concurrent.timer
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
 // fusedLocationProviderClient.requestLocationUpdates() -> 위치 데이터 요청. (callback은 위치데이터를 받을 곳)
 // public Task<Void> requestLocationUpdates (LocationRequest request, LocationCallback callback, Looper looper)
+
+
+// TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
 class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener{
 
     //private lateinit var mainfrgmt: Fragment
@@ -50,7 +55,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private var detailTag: String = "DetailTag"
 
 
-    private var time = 0
+    private var time = -1
     private var timeTask: Timer? = null
 
     var mapfr: Fragment = MapFragment()       //MapFrgmt()
@@ -64,6 +69,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     var before_location = arrayOfNulls<Double>(2)
     // 누적 거리
     var total_distance: Double = 0.0
+    // 시간초
+    var total_sec: Int = 0
 
 
 
@@ -98,8 +105,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         setContentView(R.layout.activity_record_map)
 
 
-
         locationInit()
+        supportFragmentManager.beginTransaction().add(R.id.mainFrame, mapfr).commit()
+
+
+
+
 //        val frgmtManiger : FragmentManager
         //초기화
 
@@ -155,7 +166,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
 
-        //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add.
+        //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).commit()
 
 
@@ -219,17 +230,27 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     }
 
 
-    // 위치정보 요청 및 처리하는 작업은 배터리 소모가 크므로
-    // 화면이 보이는 시점인 onResume에서 작업하고 화면이 안보이는 onPause에서 콜백 리스너 해제
     //TODO -> 그럼 해제하면 안되지 않는지? 확인해보기
     override fun onResume() {
         super.onResume()
-        permissionCheck(cancel = { showPermissionInfoDialog() }, ok = { addLocationListener() })
+        permissionCheck(cancel = { showPermissionInfoDialog() },
+            ok = { addLocationListener() })
+
     }
+
     override fun onPause() {    //onPause. 즉 액티비티가 보이지 않으면 실행되는 메소드.
         super.onPause()
-        removeLocationListener()        //위치정보가 업데이트되지않음.
     }
+
+    // onDestroy에서 종료해줘야 Timer / LocationCallBack 이 정지됨.
+    override fun onDestroy() {
+        super.onDestroy()
+        println("멈췄습니다")
+        // onStop 호출때 마다 Timer / LocationCallBack 멈춰줌
+        pauseTimer()
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+    }
+
 
     //매인액티비티에서 위치정보를 얻고 난 뒤에 지도를 표시.
     private fun permissionCheck(cancel: () -> Unit, ok: () -> Unit) {
@@ -257,7 +278,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             //permission이 완료되었을경우 이때 MapFrgmt를 표시한다. 이유는 MapFrgmt안에 현재위치를 표시하는 메소드가 퍼미션이 되기전에 실행되어 에러가 나기때문에
             //supportFragmentManager.beginTransaction().replace(R.id.mainFrame, mapfr).commit() //<-잘못된 생각, floating button을 이용.
 
-            supportFragmentManager.beginTransaction().add(R.id.mainFrame, mapfr).commit()
+            // MapFragment
+
         }
     }
 
@@ -273,10 +295,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             }
             noButton { }
         }.show()
-    }
-
-    private fun removeLocationListener() {
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }
 
     @SuppressLint("MissingPermission")
@@ -300,21 +318,25 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     }
 
 
-    //타이머 측정 함수
+    //타이머 측정 함수  TODO: period를 10으로 두면 백그라운드에서 엄청 느리게감. 이유찾아보기
     private fun startTimer() {
-        timeTask = timer(period = 10) {
-
+        timeTask = timer(period = 1000) {
 
             time++  //절대적 시간초.  <-Todo:이 time을 가지고 속도를 구할수 있다.
-            var sec = time / 100 % 60
-            var min = time / 6000 % 60
-            var hour = time / 360000
+            // 총 초시간 저장
+            total_sec  = time
 
+            var sec = time % 60
+            var min = time / 60 % 60
+            var hour = time / 3600
+
+            // 밑의 TextView.text 들이 null 을 입력받는 시점이 있음. 이 때 ?을 넣어줘야함.
+            // thread에선 view 못 건드리므로 runOnUiThread 사용하여 변경
             runOnUiThread {
                 //UI를 갱신해주는 쓰레드
-                //secTextView.text = sec.toString()
-                //minTextView.text = min.toString()
-                //hourTextView.text = hour.toString()
+                secTextView?.text = sec.toString()
+                minTextView?.text = min.toString()
+                hourTextView?.text = hour.toString()
             }
         }
     }
@@ -342,7 +364,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             // let 은 객체를 블록의 인자로 넘겨서 it으로 사용 가능
             //run 은 객체를 블록의 리시버로 넘겨서 따로 객체 선언 없이 암시적으로 사용 가능.
 
-
             location?.run {
 
                 val latLng = LatLng(
@@ -359,8 +380,17 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                     val arrayex = FloatArray(1)
                     distanceBetween(latitude, longitude, before_location[0]!!, before_location[1]!!, arrayex)
 
-                    total_distance += arrayex[0]
-                    println(total_distance)
+                    total_distance += arrayex[0]/1000
+
+                    // 거리 표시
+                    distanceKm.text = String.format("%.2f", total_distance)
+                    // 시속 표시
+                    averageSpeed.text = String.format("%.2f", total_distance * (3600 / total_sec))
+
+                    println("거리:" + total_distance)
+                    println("초:" + total_sec)
+                    println("시속: "+ (total_distance * (3600 / total_sec)) + "km")
+
 
                     //insertLatlng(latitude,longitude)
                     polylineOptions.add(latLng)
