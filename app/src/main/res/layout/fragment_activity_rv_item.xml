@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:id="@+id/recyclerview_layout_for_select"
+              >
 
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/activity_item_profile_imageview"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+        />
+        <TextView
+                android:id="@+id/activity_item_user_email_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/activity_item_profile_imageview"
+                android:layout_marginTop="10dp"
+                android:text="xxxxxxx@naver.com"
+                android:textStyle="bold"
+        />
+        <TextView
+                android:id="@+id/activity_item_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/activity_item_profile_imageview"
+                android:layout_marginTop="21dp" android:layout_below="@+id/activity_item_user_email_textview"
+                android:text="2019년 11월 30일"  android:textSize="10dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toEndOf="@+id/activity_item_profile_imageview"/>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/activity_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:text="걷기 운동(제목)"/>
+        <TextView
+                android:id="@+id/activity_item_distance_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="거리"
+                android:layout_below="@+id/activity_item_title" android:layout_marginLeft="10dp" />
+        <TextView
+                android:id="@+id/activity_item_distance_input_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/activity_item_distance_textview"
+                android:layout_marginLeft="10dp" android:layout_marginBottom="10dp"
+                android:text="50km"
+                android:textStyle="bold"/>
+
+    </RelativeLayout>
     <ImageView
-            android:id="@+id/dogPhotoImg"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:id="@+id/activity_item_map_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_account_circle_black_24dp"/>
+    <View android:layout_width="match_parent" android:layout_height="10dp"
+          android:layout_marginTop="10dp"
+          android:background="#B6B2B2"/>
 
-    />
 
-    <TextView
-            android:id="@+id/dogBreedTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-
-            android:text="Breed"
-    />
-
-    <TextView
-            android:id="@+id/dogAgeTv"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="16sp"
-
-            android:text="Age" />
-
-    <TextView
-            android:id="@+id/dogGenderTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-
-            android:text="Gender" />
 
 </LinearLayout>

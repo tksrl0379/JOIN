@@ -20,6 +20,6 @@
     <item
             android:id="@+id/bnv_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="설정" />
+            android:title="계정 설정" />
 
 </menu>

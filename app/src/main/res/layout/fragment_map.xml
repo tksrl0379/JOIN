@@ -3,15 +3,11 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".LogIn.LogInImageFragment">
+             tools:context=".Map.MapFragment">
 
-    <ImageView
-            android:id="@+id/login_imageView"
+    <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_background"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="16dp"
-    />
+            android:layout_height="match_parent" />
 
 </FrameLayout>

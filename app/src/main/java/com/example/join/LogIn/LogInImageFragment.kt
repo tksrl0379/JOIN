@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.LogIn
 
 
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.example.join.R
 
 
 class LogInImageFragment : Fragment() {
@@ -19,7 +20,7 @@ class LogInImageFragment : Fragment() {
 
         val login_imageView = view.findViewById<ImageView>(R.id.login_imageView)
 
-
+        // 자바에선 getArgument()
         if (arguments != null) {
             val args = arguments
             // MainActivity에서 받아온 Resource를 ImageView에 셋팅

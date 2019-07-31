@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.LogIn
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
-import com.google.android.gms.auth.api.Auth
+import com.example.join.Main.Activity.MainActivity
+import com.example.join.R
+import com.example.join.DTO.UserInfoDTO
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_log_in.*
 import java.util.ArrayList
 
@@ -34,6 +36,15 @@ class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
+
+        // 애니메이션
+        // https://blog.naver.com/rjs5730/221239700311
+        // https://m.blog.naver.com/PostView.nhn?blogId=tkddlf4209&logNo=220700530627&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+        //https://blog.naver.com/rjs5730/221239700311
+
+        //val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
+        //signin_Button.startAnimation(animation)
+
 
         // Firebase 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance()
@@ -91,14 +102,17 @@ class LogInActivity : AppCompatActivity() {
         signin_googleButton.setOnClickListener{
             google_signIn()
         }
+    }// [End of onCreate]
 
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
-            val name = user.displayName
+    // 자동 로그인 처리
+    override fun onStart() {
+        super.onStart()
+        var currentUser = firebaseAuth.currentUser
+        if(currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
-
-
-    }//End of onCreate
+    }
 
     // 일반 로그인 처리
     fun signIn(){
@@ -145,22 +159,36 @@ class LogInActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(login_id, login_pw)
             .addOnCompleteListener(this){ task->
                 if(task.isSuccessful) {
-                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "로그인 성공입니다", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("ID", login_id)
                     startActivity(intent)
                 }else
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
             }
     }
 
+
     // 회원가입
     fun createUser(login_id : String, login_pw : String){
         firebaseAuth.createUserWithEmailAndPassword(login_id, login_pw)
             .addOnCompleteListener(this) { task ->
-                if(task.isSuccessful)
-                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                if(task.isSuccessful) {
+                    Toast.makeText(this, "회원가입 성공입니다", Toast.LENGTH_SHORT).show()
+
+                    // 회원가입이 성공하면 firestore에 email 및 uid 저장
+                    val userInfoDTO = UserInfoDTO()
+                    var uemail = FirebaseAuth.getInstance().currentUser!!.email
+                    var uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+                    userInfoDTO.userEmail = uemail.toString()
+                    userInfoDTO.userId = uid
+                    //var map = HashMap<String, Any>()
+                    //map["userEmail"] = uemail.toString()
+
+                    FirebaseFirestore.getInstance().
+                        collection("userid").document(uid).set(userInfoDTO)
+                }
                 else
                     Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
             }

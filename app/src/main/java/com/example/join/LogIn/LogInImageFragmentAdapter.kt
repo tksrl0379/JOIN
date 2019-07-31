@@ -1,4 +1,4 @@
-package com.example.join
+package com.example.join.LogIn
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
