@@ -19,6 +19,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
+import kotlinx.android.synthetic.main.fragment_record.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
@@ -54,8 +55,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     var detailfr: Fragment = RecordFragment() //
 
 
-    //var startOrstop : Bundle = Bundle() //프래그먼트의 기능을 실행할지 멈출지 하는 번들.
 
+    //var startOrstop : Bundle = Bundle() //프래그먼트의 기능을 실행할지 멈출지 하는 번들.
     var startOrStop: Boolean = false //map,detail의 저장기능을 시작할지 말지
 
     //위치정보를 구현하기위한 메소드
@@ -293,9 +294,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
             runOnUiThread {
                 //UI를 갱신해주는 쓰레드
-                //secTextView.text = sec.toString()
-                //minTextView.text = min.toString()
-                //hourTextView.text = hour.toString()
+                secTextView.text = sec.toString()
+                minTextView.text = min.toString()
+                hourTextView.text = hour.toString()
             }
         }
     }
