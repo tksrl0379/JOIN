@@ -4,17 +4,13 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".Map.RecordMapActivity">
+                tools:context=".Map.RecordMapActivity"
+                android:background="@color/colorBackgroundDefault">
 
     <FrameLayout
             android:id="@+id/mainFrame"
             android:layout_width="match_parent"
-            android:layout_height="500dp">
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="mainFrame" />
+            android:layout_height="550dp">
 
     </FrameLayout>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
@@ -124,44 +124,23 @@
                 android:textSize="30dp" />
 
         <TextView
-                android:id="@+id/speedKM"
+                android:id="@+id/averageSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/avgSpeed"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
-                android:text="0"
+                android:layout_centerInParent="true"
+
+                android:text="0.00"
                 android:textSize="80dp" />
 
-        <TextView
-                android:id="@+id/speedM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/avgSpeed"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="150dp"
-                android:text="0"
-                android:textSize="80dp" />
 
-        <TextView
-                android:id="@+id/avgdot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/avgSpeed"
-                android:layout_marginTop="16dp"
-                android:layout_toStartOf="@+id/speedM"
-                android:layout_toEndOf="@+id/speedKM"
-                android:text="."
-                android:textSize="80dp" />
 
 
         <View
                 android:id="@+id/boundaryLine2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/avgdot"
+                android:layout_below="@+id/averageSpeed"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
@@ -189,38 +168,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/distance"
-                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="150dp"
                 android:layout_marginTop="16dp"
-                android:text="0"
+                android:text="0.00"
                 android:textSize="50dp" />
 
-        <TextView
-                android:id="@+id/distanceM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/distance"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="150dp"
-                android:text="0"
-                android:textSize="50dp" />
-
-        <TextView
-                android:id="@+id/distanceDot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/distance"
-                android:layout_marginTop="16dp"
-                android:layout_toStartOf="@+id/distanceM"
-                android:layout_toEndOf="@+id/distanceKm"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="8dp"
-                android:text="."
-                android:textSize="50dp" />
 
 
     </RelativeLayout>
-
-
-</FrameLayout>
+</RelativeLayout>
