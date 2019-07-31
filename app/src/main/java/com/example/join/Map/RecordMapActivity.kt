@@ -213,6 +213,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
 
 
+        //Todo: 현재까지의 이동거리를 스크린샷으로 하여 이미지 파일 만들기.
         /*
         var snapshotReadyCallback: GoogleMap.SnapshotReadyCallback =
             GoogleMap.SnapshotReadyCallback {bm : Bitmap -> Bitmap.createBitmap(100,100,Bitmap.Config.ARGB_8888)}
