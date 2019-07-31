@@ -16,6 +16,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 
+//Jinseo Test.
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -36,12 +37,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View? {
 
         rootview = inflater.inflate(R.layout.fragment_map, container, false)
-
         mapView = rootview.findViewById(R.id.mapView)
-
         mapView.onCreate(savedInstanceState)
         mapView.onResume()          //onResume()도 연결시켜야 정상적으로 맵이 보임.
-
 
         mapView.getMapAsync(this)
 
