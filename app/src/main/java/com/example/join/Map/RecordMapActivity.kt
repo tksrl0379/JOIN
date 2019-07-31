@@ -33,6 +33,7 @@ import org.jetbrains.anko.*
 import java.util.*
 import kotlin.concurrent.timer
 
+
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
 // fusedLocationProviderClient.requestLocationUpdates() -> 위치 데이터 요청. (callback은 위치데이터를 받을 곳)
 // public Task<Void> requestLocationUpdates (LocationRequest request, LocationCallback callback, Looper looper)
