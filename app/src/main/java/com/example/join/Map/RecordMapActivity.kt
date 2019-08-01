@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
 import android.location.Location.distanceBetween
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -77,10 +78,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     // 시간초
     var total_sec: Int = 0
 
+    // 위도, 경도 저장
+    var latlngArray: ArrayList<Pair<Double, Double>> = ArrayList()
+
 
     //구글 지도를 img로 스냅샷 할 변수
     val builder = LatLngBounds.builder()
-
     val extStorageDirectory: String =
         Environment.getExternalStorageDirectory().toString()
 
@@ -158,7 +161,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.recordUploadFab ->{
                 UploadFab()
                 startActivityForResult<UploadActivity>(100,
-                "distance" to total_distance, "time" to time)}
+                "distance" to total_distance, "time" to time, "latlng" to latlngArray)}
         }
     }
 
@@ -197,6 +200,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
         pauseTimer()
+        recordPressed = false
         recordStart = false
         recordPauseFab.hide()
         recordResumeFab.show()
@@ -210,6 +214,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
         startTimer() //중지했던 시간을 계속하여 측정한다.
+        recordPressed = true
         recordStart = true
         recordResumeFab.hide()
         recordUploadFab.hide()
@@ -236,19 +241,20 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         var outputStream: OutputStream = FileOutputStream(file)
 
         val snapshotReadyCallback = GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
-
                 bitmap: Bitmap ->
-            Bitmap.createBitmap(
-                1090, 1920,
-                Bitmap.Config.ARGB_8888
-            )
+
+
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
 
-            println(bitmap)
-
             outputStream.flush()
             outputStream.close()
+
+            //var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
+
+            //println(snapshotUri)
+
+
 
         }
 
@@ -427,12 +433,13 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
 
-
-
                 if (recordStart) {
 
                     //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
                     builder.include(LatLng(latitude, longitude))
+
+                    // 위도, 경도 저장
+                    latlngArray.add(Pair(latitude, longitude))
 
                     val arrayex = FloatArray(1)
                     distanceBetween(latitude, longitude, before_location[0]!!, before_location[1]!!, arrayex)

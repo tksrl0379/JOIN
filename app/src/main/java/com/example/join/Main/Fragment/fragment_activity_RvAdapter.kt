@@ -117,20 +117,17 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         // 거리 가져오기
         viewHolder.activity_item_distance_input_textview.text = contentDTOs[position].distance
 
-        // 날짜 가져오기 TODO: 이 부분 여기서 받으면 안됨
+        // 날짜 가져오기
         var date = contentDTOs[position].date
         viewHolder.activity_item_date_textview.text =
             date.toString().substring(0,4) + "년 " +
                     date.toString().substring(4,6) + "월 " + date.toString().substring(6,8) + "일"
 
         // 가운데 이미지
-//        Glide.with(holder.itemView.context)
-//            .load(contentDTOs[position].imageUrI)
-//            .into(viewHolder.activity_item_map_imageview)
-        // 임시
         Glide.with(holder.itemView.context)
-            .load("https://firebasestorage.googleapis.com/v0/b/join-eab15.appspot.com/o/images%2FJPEG_20190725_084212_.png?alt=media&token=66d20fef-f6b9-4b01-be4d-d1a2cf9acf2f")
+            .load(contentDTOs[position].imageUrI)
             .into(viewHolder.activity_item_map_imageview)
+
 
 
 
