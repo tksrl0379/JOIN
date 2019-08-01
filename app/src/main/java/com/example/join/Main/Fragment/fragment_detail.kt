@@ -37,6 +37,8 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
         // Inflate the layout for this fragment
         val mainView = inflater.inflate(R.layout.fragment_detail, container, false)
 
+
+
         // 어댑터로부터 사진의 imageUrI 넘겨받음
         imageUrI = arguments!!.getString("imageURL")
 
@@ -73,21 +75,24 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
 
                 // 제목
-                // TODO 미구현
+                mainView.detail_title_textview.text = contentDTO.title
 
                 // 날짜
-                var date1 = SimpleDateFormat("yyyyMMdd").format(Date())
+                var date1 = contentDTO.date
                 mainView.detail_date_textview.text = date1.toString().substring(0,4) + "년 " +
                     date1.toString().substring(4,6) + "월 " + date1.toString().substring(6,8) + "일"
                 // 내용
                 mainView.detail_explain_textview.text = contentDTO.explain
 
-                // 사진(맵이 들어갈 자리)
+                // 사진
                 Glide.with(context!!).load(contentDTO.imageUrI)
                     .into(mainView.detail_map_imageview)
 
                 // 거리
-                // TODO 미구현
+                mainView.detail_distance_textview.text = contentDTO.distance
+
+                // 이동 시간
+                mainView.detail_consuming_time_textview.text = contentDTO.time
 
             }
         return mainView
