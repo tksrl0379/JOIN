@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.DTO.Activity_ContentDTO
 import com.example.join.Main.Activity.MainActivity
 import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +27,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
     var imageUrI: String? = null
 
-    var contentDTO = AddPhoto_ContentDTO()
+    var contentDTO = Activity_ContentDTO()
 
 
     override fun onCreateView(
@@ -49,11 +49,11 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
          */
 
 
-        firestore.collection("images")
+        firestore.collection("Activity")
             .whereEqualTo("imageUrI", imageUrI).get()
             .addOnSuccessListener {querySnapshot ->
                 for(snapshot in querySnapshot) {
-                    contentDTO = snapshot.toObject(AddPhoto_ContentDTO::class.java)
+                    contentDTO = snapshot.toObject(Activity_ContentDTO::class.java)
                 }
 
                 // 프로필 사진
@@ -68,7 +68,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                     }
 
                 // 아이디
-                val userId = StringTokenizer(contentDTO.userId, "@")
+                val userId = StringTokenizer(contentDTO.userEmail, "@")
                 mainView.detail_user_email_textview.text = userId.nextToken()
 
 

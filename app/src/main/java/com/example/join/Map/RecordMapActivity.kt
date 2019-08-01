@@ -1,6 +1,7 @@
 package com.example.join.Map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
@@ -23,10 +24,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -143,9 +141,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.detailsFab -> DetailsToMap()
             R.id.mapFab -> MapToDetails()
             R.id.recordResumeFab -> ResumeFab()
-            //R.id.recordUploadFab -> startActivity<ResultActivity>()
+            R.id.recordUploadFab ->startActivityForResult<UploadActivity>(100,
+                "distance" to total_distance, "time" to time)
         }
-
     }
 
     // 시작 지점
@@ -183,6 +181,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
         pauseTimer()
+        recordStart = false
         recordPauseFab.hide()
         recordResumeFab.show()
         recordUploadFab.show()
@@ -195,7 +194,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
         startTimer() //중지했던 시간을 계속하여 측정한다.
-
+        recordStart = true
         recordResumeFab.hide()
         recordUploadFab.hide()
         recordPauseFab.show()
@@ -415,6 +414,16 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     // MapFragment 의 mMap 객체와 연결
     override fun onConnect(map: GoogleMap) {
         mMap = map
+    }
+
+
+    // TODO: 호출한 엑티비티가 끝나도 호출되는건지 ?
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode == RESULT_OK)
+            if(requestCode == 100) {
+                if(data!!.getStringExtra("result").equals("upload_success"))
+                    finish()
+            }
     }
 }
 
