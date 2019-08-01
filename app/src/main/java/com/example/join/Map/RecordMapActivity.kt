@@ -1,18 +1,25 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.join.Map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.Display
 import android.view.View
 import android.view.Window
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.constraintlayout.solver.widgets.Snapshot
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -29,9 +36,15 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
+import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback
 import org.jetbrains.anko.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+
 import java.util.*
 import kotlin.concurrent.timer
+
 
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
 // fusedLocationProviderClient.requestLocationUpdates() -> 위치 데이터 요청. (callback은 위치데이터를 받을 곳)
@@ -64,10 +77,10 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     //구글 지도를 img로 스냅샷 할 변수
     val builder = LatLngBounds.builder()
 
-    private lateinit var getmap: Bitmap
-    private lateinit var screenshotImage: ImageView //image로 저장. 다음 액티비티 화면에 뜨게한다.
 
-    ///
+    val extStorageDirectory: String =
+        Environment.getExternalStorageDirectory().toString()
+
 
     // 기록 시작 버튼 클릭 여부 확인
     var recordPressed = false
@@ -198,33 +211,48 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     }
 
 
+
     private fun UploadFab() {
-        //Todo: 다음 액티비티에 지금까지의 위도,경도를 가지고 계산한 거리, 시간, 속도를 인텐트로 넘겨준다.
-        // 현재까지의 이동거리를 스냅샷하는 기능이 필요
+
+        // 현재까지의 이동거리를 스냅샷하는 기능이 필요-> 구현.
 
 
-        //var bm : Bitmap = Bitmap.createBitmap(mapfr.)
-//        mapImagecallback.onSnapshotReady()
-
-
-
+        //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
         //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
         val bounds = builder.build()
         mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
 
 
-        /*
-        var snapshotReadyCallback: GoogleMap.SnapshotReadyCallback =
-            GoogleMap.SnapshotReadyCallback {bm : Bitmap -> Bitmap.createBitmap(100,100,Bitmap.Config.ARGB_8888)}
+        val file = File(extStorageDirectory, "snapTest.png")    //파일명지정
+        var outputStream: OutputStream = FileOutputStream(file)
 
-        val snapshot = mMap?.snapshot(snapshotReadyCallback)
-*/
+        val snapshotReadyCallback = SnapshotReadyCallback{  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
 
+                bitmap : Bitmap->
+                Bitmap.createBitmap(
+                    1090, 1920,
+                    Bitmap.Config.ARGB_8888
+                )
 
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
 
+            println(bitmap)
+
+            outputStream.flush()
+            outputStream.close()
+
+        }
+
+        val snapshotMap = mMap?.snapshot(snapshotReadyCallback)   //구글맵 스크린샷.
+        if(snapshotMap != null){       //저장되었는지 확인.
+            toast("성공")
+        }else{
+            toast("실패")
+        }
 
 
     }
+
 
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
