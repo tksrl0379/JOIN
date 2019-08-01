@@ -3,11 +3,13 @@ package com.example.join.Map
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Location
 import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -19,12 +21,17 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
 import org.jetbrains.anko.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -69,6 +76,13 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     var total_distance: Double = 0.0
     // 시간초
     var total_sec: Int = 0
+
+
+    //구글 지도를 img로 스냅샷 할 변수
+    val builder = LatLngBounds.builder()
+
+    val extStorageDirectory: String =
+        Environment.getExternalStorageDirectory().toString()
 
 
 
@@ -141,8 +155,10 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.detailsFab -> DetailsToMap()
             R.id.mapFab -> MapToDetails()
             R.id.recordResumeFab -> ResumeFab()
-            R.id.recordUploadFab ->startActivityForResult<UploadActivity>(100,
-                "distance" to total_distance, "time" to time)
+            R.id.recordUploadFab ->{
+                UploadFab()
+                startActivityForResult<UploadActivity>(100,
+                "distance" to total_distance, "time" to time)}
         }
     }
 
@@ -204,7 +220,44 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     private fun UploadFab() {
         //Todo: 다음 액티비티에 지금까지의 위도,경도를 가지고 계산한 거리, 시간, 속도를 인텐트로 넘겨준다.
-        //startActivity<ResultActivity>()
+
+
+
+        // 현재까지의 이동거리를 스냅샷하는 기능이 필요-> 구현.
+
+
+        //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
+        //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
+        val bounds = builder.build()
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+
+
+        val file = File(extStorageDirectory, "snapTest.png")    //파일명지정
+        var outputStream: OutputStream = FileOutputStream(file)
+
+        val snapshotReadyCallback = GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
+
+                bitmap: Bitmap ->
+            Bitmap.createBitmap(
+                1090, 1920,
+                Bitmap.Config.ARGB_8888
+            )
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+            println(bitmap)
+
+            outputStream.flush()
+            outputStream.close()
+
+        }
+
+        val snapshotMap = mMap?.snapshot(snapshotReadyCallback)   //구글맵 스크린샷.
+        if(snapshotMap != null){       //저장되었는지 확인.
+            toast("성공")
+        }else{
+            toast("실패")
+        }
     }
 
     private fun DetailsToMap() {
@@ -374,7 +427,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
 
+
+
                 if (recordStart) {
+
+                    //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
+                    builder.include(LatLng(latitude, longitude))
 
                     val arrayex = FloatArray(1)
                     distanceBetween(latitude, longitude, before_location[0]!!, before_location[1]!!, arrayex)
