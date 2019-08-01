@@ -13,6 +13,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Map.UploadActivity">
+        </activity>
         <activity android:name=".Map.RecordMapActivity">
         </activity>
         <activity android:name=".Map.MapRecordActivity">
