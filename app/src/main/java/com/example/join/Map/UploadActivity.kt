@@ -41,13 +41,14 @@ class UploadActivity : AppCompatActivity() {
         var distanceKm = intent.extras?.getDouble("distance")
         var total_time = intent.extras?.getInt("time")
         var latlngArray = intent.extras?.getSerializable("latlng") as ArrayList<Pair<Double,Double>>
+        var max_altitude = intent.extras?.getDouble("max_altitude")
 
         activity_upload_btn.setOnClickListener {
-            upload_data(distanceKm!!, total_time!!, latlngArray!!)
+            upload_data(distanceKm!!, total_time!!, latlngArray!!, max_altitude!!)
         }
     }
 
-    fun upload_data(distanceKm: Double, total_time: Int, latlngArray: ArrayList<Pair<Double,Double>>){
+    fun upload_data(distanceKm: Double, total_time: Int, latlngArray: ArrayList<Pair<Double,Double>>, max_altitude: Double){
         var map = HashMap<String, Any>()
         var date = SimpleDateFormat("yyyyMMdd").format(Date())
 
@@ -85,6 +86,7 @@ class UploadActivity : AppCompatActivity() {
                 map["date"] = date
                 map["timeStamp"] =  System.currentTimeMillis()
                 map["distance"] = String.format("%.2f", distanceKm) + " km"
+                map["max_altitude"] = max_altitude.toString() + " m"
                 map["uid"] = firebaseAuth.currentUser!!.uid
                 map["userEmail"] = firebaseAuth.currentUser!!.email.toString()
 

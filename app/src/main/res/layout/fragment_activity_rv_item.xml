@@ -4,33 +4,37 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/recyclerview_layout_for_select"
-              >
+>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
         <ImageView
                 android:id="@+id/activity_item_profile_imageview"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="17dp"
                 android:src="@drawable/ic_account_circle_black_24dp"
         />
         <TextView
                 android:id="@+id/activity_item_user_email_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/activity_item_profile_imageview"
-                android:layout_marginTop="10dp"
                 android:text="xxxxxxx@naver.com"
-                android:textStyle="bold"
-        />
+                android:textColor="#000000"
+                android:textStyle="bold"/>
         <TextView
                 android:id="@+id/activity_item_date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/activity_item_profile_imageview"
-                android:layout_marginTop="21dp" android:layout_below="@+id/activity_item_user_email_textview"
-                android:text="2019년 11월 30일"  android:textSize="10dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginTop="15dp" android:layout_below="@+id/activity_item_user_email_textview"
+                android:text="2019년 11월 30일"  android:textSize="12dp"
+
+                android:layout_marginBottom="1dp" android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/activity_item_profile_imageview"/>
     </RelativeLayout>
 
@@ -39,24 +43,43 @@
                 android:id="@+id/activity_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textStyle="bold"
-                android:text="걷기 운동(제목)"/>
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="10dp" android:layout_marginBottom="10dp" android:text="걷기 운동(제목)"
+                android:textColor="#000000" android:textSize="20dp" android:textStyle="bold"/>
         <TextView
                 android:id="@+id/activity_item_distance_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10dp"
+                android:textSize="11dp"
                 android:text="거리"
-                android:layout_below="@+id/activity_item_title" android:layout_marginLeft="10dp" />
+                android:layout_below="@+id/activity_item_title" android:layout_marginLeft="25dp" />
         <TextView
                 android:id="@+id/activity_item_distance_input_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/activity_item_distance_textview"
-                android:layout_marginLeft="10dp" android:layout_marginBottom="10dp"
+                android:layout_marginLeft="25dp" android:layout_marginBottom="10dp"
                 android:text="50km"
-                android:textStyle="bold"/>
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        <TextView
+                android:id="@+id/activiy_item_altitude_textview"
+                android:layout_toRightOf="@+id/activity_item_distance_input_textview"
+                android:layout_below="@+id/activity_item_title" android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "최고 고도" android:textSize="11dp"/>
+        <TextView
+                android:id="@+id/activity_item_altitude_input_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7.0 m" android:textSize="18dp"
+                android:layout_marginLeft="25dp" android:textColor="#000000"
+                android:layout_below="@+id/activiy_item_altitude_textview"
+                android:layout_toRightOf="@+id/activity_item_distance_input_textview"
+
+        />
 
     </RelativeLayout>
     <ImageView

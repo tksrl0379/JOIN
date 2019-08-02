@@ -78,6 +78,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     // 시간초
     var total_sec: Int = 0
 
+    // 고도
+    var max_altitude: Double = 0.0
     // 위도, 경도 저장
     var latlngArray: ArrayList<Pair<Double, Double>> = ArrayList()
 
@@ -161,7 +163,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.recordUploadFab ->{
                 UploadFab()
                 startActivityForResult<UploadActivity>(100,
-                "distance" to total_distance, "time" to time, "latlng" to latlngArray)}
+                "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude)}
         }
     }
 
@@ -435,6 +437,10 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                 if (recordStart) {
 
+                    if(altitude > max_altitude)
+                        max_altitude = altitude
+
+                    println("경도: " + max_altitude)
                     //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
                     builder.include(LatLng(latitude, longitude))
 
