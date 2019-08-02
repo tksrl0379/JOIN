@@ -48,7 +48,7 @@ import kotlin.concurrent.timer
 // public Task<Void> requestLocationUpdates (LocationRequest request, LocationCallback callback, Looper looper)
 
 //Updated
-//To another project.
+
 
 
 // TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
