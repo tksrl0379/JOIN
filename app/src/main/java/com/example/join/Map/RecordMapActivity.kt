@@ -406,13 +406,10 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         timeTask?.cancel()  //Timer의 객체로써 null일수 있기에 timetask 옆에 ? 붙음.
     }
 
-
-    fun distanceCal(){
-
-
+    //Todo:만보기 가속도센서만들기
+    private fun funfun(){
 
     }
-
 
     //TODO : start 누르는 순간 기록 시작. upload 누를 시 firestore에 업로드
     inner class MyLocationCallback : LocationCallback() {
