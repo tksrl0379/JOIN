@@ -32,7 +32,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="60dp"
-                android:text="0"
+                android:text="0" android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -43,7 +43,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="60dp"
                 android:layout_toEndOf="@+id/hourTextView"
-                android:text="시"
+                android:text="시" android:textColor="#000000"
                 android:textSize="50dp" />
 
         <!--min-->
@@ -57,7 +57,7 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="161dp"
                 android:layout_toEndOf="@+id/minTextView"
-                android:text="분"
+                android:text="분" android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -69,7 +69,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="173dp"
                 android:layout_marginTop="60dp"
-                android:text="0"
+                android:text="0" android:textColor="#000000"
                 android:textSize="50dp" />
 
         <!--sec-->
@@ -83,7 +83,7 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="0dp"
                 android:layout_toStartOf="@+id/sec"
-                android:text="0"
+                android:text="0" android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -94,7 +94,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="30dp"
-                android:text="초"
+                android:text="초" android:textColor="#000000"
                 android:textSize="50dp" />
 
 
@@ -130,7 +130,7 @@
                 android:layout_below="@+id/avgSpeed"
                 android:layout_centerInParent="true"
 
-                android:text="0.00"
+                android:text="0.00" android:textColor="#000000"
                 android:textSize="80dp" />
 
 
@@ -171,10 +171,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginStart="150dp"
                 android:layout_marginTop="16dp"
-                android:text="0.00"
+                android:text="0.00" android:textColor="#000000"
                 android:textSize="50dp" />
-
-
-
     </RelativeLayout>
 </RelativeLayout>

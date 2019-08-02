@@ -117,6 +117,9 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         // 거리 가져오기
         viewHolder.activity_item_distance_input_textview.text = contentDTOs[position].distance
 
+        // 고도 가져오기
+        viewHolder.activity_item_altitude_input_textview?.text = contentDTOs[position].max_altitude
+
         // 날짜 가져오기
         var date = contentDTOs[position].date
         viewHolder.activity_item_date_textview.text =

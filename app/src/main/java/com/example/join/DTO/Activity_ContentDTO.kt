@@ -7,6 +7,7 @@ data class Activity_ContentDTO (
     var date: String? = null,
     var timestamp: Long? = null,
     var distance: String? = null,
+    var max_altitude: String? = null,
     var uid: String? = null,
     var userEmail: String? = null,
     var imageUrI: String? = null,
