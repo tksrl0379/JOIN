@@ -41,6 +41,7 @@ import kotlin.concurrent.timer
 // fusedLocationProviderClient.requestLocationUpdates() -> 위치 데이터 요청. (callback은 위치데이터를 받을 곳)
 // public Task<Void> requestLocationUpdates (LocationRequest request, LocationCallback callback, Looper looper)
 
+//Updated
 
 // TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
 class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener{
