@@ -375,7 +375,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             //var circleOptions = CircleOptions()
             // let 은 객체를 블록의 인자로 넘겨서 it으로 사용 가능
             //run 은 객체를 블록의 리시버로 넘겨서 따로 객체 선언 없이 암시적으로 사용 가능.
-
+            println("---Location Callback()---")
             location?.run {
 
                 val latLng = LatLng(
@@ -385,14 +385,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                 Log.d("MapActivity", "lan:$latitude, long:$longitude")
 
-
-
                 if (recordStart) {
 
                     if(altitude > max_altitude)
                         max_altitude = altitude
 
-                    println("경도: " + max_altitude)
+                    println("현재 고도: " + altitude + "\n최고 고도: " + max_altitude)
                     //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
                     //builder.include(LatLng(latitude, longitude))
 
