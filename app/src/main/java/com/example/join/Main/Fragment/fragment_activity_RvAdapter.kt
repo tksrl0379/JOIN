@@ -140,7 +140,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
             // 어댑터-> 프래그먼트 data 넘김 (Bundle()객체 선언해야함)
             var bundle = Bundle()
-            bundle.putString("imageURL", contentDTOs[position].imageUrI)
+            bundle.putLong("timeStamp", contentDTOs[position].timeStamp!!)
             fragment.arguments = bundle
 
             mainActivity.supportFragmentManager.beginTransaction().

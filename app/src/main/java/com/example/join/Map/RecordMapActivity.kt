@@ -85,17 +85,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
     //구글 지도를 img로 스냅샷 할 변수
-    val builder = LatLngBounds.builder()
-    val extStorageDirectory: String =
-        Environment.getExternalStorageDirectory().toString()
-
-
-
-    //var startOrstop : Bundle = Bundle() //프래그먼트의 기능을 실행할지 멈출지 하는 번들.
-
-    var startOrStop: Boolean = false //map,detail의 저장기능을 시작할지 말지
-
-    //위치정보를 구현하기위한 메소드
+    //val builder = LatLngBounds.builder()
+    //val extStorageDirectory: String =  Environment.getExternalStorageDirectory().toString()
 
 
     override fun onRequestPermissionsResult(
@@ -125,23 +116,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         locationInit()
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, mapfr).commit()
 
-
-
-
-//        val frgmtManiger : FragmentManager
-        //초기화
-
-
         if (savedInstanceState == null) {
 
         }
-
-
-        //val recordUploadFab2: FloatingActionButton
-        //        = findViewById(R.id.recordUploadFab) as FloatingActionButton
-
-
-        //recordUploadFab2.setOnClickListener { println("dd") }
 
         recordStartFab.setOnClickListener(this)
         recordPauseFab.setOnClickListener(this)
@@ -161,7 +138,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.mapFab -> MapToDetails()
             R.id.recordResumeFab -> ResumeFab()
             R.id.recordUploadFab ->{
-                UploadFab()
+                //UploadFab()
                 startActivityForResult<UploadActivity>(100,
                 "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude)}
         }
@@ -178,19 +155,11 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         // 레코드 버튼 눌림 확인
         recordPressed = true
 
-
-        startTimer() //액티비티에서 시간을 시작하고 변경된 값을 DetailFragmt에 전송.
-
-        //map에서도 poly라인 선이 그어지기 시작해야하므로
-
-
+        //액티비티에서 시간을 시작하고 변경된 값을 DetailFragmt에 전송.
+        startTimer()
 
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).commit()
-
-
-        //Todo:MapFr와 detailFr한테 시작하라는 기능을 전달해줘야한다.
-
 
         MapToDetails()
     }
@@ -225,14 +194,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     }
 
+    /*
     private fun UploadFab() {
-        //Todo: 다음 액티비티에 지금까지의 위도,경도를 가지고 계산한 거리, 시간, 속도를 인텐트로 넘겨준다.
-
-
-
-        // 현재까지의 이동거리를 스냅샷하는 기능이 필요-> 구현.
-
-
         //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
         //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
         val bounds = builder.build()
@@ -267,6 +230,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             toast("실패")
         }
     }
+    */
 
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
@@ -334,12 +298,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             }
         } else {
             ok()
-
-            //permission이 완료되었을경우 이때 MapFrgmt를 표시한다. 이유는 MapFrgmt안에 현재위치를 표시하는 메소드가 퍼미션이 되기전에 실행되어 에러가 나기때문에
-            //supportFragmentManager.beginTransaction().replace(R.id.mainFrame, mapfr).commit() //<-잘못된 생각, floating button을 이용.
-
-            // MapFragment
-
         }
     }
 
@@ -407,12 +365,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     }
 
 
-    fun distanceCal(){
-
-
-
-    }
-
 
     //TODO : start 누르는 순간 기록 시작. upload 누를 시 firestore에 업로드
     inner class MyLocationCallback : LocationCallback() {
@@ -442,7 +394,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                     println("경도: " + max_altitude)
                     //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
-                    builder.include(LatLng(latitude, longitude))
+                    //builder.include(LatLng(latitude, longitude))
 
                     // 위도, 경도 저장
                     latlngArray.add(Pair(latitude, longitude))
