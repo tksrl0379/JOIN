@@ -60,7 +60,14 @@ class UploadActivity : AppCompatActivity() {
         var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
         var googleMapUrI = "http://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:5"
+
+
+        val startpoint = "&markers=color:blue%7Clabel:Start%7C"+latlngArray[0].first+","+latlngArray[0].second //tesT용
+        val endpoint = "&markers=color:blue%7Clabel:End%7C"+latlngArray[latlngArray.size-1].first+","+latlngArray[latlngArray.size-1].second
+
+
         var latlngString: String? = null
+
 
 
         for(latlng in latlngArray ){
@@ -69,7 +76,7 @@ class UploadActivity : AppCompatActivity() {
             else
                 latlngString = latlngString + "|" + latlng.first + "," + latlng.second
         }
-        googleMapUrI = googleMapUrI + latlngString
+        googleMapUrI = googleMapUrI + latlngString+startpoint+endpoint
         println("주소: " + googleMapUrI)
 
         val imageFileName = "JPEG_"+
