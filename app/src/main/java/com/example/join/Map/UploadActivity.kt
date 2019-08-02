@@ -60,7 +60,7 @@ class UploadActivity : AppCompatActivity() {
 
         var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
-        var googleMapUrI = "http://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:5"
+        var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:5"
         var latlngString: String? = null
 
 
