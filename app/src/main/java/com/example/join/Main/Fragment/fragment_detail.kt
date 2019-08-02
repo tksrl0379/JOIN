@@ -25,7 +25,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
     private lateinit var firestore: FirebaseFirestore
     private  lateinit var firebaseStorage: FirebaseStorage
 
-    var imageUrI: String? = null
+    var timeStamp: Long? = null
 
     var contentDTO = Activity_ContentDTO()
 
@@ -40,7 +40,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
 
         // 어댑터로부터 사진의 imageUrI 넘겨받음
-        imageUrI = arguments!!.getString("imageURL")
+        timeStamp = arguments!!.getLong("timeStamp")
 
         // Firestore 객체 초기화
         firestore = FirebaseFirestore.getInstance()
@@ -52,7 +52,7 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
 
         firestore.collection("Activity")
-            .whereEqualTo("imageUrI", imageUrI).get()
+            .whereEqualTo("timeStamp", timeStamp).get()
             .addOnSuccessListener {querySnapshot ->
                 for(snapshot in querySnapshot) {
                     contentDTO = snapshot.toObject(Activity_ContentDTO::class.java)
