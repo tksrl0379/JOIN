@@ -77,7 +77,7 @@
                 android:id="@+id/detail_accumulated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="누적 고도"
+                android:text="평균 속도"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="40dp"
         />

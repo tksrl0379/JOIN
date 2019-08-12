@@ -42,13 +42,14 @@ class UploadActivity : AppCompatActivity() {
         var total_time = intent.extras?.getInt("time")
         var latlngArray = intent.extras?.getSerializable("latlng") as ArrayList<Pair<Double,Double>>
         var max_altitude = intent.extras?.getDouble("max_altitude")
+        var averSpeed = intent.extras?.getString("averSpeed")
 
         activity_upload_btn.setOnClickListener {
-            upload_data(distanceKm!!, total_time!!, latlngArray!!, max_altitude!!)
+            upload_data(distanceKm!!, total_time!!, latlngArray!!, max_altitude!!, averSpeed!!)
         }
     }
 
-    fun upload_data(distanceKm: Double, total_time: Int, latlngArray: ArrayList<Pair<Double,Double>>, max_altitude: Double){
+    fun upload_data(distanceKm: Double, total_time: Int, latlngArray: ArrayList<Pair<Double,Double>>, max_altitude: Double, averSpeed: String){
         var map = HashMap<String, Any>()
         var date = SimpleDateFormat("yyyyMMdd").format(Date())
 
@@ -86,9 +87,10 @@ class UploadActivity : AppCompatActivity() {
                 map["date"] = date
                 map["timeStamp"] =  System.currentTimeMillis()
                 map["distance"] = String.format("%.2f", distanceKm) + " km"
-                map["max_altitude"] = max_altitude.toString() + " m"
+                map["max_altitude"] = String.format("%.2f", max_altitude) + " m"
                 map["uid"] = firebaseAuth.currentUser!!.uid
                 map["userEmail"] = firebaseAuth.currentUser!!.email.toString()
+                map["averSpeed"] = averSpeed + " km/h"
 
                 firestore.collection("Activity").document().set(map).addOnCompleteListener{
                     // 업로드가 완료되면 RecordMapActivity 도 종료하도록 명령
