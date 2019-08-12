@@ -55,7 +55,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private lateinit var locationCallback: MyLocationCallback
 
     //선을 그어주는 변수
-    private val polylineOptions = PolylineOptions().width(7f).color(Color.YELLOW)
+    private val polylineOptions = PolylineOptions().width(7f).color(Color.RED)
 
     //private  static String FRAGMENT_TAG = "FRAGMENTB_TAG"
     private var detailTag: String = "DetailTag"
@@ -82,6 +82,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     var max_altitude: Double = 0.0
     // 위도, 경도 저장
     var latlngArray: ArrayList<Pair<Double, Double>> = ArrayList()
+    // 속도 저장
+    var averSpeed: String? = null
 
 
     //구글 지도를 img로 스냅샷 할 변수
@@ -140,7 +142,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.recordUploadFab ->{
                 //UploadFab()
                 startActivityForResult<UploadActivity>(100,
-                "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude)}
+                "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
+                    "averSpeed" to averSpeed)}
         }
     }
 
@@ -392,7 +395,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                     if(altitude > max_altitude)
                         max_altitude = altitude
 
-                    println("경도: " + max_altitude)
+                    println("고도: " + max_altitude)
                     //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
                     //builder.include(LatLng(latitude, longitude))
 
@@ -407,7 +410,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                     // 거리 표시
                     distanceKm.text = String.format("%.2f", total_distance)
                     // 시속 표시
-                    averageSpeed.text = String.format("%.2f", total_distance * (3600 / total_sec))
+                    averSpeed = String.format("%.2f", total_distance * (3600 / total_sec))
+                    averageSpeed.text = averSpeed
 
                     println("거리:" + total_distance)
                     println("초:" + total_sec)

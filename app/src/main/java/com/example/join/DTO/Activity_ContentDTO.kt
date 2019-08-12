@@ -12,6 +12,7 @@ data class Activity_ContentDTO (
     var userEmail: String? = null,
     var imageUrI: String? = null,
     var favoritesCount: Int = 0,
+    var averSpeed: String? = null,
     var favorites: Map<String, Boolean>  = HashMap()) {
     data class Comment(
         var uid: String? = null,
