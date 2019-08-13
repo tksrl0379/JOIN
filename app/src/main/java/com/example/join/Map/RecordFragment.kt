@@ -19,5 +19,8 @@ class RecordFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_record, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
 }
