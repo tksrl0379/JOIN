@@ -91,6 +91,9 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                 // 거리
                 mainView.detail_distance_textview.text = contentDTO.distance
 
+                // 거리 latlng
+                //mainView.detail_map_endpointLatlng.text = contentDTO.distanceLatlng.toString()
+
                 // 이동 시간
                 mainView.detail_consuming_time_textview.text = contentDTO.time
 
