@@ -1,5 +1,7 @@
 package com.example.join.DTO
 
+import com.google.android.gms.maps.model.LatLng
+
 data class Activity_ContentDTO (
     var title: String? = null,
     var explain: String? = null,
@@ -7,6 +9,7 @@ data class Activity_ContentDTO (
     var date: String? = null,
     var timeStamp: Long? = null,
     var distance: String? = null,
+    //var distanceLatlng : LatLng? = null,    //목적지 latlng저장.
     var max_altitude: String? = null,
     var uid: String? = null,
     var userEmail: String? = null,
