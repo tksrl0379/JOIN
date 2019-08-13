@@ -18,9 +18,9 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="시간"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         <!--Hour-->
         <TextView
@@ -30,7 +30,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
+
                 android:text="0"
                 android:textColor="#000000"
                 android:textSize="50dp" />
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_toEndOf="@+id/hourTextView"
                 android:text="시"
                 android:textColor="#000000"
@@ -55,7 +56,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="161dp"
                 android:layout_toEndOf="@+id/minTextView"
                 android:text="분"
@@ -70,7 +71,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="173dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:text="0"
                 android:textColor="#000000"
                 android:textSize="50dp" />
@@ -83,7 +84,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="0dp"
                 android:layout_toStartOf="@+id/sec"
                 android:text="0"
@@ -96,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="30dp"
                 android:text="초"
                 android:textColor="#000000"
@@ -111,7 +112,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="0dp"
                 android:background="#000000" />
 
@@ -124,9 +125,9 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="평균속도(km/h)"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         <TextView
                 android:id="@+id/averageSpeed"
@@ -148,7 +149,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="0dp"
                 android:background="#000000" />
 
@@ -161,9 +162,9 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="거리(km)"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
 
         <TextView
@@ -173,7 +174,6 @@
                 android:layout_below="@+id/distance"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
                 android:text="0.00"
                 android:textColor="#000000"
                 android:textSize="50dp" />
@@ -187,29 +187,29 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="0dp"
                 android:background="#000000" />
 
         <TextView
-                android:id="@+id/stepTextView"
+                android:id="@+id/recordPedometerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/boundaryLine3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:text="걸음 수"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
 
         <TextView
-                android:id="@+id/distanceStep"
+                android:id="@+id/recordPedometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/stepTextView"
+                android:layout_below="@+id/recordPedometerTextView"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
+
                 android:text="0"
                 android:textColor="#000000"
                 android:textSize="50dp" />
