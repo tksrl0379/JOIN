@@ -3,9 +3,6 @@
 
 <img width="200" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
-![](https://media.giphy.com/media/YooQIbT0wieddo9Bto/giphy.gif)
-
-![](https://media.giphy.com/media/MWdOAxxPDEhNKyzXVK/giphy.gif)
 
 
 ## 함께 운동하며 운동한 사진들을 공유하는 어플
@@ -16,7 +13,10 @@
 
 
 
-## screenshot
+## screenshot/GIF
+### 시작화면
+---------
+![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
 ---------
 ### 레코딩
 <img width="200" src="https://user-images.githubusercontent.com/52390975/63002324-abf51d00-beb0-11e9-9002-9846577f65f2.png">
