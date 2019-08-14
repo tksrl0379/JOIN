@@ -1,7 +1,7 @@
 
 # JOIN
 <img width="200" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
-
+![](https://media.giphy.com/media/MWdOAxxPDEhNKyzXVK/giphy.gif){: width="50%" height="50%"}{: .center}
 
 ## 함께 운동하며 운동한 사진들을 공유하는 어플
 
