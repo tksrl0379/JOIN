@@ -12,3 +12,6 @@ upload버튼시 스크린샷되어진 이미지를 sdcard(외부 메모리)에 �
 
 14/Aug/2019
 핵심기능 구현완료.
+
+![mapDetail][sc]
+[sc] = https://github.com/bwrw2347/JOIN/blob/Jinseo/README_src/sc.png
