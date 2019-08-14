@@ -13,6 +13,7 @@ data class Activity_ContentDTO (
     var imageUrI: String? = null,
     var favoritesCount: Int = 0,
     var averSpeed: String? = null,
+    var pedometer: String? = null,
     var favorites: Map<String, Boolean>  = HashMap()) {
     data class Comment(
         var uid: String? = null,

@@ -1,10 +1,15 @@
 package com.example.join.Map
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.location.Location.distanceBetween
 import android.net.Uri
@@ -43,7 +48,8 @@ import kotlin.concurrent.timer
 
 
 // TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
-class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener{
+class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener,
+    SensorEventListener {
 
     //private lateinit var mainfrgmt: Fragment
     private var mMap: GoogleMap? = null
@@ -85,10 +91,37 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     // 속도 저장
     var averSpeed: String? = null
 
+    //만보기
+    var pedometer : Int = 0
+
+
+    private val sensorManager by lazy {
+        getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+
+    }
+
+    // TYPE_STEP_COUNTER 은 핸드폰을 재부팅해야만 0으로 초기화되므로 사용하지 않음
+    override fun onSensorChanged(event: SensorEvent) {
+        event.let {
+            if (event.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
+                Log.d("Sensor ", "Success")
+                if (event.values[0] == 1.0f){
+                    pedometer +=1
+                    recordPedometer.text = pedometer.toString()   //만보기 기능.
+                }
+            }
+        }
+    }
+
 
     //구글 지도를 img로 스냅샷 할 변수
     //val builder = LatLngBounds.builder()
     //val extStorageDirectory: String =  Environment.getExternalStorageDirectory().toString()
+
+
 
 
     override fun onRequestPermissionsResult(
@@ -143,12 +176,18 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                 //UploadFab()
                 startActivityForResult<UploadActivity>(100,
                 "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
-                    "averSpeed" to averSpeed)}
+                    "averSpeed" to averSpeed, "pedometer" to pedometer)}
         }
     }
 
     // 시작 지점
     private fun StartFab() {
+
+        sensorManager.registerListener( //센서기능 시작
+            this,
+            sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
 
         //Todo:이곳에서 RealmData에 저장, Polyline실행
 
@@ -173,6 +212,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         // 새로운 프래그먼트(현재까지의 시간, 속도,거리) 를 나타내는 맵 위에 걸쳐 붙쳐진 프래그먼트가 필요.
 
 
+        sensorManager.unregisterListener(this)//   센서기능 정지.
         pauseTimer()
         recordPressed = false
         recordStart = false
@@ -186,6 +226,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private fun ResumeFab() {
         //Todo: 다시 위도,경도를 저장하기 시작하며 거리를 계산하는 기능. StartFab 기능과 흡사함.
 
+
+        sensorManager.registerListener( //센서기능 시작
+            this,
+            sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
 
         startTimer() //중지했던 시간을 계속하여 측정한다.
         recordPressed = true

@@ -22,7 +22,7 @@
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
-                  android:layout_gravity="center" android:textColor="#A72C2C"/>
+                  android:layout_gravity="center" android:textColor="@color/colorMAIN"/>
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -41,6 +41,8 @@
             android:background="?android:attr/windowBackground"
             android:layout_gravity="bottom"
 
+            app:itemTextColor="@color/colorPrimaryDark"
+            app:itemIconTint="@color/colorMAIN"
             app:menu="@menu/bottom_navigation_main"
     ></com.google.android.material.bottomnavigation.BottomNavigationView>
 

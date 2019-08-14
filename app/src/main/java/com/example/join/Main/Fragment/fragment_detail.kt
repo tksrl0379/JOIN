@@ -95,7 +95,10 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                 mainView.detail_consuming_time_textview.text = contentDTO.time
 
                 // 속도
-                mainView.detail_accumulated_textview.text = contentDTO.averSpeed
+                mainView.detail_averSpeed_textview.text = contentDTO.averSpeed
+
+                // 걸음 수
+                mainView.detail_pedometer_textview.text = contentDTO.pedometer
 
 
             }
