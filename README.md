@@ -18,7 +18,7 @@
 
 ### 타임라인
 <div>
-  <img width="200" src="https://user-images.githubusercontent.com/52390975/63000838-0c825b00-bead-11e9-906f-d11fcccd0087.png">
+  <img width="200" src="https://user-images.githubusercontent.com/52390975/63000996-81ee2b80-bead-11e9-8459-0cdbef548981.png">
 </div>
 
 
@@ -44,6 +44,3 @@ upload버튼시 스크린샷되어진 이미지를 sdcard(외부 메모리)에 �
 
 14/Aug/2019
 핵심기능 구현완료.
-
-![mapDetail][sc]
-[sc] = https://github.com/bwrw2347/JOIN/blob/Jinseo/README_src/sc.png
