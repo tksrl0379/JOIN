@@ -43,6 +43,10 @@ import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
 import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback
+import org.jetbrains.anko.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timer
 
 
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
