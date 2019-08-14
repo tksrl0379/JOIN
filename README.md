@@ -19,9 +19,6 @@
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
 ---------
 ### 레코딩
-<img width="200" src="https://user-images.githubusercontent.com/52390975/63002324-abf51d00-beb0-11e9-9002-9846577f65f2.png">
-
-### 레코딩
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
 </div>
