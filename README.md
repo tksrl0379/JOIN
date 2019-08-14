@@ -1,7 +1,7 @@
 
 # JOIN
 
-<img width="200" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
+<img width="400" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
 
 
