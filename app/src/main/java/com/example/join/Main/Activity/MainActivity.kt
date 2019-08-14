@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +30,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        /*
+        var cal = Calendar.getInstance()
+
+        cal.set(2019, 1, 29)
+        cal.add(Calendar.DATE, 5)
+
+        var mformat = SimpleDateFormat("yyyy.MM.dd")
+        println(mformat.format(cal.time))
+
+        */
 
         //val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
         //toolbar_write_btn.startAnimation(animation)

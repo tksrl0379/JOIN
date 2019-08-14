@@ -21,8 +21,10 @@ import kotlinx.android.synthetic.main.fragment_activity_rv_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
+//TODO: 연속 일 수 아이콘 다른걸로. 누적 일 수도 계산해서 메달 차등 부여.
 
 var imagesSnapshot: ListenerRegistration? = null
 
@@ -33,6 +35,15 @@ class fragment_activity_RvAdapter (activity : MainActivity)
     val contentUidList: ArrayList<String>
 
     val mainActivity = activity
+
+
+    // 연속 일 수를 구하기 위한 변수들
+    var cal = Calendar.getInstance()
+    var mformat = SimpleDateFormat("yyyy.MM.dd")
+    var beforeDate: String? = null
+
+    var count = 1
+    var countArray = HashMap<String, Int>()
 
 
     init{
@@ -48,14 +59,17 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                 if(task.isSuccessful){
                     // userDTO의 자료형은 toObject() 괄호 안에 들어가는 DTO 자료형에 맞춰줘야함.
                     var userDTO = task.result!!.toObject(FollowDTO::class.java)
-                    if(userDTO?.followings != null)
+                    if(userDTO?.followings != null) {
+                        getContinueDay(userDTO?.followings)
                         getContents(userDTO?.followings)
+                    }
                 }
             }
     }
 
+
     fun getContents(followers: MutableMap<String, Boolean>?){
-        // Read Query (Push driven) : 게시글 중 친구가 올린 게시글 읽어옴
+        // Read Query (Push driven) : 게시글 중 팔로잉 한 친구가 올린 게시글 읽어옴
         /* Push driven 이므로 실시간으로 업로드한 게시글을 Listener에서 인지하여
            contentDTOs에 추가하고 notifyDataSetChanged()로 다시 RecyclerView에 그려줌.
          */
@@ -76,6 +90,55 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                     notifyDataSetChanged()
                 }
     }
+
+    // 반복문 2번 돌고 addSnapshotListener 2번 돌음. 리스너는 등록개념이라는 걸 숙지해야함.
+    fun getContinueDay(followers: MutableMap<String, Boolean>?){
+
+        // 팔로잉한 사람들의 uid를 이용하여 연속 일 수 계산
+        for((key, value) in followers!!) {
+            // 비교를 위한 변수
+            firestore?.collection("Activity")?.whereEqualTo("uid", key)?.
+                orderBy("timeStamp", Query.Direction.DESCENDING)?.
+                addSnapshotListener{querySnapshot, firebaseFirestoreException ->
+
+                    beforeDate = null
+                    count = 1
+
+                    // querySnapshot 이 null 나오는 경우가 무슨 상황인지 알아보기
+                    if(querySnapshot == null) return@addSnapshotListener
+
+                    for(snapshot in querySnapshot!!.documents){
+                        var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
+
+                        // 비교
+                        if(beforeDate.equals(null)) {
+                            cal.set(Integer.parseInt((item.date)!!.substring(0,4)),
+                                Integer.parseInt((item.date)!!.substring(4,6)) - 1,
+                                Integer.parseInt((item.date)!!.substring(6,8)))
+                            // 비교를 위해 활동 기록
+                            beforeDate = mformat.format(cal.time)
+                        }else{
+                            cal.set(Integer.parseInt((item.date)!!.substring(0,4)),
+                                Integer.parseInt((item.date)!!.substring(4,6)) - 1,
+                                Integer.parseInt((item.date)!!.substring(6,8)) + 1)
+
+                            // 이전 기간과 현재 기간이 1일차면 카운트
+                            if(beforeDate.equals(mformat.format(cal.time))) {
+                                count++
+                                println("연속 횟수: " + count)
+                                cal.add(Calendar.DATE, -1 )
+                                println("지금 보는 게시글 날짜: " + mformat.format(cal.time))
+                                // 비교를 위해 활동 기록
+                                beforeDate = mformat.format(cal.time)
+                            }
+                        }
+                        countArray[key] = count
+                    }
+                }
+        }
+    }
+
+
 
     // 어댑터를 등록할 곳의 context를 얻어올 때 parent.context?
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -111,6 +174,10 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
+        // 연속 횟수 메달
+        viewHolder.activity_item_continueDay_textview.text =
+            countArray.get(contentDTOs[position].uid).toString() + "일"
+
         // 제목 가져오기
         viewHolder.activity_item_title.text = contentDTOs[position].title
 
@@ -130,9 +197,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         Glide.with(holder.itemView.context)
             .load(contentDTOs[position].imageUrI)
             .into(viewHolder.activity_item_map_imageview)
-
-
-
 
         // 리사이클러뷰 선택 시 프래그먼트 전환
         viewHolder.recyclerview_layout_for_select.setOnClickListener {

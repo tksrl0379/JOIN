@@ -36,6 +36,14 @@
 
                 android:layout_marginBottom="1dp" android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/activity_item_profile_imageview"/>
+
+        <ImageView
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/goldmedal"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="40dp"
+        />
     </RelativeLayout>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -80,6 +88,16 @@
                 android:layout_toRightOf="@+id/activity_item_distance_input_textview"
 
         />
+
+
+
+        <TextView
+                android:id="@+id/activity_item_continueDay_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="3일" android:textStyle="italic"
+                android:layout_marginTop= "5dp" android:layout_marginRight="57dp"
+                android:textSize="15dp"  android:textColor="@color/colorPrimaryDark"/>
 
     </RelativeLayout>
     <ImageView
