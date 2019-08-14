@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".Map.RecordFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Map.RecordFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
 
         <TextView
@@ -19,9 +18,9 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="시간"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         <!--Hour-->
         <TextView
@@ -31,8 +30,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
+
                 android:text="0"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -41,9 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_toEndOf="@+id/hourTextView"
                 android:text="시"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
         <!--min-->
@@ -53,9 +55,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="60dp"
+
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="161dp"
+
                 android:layout_toEndOf="@+id/minTextView"
                 android:text="분"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -66,8 +72,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="173dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:text="0"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
         <!--sec-->
@@ -77,11 +84,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="60dp"
+
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="48dp"
+
                 android:layout_marginEnd="0dp"
                 android:layout_toStartOf="@+id/sec"
                 android:text="0"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
         <TextView
@@ -90,9 +100,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="30dp"
                 android:text="초"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
 
@@ -104,7 +115,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="0dp"
                 android:background="#000000" />
 
@@ -117,41 +128,19 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="평균속도(km/h)"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         <TextView
-                android:id="@+id/speedKM"
+                android:id="@+id/averageSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/avgSpeed"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
-                android:text="0"
-                android:textSize="80dp" />
+                android:layout_centerInParent="true"
 
-        <TextView
-                android:id="@+id/speedM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/avgSpeed"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="150dp"
-                android:text="0"
-                android:textSize="80dp" />
-
-        <TextView
-                android:id="@+id/avgdot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/avgSpeed"
-                android:layout_marginTop="16dp"
-                android:layout_toStartOf="@+id/speedM"
-                android:layout_toEndOf="@+id/speedKM"
-                android:text="."
+                android:text="0.00"
+                android:textColor="#000000"
                 android:textSize="80dp" />
 
 
@@ -159,11 +148,11 @@
                 android:id="@+id/boundaryLine2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/avgdot"
+                android:layout_below="@+id/averageSpeed"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="0dp"
                 android:background="#000000" />
 
@@ -176,10 +165,9 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="거리(km)"
-                android:textSize="30dp" />
-
+                android:textSize="25dp" />
 
 
         <TextView
@@ -187,38 +175,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/distance"
-                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
-                android:text="0"
+                android:text="0.00"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
-        <TextView
-                android:id="@+id/distanceM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/distance"
+
+        <View
+                android:id="@+id/boundaryLine3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/distanceKm"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="150dp"
-                android:text="0"
-                android:textSize="50dp" />
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="0dp"
+                android:background="#000000" />
 
         <TextView
-                android:id="@+id/distanceDot"
+                android:id="@+id/recordPedometerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/distance"
+                android:layout_below="@id/boundaryLine3"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_toStartOf="@+id/distanceM"
-                android:layout_toEndOf="@+id/distanceKm"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="8dp"
-                android:text="."
+                android:text="걸음 수"
+                android:textSize="25dp" />
+
+
+        <TextView
+                android:id="@+id/recordPedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recordPedometerTextView"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="150dp"
+
+                android:text="0"
+                android:textColor="#000000"
                 android:textSize="50dp" />
 
 
     </RelativeLayout>
-
-
-</FrameLayout>
+</RelativeLayout>

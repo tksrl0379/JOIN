@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 //Jinseo Test.
 
@@ -63,6 +64,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10f))
         //  RecordMapActivity의 onConnect() 실행
         onConnectedListener.onConnect(mMap)
+
+
+        //그동안의 목적기 히스토리 마커표시, firebase 연동해야할듯.
+
 
         mMap.setOnMapLoadedCallback{
             try{

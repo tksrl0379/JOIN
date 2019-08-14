@@ -23,6 +23,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.lang.Exception
+import java.lang.NullPointerException
 import java.util.*
 
 class fragment_settings : Fragment() {
@@ -122,21 +123,23 @@ class fragment_settings : Fragment() {
 
     }
 
+    // TODO: 로그아웃할 때 이게 왜 실행되는지? 일단 try catch로 막아둠
     // 팔로잉 표시
     fun getFollowing(){
-        FirebaseFirestore.getInstance().collection("friend")
-            .document(uid!!).addSnapshotListener{ documentSnapshot, firebaseFirestoreException ->
-                val followDTO = documentSnapshot!!.toObject(FollowDTO::class.java)
 
-                fragmentView.Following.text = followDTO?.followingCount.toString()
-            }
+            FirebaseFirestore.getInstance().collection("friend")
+                .document(uid!!).addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                    val followDTO = documentSnapshot?.toObject(FollowDTO::class.java)
+
+                    fragmentView.Following.text = followDTO?.followingCount.toString()
+                }
     }
 
     // 팔로워 표시
     fun getFollower(){
         FirebaseFirestore.getInstance().collection("friend")
             .document(uid!!).addSnapshotListener{ documentSnapshot, firebaseFirestoreException ->
-                val followDTO = documentSnapshot!!.toObject(FollowDTO::class.java)
+                val followDTO = documentSnapshot?.toObject(FollowDTO::class.java)
 
                 fragmentView.Follower.text = followDTO?.followerCount.toString()
             }
