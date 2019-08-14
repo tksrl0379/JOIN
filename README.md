@@ -15,7 +15,8 @@
 
 ## screenshot/GIF
 ### 1.시작화면
----------
+__---------
+
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
 ---------
 ### 2.레코딩
