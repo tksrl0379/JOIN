@@ -32,7 +32,11 @@
 
 
 
-
+## Skill
+- Language : Kotlin
+- OS : Android
+- Database : Firebase
+- Library : Google Maps Flatform
 
 
 ## 개발일지
