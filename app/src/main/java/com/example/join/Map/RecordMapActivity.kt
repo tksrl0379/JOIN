@@ -1,6 +1,9 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.join.Map
 
 import android.annotation.SuppressLint
+
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,17 +14,22 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
+
 import android.location.Location.distanceBetween
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.Display
 import android.view.View
+
 import android.widget.TextView
+
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+
 import com.example.join.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -34,17 +42,13 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
-import org.jetbrains.anko.*
-import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.timer
+import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback
+
 
 // Fused Location Provider 활용 -> https://www.sphinfo.com/google-play-fused-location-provider/
 // fusedLocationProviderClient.requestLocationUpdates() -> 위치 데이터 요청. (callback은 위치데이터를 받을 곳)
 // public Task<Void> requestLocationUpdates (LocationRequest request, LocationCallback callback, Looper looper)
+
 
 //Updated
 //To another project.
@@ -52,6 +56,7 @@ import kotlin.concurrent.timer
 // TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
 class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener,
     SensorEventListener {
+
 
     //private lateinit var mainfrgmt: Fragment
     private var mMap: GoogleMap? = null
@@ -74,6 +79,14 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     var mapfr: Fragment = MapFragment()       //MapFrgmt()
     var detailfr: Fragment = RecordFragment() //
+
+    //구글 지도를 img로 스냅샷 할 변수
+    val builder = LatLngBounds.builder()
+
+
+    val extStorageDirectory: String =
+        Environment.getExternalStorageDirectory().toString()
+
 
     // 기록 시작 버튼 클릭 여부 확인
     var recordPressed = false
@@ -118,12 +131,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         }
     }
 
-
     //구글 지도를 img로 스냅샷 할 변수
     //val builder = LatLngBounds.builder()
     //val extStorageDirectory: String =  Environment.getExternalStorageDirectory().toString()
-
-
 
 
     override fun onRequestPermissionsResult(
@@ -174,11 +184,13 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.detailsFab -> DetailsToMap()
             R.id.mapFab -> MapToDetails()
             R.id.recordResumeFab -> ResumeFab()
+
             R.id.recordUploadFab ->{
                 //UploadFab()
                 startActivityForResult<UploadActivity>(100,
                 "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
                     "averSpeed" to averSpeed, "pedometer" to pedometer)}
+
         }
     }
 
@@ -204,6 +216,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).commit()
+
 
         MapToDetails()
     }
@@ -247,6 +260,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     /*
     private fun UploadFab() {
+
         //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
         //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
         val bounds = builder.build()
@@ -255,6 +269,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
         val file = File(extStorageDirectory, "snapTest.png")    //파일명지정
         var outputStream: OutputStream = FileOutputStream(file)
+
 
         val snapshotReadyCallback = GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
                 bitmap: Bitmap ->
@@ -272,22 +287,34 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
 
 
-        }
 
-        val snapshotMap = mMap?.snapshot(snapshotReadyCallback)   //구글맵 스크린샷.
-        if(snapshotMap != null){       //저장되었는지 확인.
-            toast("성공")
-        }else{
-            toast("실패")
-        }
-    }
+        val snapshotReadyCallback = SnapshotReadyCallback{  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
+
+                bitmap : Bitmap->
+                Bitmap.createBitmap(
+                    1090, 1920,
+                    Bitmap.Config.ARGB_8888
+                )
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+            println(bitmap)
+
+            outputStream.flush()
+            outputStream.close()
+
+
     */
+
 
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
 
-        supportFragmentManager.beginTransaction().hide(detailfr).commit()
-        supportFragmentManager.beginTransaction().show(mapfr).commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.from_right, R.anim.to_left).hide(detailfr).commit()
+        //supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_right,R.anim.to_left).hide(detailfr).commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.from_right, R.anim.to_left).show(mapfr).commit()
 
         mapFab.show()
         detailsFab.hide()
@@ -297,8 +324,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     private fun MapToDetails() {
         //Todo: 이 함수가 불리면 현재 맵 프래그먼트에서 타임랩(시간,거리) 프래그먼트로 이동.
 
-        supportFragmentManager.beginTransaction().hide(mapfr).commit()
-        supportFragmentManager.beginTransaction().show(detailfr).commit()
+
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.from_left, R.anim.to_right).hide(mapfr).commit()
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.from_left, R.anim.to_right).show(detailfr).commit()
+
 
         detailsFab.show()
         mapFab.hide()
@@ -403,9 +434,11 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             // thread에선 view 못 건드리므로 runOnUiThread 사용하여 변경
             runOnUiThread {
                 //UI를 갱신해주는 쓰레드
+
                 secTextView?.text = sec.toString()
                 minTextView?.text = min.toString()
                 hourTextView?.text = hour.toString()
+
             }
         }
     }
@@ -437,6 +470,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                 Log.d("MapActivity", "lan:$latitude, long:$longitude")
 
 
+                //latitude,longitude를 builder에 넣어 나중에 모든 경로에 대해 알맞게 카메라 조정을 할 수 있음.
+                builder.include(LatLng(latitude, longitude))
+
 
                 if (recordStart) {
 
@@ -451,7 +487,13 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                     latlngArray.add(Pair(latitude, longitude))
 
                     val arrayex = FloatArray(1)
-                    distanceBetween(latitude, longitude, before_location[0]!!, before_location[1]!!, arrayex)
+                    distanceBetween(
+                        latitude,
+                        longitude,
+                        before_location[0]!!,
+                        before_location[1]!!,
+                        arrayex
+                    )
 
                     total_distance += arrayex[0]/1000
 
@@ -477,7 +519,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                 }
             }
 
-            if(recordPressed) {
+            if (recordPressed) {
                 recordStart = true
                 // 이전 기록 저장
                 before_location[0] = location!!.latitude
