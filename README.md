@@ -3,15 +3,22 @@
 
 ## 함께 운동하며 운동한 사진들을 공유하는 어플
 
-1. 자신이 걸으면서 시간, 평균속도, 거리, 걸음 수를 측정할 수 있다
+1. 자신이 걸으면서 시간, 평균속도, 거리, 걸음 수를 측정할 수 있다.
+
+2. 저장된 스크린샷을 팔로워들과 공유할 수 있다.
 
 
 
 ## screenshot
 ---------
-
+### 레코딩
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
+</div>
+
+### 타임라인
+<div>
+  <img width="200" src="https://user-images.githubusercontent.com/52390975/63000838-0c825b00-bead-11e9-906f-d11fcccd0087.png">
 </div>
 
 
