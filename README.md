@@ -2,7 +2,9 @@
 # JOIN
 
 <img width="200" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
+
 ![](https://giphy.com/gifs/YooQIbT0wieddo9Bto){: width="50%" height="50%"}{: .center}
+
 ![](https://media.giphy.com/media/MWdOAxxPDEhNKyzXVK/giphy.gif){: width="50%" height="50%"}{: .center}
 <img width="200" src="https://giphy.com/gifs/YooQIbT0wieddo9Bto">
 
