@@ -173,5 +173,38 @@
                 android:layout_marginTop="16dp"
                 android:text="0.00" android:textColor="#000000"
                 android:textSize="50dp" />
+        <View
+                android:id="@+id/boundaryLine3"
+                android:layout_width="match_parent" android:layout_height= "1dp"
+                android:background="#000000"
+                android:layout_below="@+id/distanceKm"
+                android:layout_marginTop="30dp"
+        />
+
+        <TextView
+                android:id="@+id/recordPedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/boundaryLine3"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="걸음 수"
+                android:textSize="30dp" />
+
+
+
+        <TextView
+                android:id="@+id/recordPedometerTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recordPedometer"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="16dp"
+                android:text="0" android:textColor="#000000"
+                android:textSize="50dp" />
+
     </RelativeLayout>
 </RelativeLayout>
