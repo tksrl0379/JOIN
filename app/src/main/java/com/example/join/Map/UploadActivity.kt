@@ -61,9 +61,12 @@ class UploadActivity : AppCompatActivity() {
 
         var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
-        var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:5"
-        var latlngString: String? = null
 
+        // google static map 기본 주소
+        var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:3"
+
+        // 위도+경도 옵션 주소
+        var latlngString: String? = null
 
         for(latlng in latlngArray ){
             if(latlngString == null)
@@ -71,11 +74,17 @@ class UploadActivity : AppCompatActivity() {
             else
                 latlngString = latlngString + "|" + latlng.first + "," + latlng.second
         }
-        googleMapUrI = googleMapUrI + latlngString
+
+        // 시작, 도착 지점 Marker
+        val startPoint = "&markers=icon:http://bitly.kr/vTGodx|" +
+                latlngArray[0].first + "," + latlngArray[0].second
+        val endPoint = "&markers=icon:http://bitly.kr/xVQKMY|" +
+                latlngArray[latlngArray.size-1].first + "," + latlngArray[latlngArray.size-1].second
+
+        googleMapUrI = googleMapUrI + latlngString + startPoint + endPoint
         println("주소: " + googleMapUrI)
 
-        val imageFileName = "JPEG_"+
-                SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) + "_.png"
+        //val imageFileName = "JPEG_"+ SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) + "_.png"
 
         //var storageRef = firebaseStorage.reference.child("mapSnapshot").child(imageFileName)
         //storageRef.putFile(snapshotUri).addOnSuccessListener {taskSnapshot ->
