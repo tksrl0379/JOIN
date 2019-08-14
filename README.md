@@ -28,7 +28,8 @@
 
 ![](https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif)
 
-
+### 4.팔로우 추가
+![](https://media.giphy.com/media/fAP0xxjWD7frg8LrVQ/giphy.gif)
 
 
 
