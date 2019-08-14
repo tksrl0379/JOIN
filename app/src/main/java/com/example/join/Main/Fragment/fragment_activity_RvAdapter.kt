@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.DTO.Activity_ContentDTO
 import com.example.join.DTO.FollowDTO
 import com.example.join.Main.Activity.MainActivity
 import com.example.join.Main.Activity.firestore
@@ -29,7 +29,7 @@ var imagesSnapshot: ListenerRegistration? = null
 class fragment_activity_RvAdapter (activity : MainActivity)
     : RecyclerView.Adapter<fragment_activity_RvAdapter.Holder>(){
 
-    val contentDTOs: ArrayList<AddPhoto_ContentDTO>
+    val contentDTOs: ArrayList<Activity_ContentDTO>
     val contentUidList: ArrayList<String>
 
     val mainActivity = activity
@@ -60,14 +60,14 @@ class fragment_activity_RvAdapter (activity : MainActivity)
            contentDTOs에 추가하고 notifyDataSetChanged()로 다시 RecyclerView에 그려줌.
          */
         // TimeStamp 기준 내림차순(DESCENDING) 정렬해서 가장 최신 게시물이 보여지도록 함
-        imagesSnapshot = firestore?.collection("images")
-            ?.orderBy("timestamp", Query.Direction.DESCENDING)?.
+        imagesSnapshot = firestore?.collection("Activity")
+            ?.orderBy("timeStamp", Query.Direction.DESCENDING)?.
                 addSnapshotListener{querySnapshot, firebaseFirestoreException ->
                     contentDTOs.clear()
                     contentUidList.clear()
                     if(querySnapshot == null) return@addSnapshotListener
                     for(snapshot in querySnapshot.documents){
-                        var item = snapshot.toObject(AddPhoto_ContentDTO::class.java)!!
+                        var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
                         if(followers?.keys?.contains(item.uid)!!){
                             contentDTOs.add(item)
                             contentUidList.add(snapshot.id)
@@ -108,11 +108,20 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         }
 
         // 유저 아이디
-        var userId = StringTokenizer(contentDTOs[position].userId, "@")
+        var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
+        // 제목 가져오기
+        viewHolder.activity_item_title.text = contentDTOs[position].title
+
+        // 거리 가져오기
+        viewHolder.activity_item_distance_input_textview.text = contentDTOs[position].distance
+
+        // 고도 가져오기
+        viewHolder.activity_item_altitude_input_textview?.text = contentDTOs[position].max_altitude
+
         // 날짜 가져오기
-        var date = SimpleDateFormat("yyyyMMdd").format(Date())
+        var date = contentDTOs[position].date
         viewHolder.activity_item_date_textview.text =
             date.toString().substring(0,4) + "년 " +
                     date.toString().substring(4,6) + "월 " + date.toString().substring(6,8) + "일"
@@ -123,13 +132,15 @@ class fragment_activity_RvAdapter (activity : MainActivity)
             .into(viewHolder.activity_item_map_imageview)
 
 
+
+
         // 리사이클러뷰 선택 시 프래그먼트 전환
         viewHolder.recyclerview_layout_for_select.setOnClickListener {
             val fragment = fragment_detail()
 
             // 어댑터-> 프래그먼트 data 넘김 (Bundle()객체 선언해야함)
             var bundle = Bundle()
-            bundle.putString("imageURL", contentDTOs[position].imageUrI)
+            bundle.putLong("timeStamp", contentDTOs[position].timeStamp!!)
             fragment.arguments = bundle
 
             mainActivity.supportFragmentManager.beginTransaction().

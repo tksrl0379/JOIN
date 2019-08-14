@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.join.DTO.AddPhoto_ContentDTO
+import com.example.join.DTO.Activity_ContentDTO
 import com.example.join.Main.Activity.MainActivity
 import com.example.join.R
 import com.google.firebase.auth.FirebaseAuth
@@ -25,9 +25,9 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
     private lateinit var firestore: FirebaseFirestore
     private  lateinit var firebaseStorage: FirebaseStorage
 
-    var imageUrI: String? = null
+    var timeStamp: Long? = null
 
-    var contentDTO = AddPhoto_ContentDTO()
+    var contentDTO = Activity_ContentDTO()
 
 
     override fun onCreateView(
@@ -37,8 +37,10 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
         // Inflate the layout for this fragment
         val mainView = inflater.inflate(R.layout.fragment_detail, container, false)
 
+
+
         // 어댑터로부터 사진의 imageUrI 넘겨받음
-        imageUrI = arguments!!.getString("imageURL")
+        timeStamp = arguments!!.getLong("timeStamp")
 
         // Firestore 객체 초기화
         firestore = FirebaseFirestore.getInstance()
@@ -49,11 +51,11 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
          */
 
 
-        firestore.collection("images")
-            .whereEqualTo("imageUrI", imageUrI).get()
+        firestore.collection("Activity")
+            .whereEqualTo("timeStamp", timeStamp).get()
             .addOnSuccessListener {querySnapshot ->
                 for(snapshot in querySnapshot) {
-                    contentDTO = snapshot.toObject(AddPhoto_ContentDTO::class.java)
+                    contentDTO = snapshot.toObject(Activity_ContentDTO::class.java)
                 }
 
                 // 프로필 사진
@@ -68,26 +70,39 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                     }
 
                 // 아이디
-                val userId = StringTokenizer(contentDTO.userId, "@")
+                val userId = StringTokenizer(contentDTO.userEmail, "@")
                 mainView.detail_user_email_textview.text = userId.nextToken()
 
 
                 // 제목
-                // TODO 미구현
+                mainView.detail_title_textview.text = contentDTO.title
 
                 // 날짜
-                var date1 = SimpleDateFormat("yyyyMMdd").format(Date())
+                var date1 = contentDTO.date
                 mainView.detail_date_textview.text = date1.toString().substring(0,4) + "년 " +
                     date1.toString().substring(4,6) + "월 " + date1.toString().substring(6,8) + "일"
                 // 내용
                 mainView.detail_explain_textview.text = contentDTO.explain
 
-                // 사진(맵이 들어갈 자리)
+                // 사진
                 Glide.with(context!!).load(contentDTO.imageUrI)
                     .into(mainView.detail_map_imageview)
 
                 // 거리
-                // TODO 미구현
+                mainView.detail_distance_textview.text = contentDTO.distance
+
+                // 거리 latlng
+                //mainView.detail_map_endpointLatlng.text = contentDTO.distanceLatlng.toString()
+
+                // 이동 시간
+                mainView.detail_consuming_time_textview.text = contentDTO.time
+
+                // 속도
+                mainView.detail_averSpeed_textview.text = contentDTO.averSpeed
+
+                // 걸음 수
+                mainView.detail_pedometer_textview.text = contentDTO.pedometer
+
 
             }
         return mainView

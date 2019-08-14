@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 // 활동
                 R.id.bnv_activity -> {
+                    main_toolbar_write_btn.visibility = View.VISIBLE
+                    main_toolbar_back_btn.visibility = View.GONE
+
                     val fragment = fragment_activity()
                     supportFragmentManager.beginTransaction().
                         replace(R.id.fragment_container, fragment).commit()
@@ -135,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         //super.onBackPressed() // 이걸 없애면 뒤로가기 눌러도 Activity가 finish()되지 않음
 
         mBackListener!!.onBack()
+        main_toolbar_write_btn.visibility = View.VISIBLE
+        main_toolbar_back_btn.visibility = View.GONE
     }
-
 }

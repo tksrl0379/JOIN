@@ -4,7 +4,8 @@
     <item
             android:id="@+id/bnv_activity"
             android:icon="@drawable/ic_speaker_notes_black_24dp"
-            android:title="활동" />
+            android:title="활동"
+            />
     <item
             android:id="@+id/bnv_myactivity"
             android:icon="@drawable/ic_person_black_24dp"
@@ -20,6 +21,6 @@
     <item
             android:id="@+id/bnv_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="계정 설정" />
+            android:title="계정 설정"/>
 
 </menu>

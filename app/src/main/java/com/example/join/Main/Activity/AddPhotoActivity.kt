@@ -78,7 +78,7 @@ class AddPhotoActivity : AppCompatActivity() {
         storageRef?.putFile(photoUri!!)?.addOnSuccessListener { taskSnapshot->
             //progress_bar.visibility = View.GONE
 
-            Toast.makeText(this, "성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "성공적으로 업로드되었습니다.", Toast.LENGTH_SHORT).show()
 
             // firebase storage 서버에 저장된 파일 다운로드 URL 가져옴
             storageRef.downloadUrl.addOnSuccessListener { uri->
