@@ -14,17 +14,16 @@
 
 
 ## screenshot/GIF
-### 시작화면
+### 1.시작화면
 ---------
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
 ---------
-### 레코딩
+### 2.레코딩
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
 </div>
-
 ---------
-### 타임라인
+### 3.타임라인
 ![](https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif)
 
 
@@ -48,5 +47,4 @@ bound를 이용해 한 화면에 모든 경로를 지난 폴리라인선이 보�
 
 upload버튼시 스크린샷되어진 이미지를 sdcard(외부 메모리)에 저장 구현 완료. 1/Aug/2019
 
-14/Aug/2019
-핵심기능 구현완료.
+14/Aug/2019 핵심기능 구현완료.
