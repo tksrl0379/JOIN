@@ -1,118 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".Map.RecordMapActivity"
+                android:orientation="vertical"
                 android:background="@color/colorBackgroundDefault">
 
     <FrameLayout
             android:id="@+id/mainFrame"
             android:layout_width="match_parent"
-            android:layout_height="550dp">
-
+            android:layout_height="match_parent"
+            android:layout_weight="1">
     </FrameLayout>
 
-    <!--레코드 시작 버튼-->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/recordStartFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:clickable="true"
-            app:fabSize="normal"
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="125dp">
+        <!--레코드 시작 버튼-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/recordStartFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#F9A602"
+                android:clickable="true"
 
-            android:tint="#FFFFFF"
-            android:backgroundTint="#F9A602"
+                android:tint="#FFFFFF"
+                app:fabSize="normal"
 
-            app:srcCompat="@drawable/record_play" />
+                app:srcCompat="@drawable/record_play"/>
 
-    <!--레코드 중지 버튼-->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/recordPauseFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:clickable="true"
-            android:visibility="invisible"
+        <!--레코드 중지 버튼-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/recordPauseFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#F9A602"
+                android:clickable="true"
 
-            android:tint="#FFFFFF"
-            android:backgroundTint="#F9A602"
+                android:tint="#FFFFFF"
+                android:visibility="invisible"
 
-            app:fabSize="normal"
-            app:srcCompat="@drawable/record_pause" />
+                app:fabSize="normal"
+                app:srcCompat="@drawable/record_pause"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/detailsFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="#FFFFFF"
-            android:clickable="true"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/detailsFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
 
-            android:tint="#F9A602"
-            android:visibility="invisible"
+                android:tint="#F9A602"
+                android:visibility="invisible"
 
-            app:fabSize="normal"
-            app:srcCompat="@drawable/record_location" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/mapFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="#F9A602"
-            android:clickable="true"
-
-            android:tint="#FFFFFF"
-            android:visibility="invisible"
-
-            app:fabSize="normal"
-            app:srcCompat="@drawable/record_location" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/recordResumeFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="120dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="30dp"
-            android:layout_toStartOf="@+id/recordPauseFab"
-            android:backgroundTint="#F9A602"
-            android:clickable="true"
-            android:tint="#FFFFFF"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/record_resume" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/recordUploadFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="118dp"
-            android:layout_marginBottom="30dp"
-            android:layout_toEndOf="@+id/recordPauseFab"
-            android:backgroundTint="#F9A602"
-            android:clickable="true"
-            android:tint="#FFFFFF"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/record_upload" />
+                app:fabSize="normal"
+                app:srcCompat="@drawable/record_location"/>
 
 
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/mapFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#F9A602"
+                android:clickable="true"
+
+                android:tint="#FFFFFF"
+                android:visibility="invisible"
+
+                app:fabSize="normal"
+                app:srcCompat="@drawable/record_location"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/recordResumeFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toStartOf="@+id/recordPauseFab"
+                android:backgroundTint="#F9A602"
+                android:clickable="true"
+                android:tint="#FFFFFF"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/record_resume"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/recordUploadFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="118dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toEndOf="@+id/recordPauseFab"
+                android:backgroundTint="#F9A602"
+                android:clickable="true"
+                android:tint="#FFFFFF"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/record_upload"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
