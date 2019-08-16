@@ -30,6 +30,7 @@
 
 ---------
 
+### 4.레코딩_gif
 ![](https://media.giphy.com/media/L3RR4tt7RqivcF9ebQ/giphy.gif)
 
 
