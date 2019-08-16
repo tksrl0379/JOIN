@@ -13,13 +13,18 @@
 
 
 
+
+
 ## screenshot/GIF
 ### 1.시작화면
 
+- 앱 실행시 짧은 로딩화면과 함께 로그인 화면이 출력된다.
 
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
 
 ### 2.로그인
+
+- 회원가입이 가능하며 회원가입한 이메일과 비밀번호로 로그인 된다.(다시 어플을 실행시 자동 로그인 기능)
 
 ![](https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif)
 
@@ -43,16 +48,16 @@
 ![](https://media.giphy.com/media/MBaYXAcF9uZfuJe7at/giphy.gif)
 
 ### 4.타임라인
--내가 팔로우 한 사람들과 자신의 기록일지(거리, 최고 고도)를 볼 수 있다.
+- 내가 팔로우 한 사람들과 자신의 기록일지(거리, 최고 고도)를 볼 수 있다.
 
 ![](https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif)
 
--타임라인의 내용을 클릭 시, 상세정보(거리, 이동시간, 평균속도, 걸음 수)를 확인 할 수 있다.
+- 타임라인의 내용을 클릭 시, 상세정보(거리, 이동시간, 평균속도, 걸음 수)를 확인 할 수 있다.
 
 ![](https://media.giphy.com/media/LMWd1kVwxwybBMbcjE/giphy.gif)
 
 ### 5.팔로우 추가
-계정 설정란에 들어가서 친구(팔로우) 찾기를 클릭 후, 아이디를 검색하여 친구를 추가 할 수 있다.
+- 계정 설정란에 들어가서 친구(팔로우) 찾기를 클릭 후, 아이디를 검색하여 친구를 추가 할 수 있다.
 
 ![](https://media.giphy.com/media/fAP0xxjWD7frg8LrVQ/giphy.gif)
 
