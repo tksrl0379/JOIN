@@ -22,6 +22,8 @@
 
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif){: width="50%" height="50%"}{: .center}
 
+<img src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif" width="60%">
+
 
 
 ### 2.로그인
