@@ -37,9 +37,9 @@
 - 한 번 로그인이 된 상황에서는 앱을 재 시작할 때마다 자동 로그인이 된다.
 <div>
   
-<img width="300"	src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif">
+<img width="280"	src="https://media.giphy.com/media/mBSpX90OiVjto0didN/gi	phy.gif">
 
-<img width="300" src="https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif">
+<img width="280" src="https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif">
 
 </div>
 
@@ -72,8 +72,8 @@
 - 타임라인의 내용을 클릭 시, 상세정보(거리, 이동시간, 평균속도, 걸음 수)를 확인 할 수 있다.
 
 <div>
-  <img width = "300" src="https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif">
-  <img width = "300" src="https://media.giphy.com/media/LMWd1kVwxwybBMbcjE/giphy.gif">
+  <img width = "260" src="https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif">
+  <img width = "260" src="https://media.giphy.com/media/LMWd1kVwxwybBMbcjE/giphy.gif">
 </div>
 
 --------
@@ -87,6 +87,12 @@
 
 --------
 
+## 6.메달 시스템
+
+- 회원의 운동의 동기목적을 주기 위한 메달 시스템
+	- 누적일 수를 기록하여 메달을 수여
+	- 
+-------
 ## Skill 
 - Language : Kotlin
 - OS : Android
