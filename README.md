@@ -22,6 +22,9 @@
 - 앱 실행시 짧은 로딩화면과 함께 로그인 화면이 출력된다.
 
 
+
+![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
+
 <img src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif" width="40%" height="40%"}>
 
 
