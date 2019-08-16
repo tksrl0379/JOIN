@@ -31,7 +31,7 @@
 </div>
 
 - animated gif
-![](https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif)
+
 ---------
 
 ### 4.타임라인
@@ -51,7 +51,7 @@
 
 
 ## 개발일지
-
+![](https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif)
 
 Record xml 추가
 
