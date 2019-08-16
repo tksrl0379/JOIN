@@ -18,7 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_log_in.*
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LogInActivity : AppCompatActivity() {
 
@@ -183,8 +184,7 @@ class LogInActivity : AppCompatActivity() {
 
                     userInfoDTO.userEmail = uemail.toString()
                     userInfoDTO.userId = uid
-                    //var map = HashMap<String, Any>()
-                    //map["userEmail"] = uemail.toString()
+                    userInfoDTO.signUpDate = SimpleDateFormat("yyyyMMdd").format(Date())
 
                     FirebaseFirestore.getInstance().
                         collection("userid").document(uid).set(userInfoDTO)

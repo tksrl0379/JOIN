@@ -38,8 +38,9 @@
                 android:layout_toEndOf="@+id/activity_item_profile_imageview"/>
 
         <ImageView
+                android:id="@+id/activity_item_medal_imageview"
                 android:layout_width="60dp" android:layout_height="60dp"
-                android:src="@drawable/goldmedal"
+
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="23dp"
                 android:layout_marginRight="40dp"
