@@ -1,7 +1,7 @@
 
 # JOIN
 
-<img width="400" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
+<img width="300" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
 
 
@@ -20,7 +20,7 @@
 
 - 앱 실행시 짧은 로딩화면과 함께 로그인 화면이 출력된다.
 
-![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
+![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif){: width="100" height="100"}
 
 ### 2.로그인
 
