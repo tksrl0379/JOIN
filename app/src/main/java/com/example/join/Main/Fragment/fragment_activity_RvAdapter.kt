@@ -171,12 +171,44 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         }
 
         // 유저 아이디
+
         var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
-        // 연속 횟수 메달
-        viewHolder.activity_item_continueDay_textview.text =
-            countArray.get(contentDTOs[position].uid).toString() + "일"
+        // 연속 횟수 메달 ( 퍼센트에 기반한 메달 부여)
+        // 20% -> 동, 40% -> 은, 60% -> 금
+        var totalDate = 0L // 가입한 이후 현재까지의 총 일 수 (timeMills는 long 형 타입)
+
+        firestore?.collection("userid")?.document(contentDTOs[position].uid!!)!!.get()
+            .addOnCompleteListener{task ->
+                if(task.isSuccessful){
+                    // 회원 가입 일자 구함
+                    var signUpDate = SimpleDateFormat("yyyyMMdd").
+                        parse(task.result!!["signUpDate"].toString())
+                    var todayDate = System.currentTimeMillis()
+
+                    totalDate = todayDate - signUpDate.time
+
+                    println("총 일 수: " + totalDate/(24*60*60*1000))
+
+                    // (연속 일 수 / 총 일 수)
+                    var datePercent = Math.round(((countArray.get(contentDTOs[position].uid)!!).toDouble() /
+                            (totalDate/(24*60*60*1000))) * 100)
+
+                    println("퍼센티지:" + datePercent)
+
+                    viewHolder.activity_item_continueDay_textview.text =
+                        datePercent.toString()
+
+                    if(datePercent > 5)
+                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.goldmedal)
+                    else if(datePercent > 3 )
+                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.silvermedal)
+                    else if(datePercent > 1)
+                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.bronzemedal)
+                }
+            }
+
 
         // 제목 가져오기
         viewHolder.activity_item_title.text = contentDTOs[position].title
