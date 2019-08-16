@@ -42,8 +42,10 @@ class fragment_activity_RvAdapter (activity : MainActivity)
     var mformat = SimpleDateFormat("yyyy.MM.dd")
     var beforeDate: String? = null
 
-    var count = 1
-    var countArray = HashMap<String, Int>()
+    var continueCount = 1
+    var totalCount = 0
+    var continueCountArray = HashMap<String, Int>()
+    var totalCountArray = HashMap<String, Int>()
 
 
     init{
@@ -102,13 +104,18 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                 addSnapshotListener{querySnapshot, firebaseFirestoreException ->
 
                     beforeDate = null
-                    count = 1
+                    continueCount = 1
+                    totalCount = 0
 
                     // querySnapshot 이 null 나오는 경우가 무슨 상황인지 알아보기
                     if(querySnapshot == null) return@addSnapshotListener
 
                     for(snapshot in querySnapshot!!.documents){
                         var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
+
+                        // 누적 활동 횟수
+                        totalCount++
+                        println("누적 활동 횟수: " + totalCount)
 
                         // 비교
                         if(beforeDate.equals(null)) {
@@ -124,15 +131,17 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
                             // 이전 기간과 현재 기간이 1일차면 카운트
                             if(beforeDate.equals(mformat.format(cal.time))) {
-                                count++
-                                println("연속 횟수: " + count)
+                                continueCount++
+                                println("연속 횟수: " + continueCount)
                                 cal.add(Calendar.DATE, -1 )
                                 println("지금 보는 게시글 날짜: " + mformat.format(cal.time))
                                 // 비교를 위해 활동 기록
                                 beforeDate = mformat.format(cal.time)
                             }
                         }
-                        countArray[key] = count
+                        // 저장
+                        continueCountArray[key] = continueCount
+                        totalCountArray[key] = totalCount
                     }
                 }
         }
@@ -171,11 +180,15 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         }
 
         // 유저 아이디
-
         var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
-        // 연속 횟수 메달 ( 퍼센트에 기반한 메달 부여)
+        // 연속 활동 일 수 뱃지 부여 ( 연속 활동한 일 수 뱃지 부여 )
+        viewHolder.activity_item_continueDay_textview.text = continueCountArray.get(contentDTOs[position].uid)!!.toString()
+
+
+
+        // 개근상 메달 ( 퍼센트에 기반한 메달 부여)
         // 20% -> 동, 40% -> 은, 60% -> 금
         var totalDate = 0L // 가입한 이후 현재까지의 총 일 수 (timeMills는 long 형 타입)
 
@@ -191,23 +204,38 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
                     println("총 일 수: " + totalDate/(24*60*60*1000))
 
-                    // (연속 일 수 / 총 일 수)
-                    var datePercent = Math.round(((countArray.get(contentDTOs[position].uid)!!).toDouble() /
+                    // (총 누적 활동 일 수 / 총 일 수)
+                    var datePercent = Math.round(((totalCountArray.get(contentDTOs[position].uid)!!).toDouble() /
                             (totalDate/(24*60*60*1000))) * 100)
 
                     println("퍼센티지:" + datePercent)
 
-                    viewHolder.activity_item_continueDay_textview.text =
-                        datePercent.toString()
+                    //viewHolder.activity_item_continueDay_textview.text =
+                        //datePercent.toString()
 
-                    if(datePercent > 5)
-                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.goldmedal)
-                    else if(datePercent > 3 )
-                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.silvermedal)
-                    else if(datePercent > 1)
-                        viewHolder.activity_item_medal_imageview.setImageResource(R.drawable.bronzemedal)
+                    if(datePercent > 60)
+                        viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.goldmedal)
+                    else if(datePercent > 40 )
+                        viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.silvermedal)
+                    else if(datePercent > 20)
+                        viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.bronzemedal)
+                    else
+                        viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.encourage)
                 }
             }
+
+        // 만보 걷기 메달( 6000 -> 상, 5000 -> 중, 4000 -> 하 )
+        var pedometer = Integer.parseInt(contentDTOs[position].pedometer!!)
+        if(pedometer > 6000)
+            viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.first)
+        else if(pedometer > 5000 )
+            viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.second)
+        else if(pedometer > 4000)
+            viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.third)
+        else
+            viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.encourage)
+
+
 
 
         // 제목 가져오기
