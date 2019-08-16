@@ -184,9 +184,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
         // 연속 활동 일 수 뱃지 부여 ( 연속 활동한 일 수 뱃지 부여 )
-        viewHolder.activity_item_continueDay_textview.text = continueCountArray.get(contentDTOs[position].uid)!!.toString()
-
-
+        viewHolder.activity_item_continueDay_textview.text = "  " + continueCountArray.get(contentDTOs[position].uid)!!.toString() + "일 연속  "
 
         // 개근상 메달 ( 퍼센트에 기반한 메달 부여)
         // 20% -> 동, 40% -> 은, 60% -> 금
@@ -210,9 +208,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
                     println("퍼센티지:" + datePercent)
 
-                    //viewHolder.activity_item_continueDay_textview.text =
-                        //datePercent.toString()
-
                     if(datePercent > 60)
                         viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.goldmedal)
                     else if(datePercent > 40 )
@@ -224,6 +219,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                 }
             }
 
+
         // 만보 걷기 메달( 6000 -> 상, 5000 -> 중, 4000 -> 하 )
         var pedometer = Integer.parseInt(contentDTOs[position].pedometer!!)
         if(pedometer > 6000)
@@ -234,8 +230,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
             viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.third)
         else
             viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.encourage)
-
-
 
 
         // 제목 가져오기
@@ -269,7 +263,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
             mainActivity.supportFragmentManager.beginTransaction().
                 replace(R.id.fragment_container, fragment).commit()
-            mainActivity.main_toolbar_write_btn.visibility = View.GONE
+            //mainActivity.main_toolbar_write_btn.visibility = View.GONE
             mainActivity.main_toolbar_back_btn.visibility = View.VISIBLE
         }
     }
