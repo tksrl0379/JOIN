@@ -3,7 +3,7 @@
 
 <img width="300" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
-
+--------
 
 ## 서로 걸으면서 움직였던 지도 사진을 공유하는 어플
 
@@ -12,7 +12,7 @@
 2. 저장된 지도상의 출발지와 목적지등을 팔로워들과 공유, 소통할 수 있다.
 
 
-
+--------
 
 
 ## screenshot/GIF
@@ -22,7 +22,7 @@
 
 <img src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif" width="40%" height="40%"}>
 
-
+--------
 
 ### 2.로그인
 
@@ -33,6 +33,8 @@
 - 한 번 로그인이 된 상황에서는 앱을 재 시작할 때마다 자동 로그인이 된다.
 
 ![](https://media.giphy.com/media/PizkT13Pa5tidimDjh/giphy.gif)
+
+--------
 
 ### 3.레코딩
 - 시작지점에서 레코딩 할 수 있으며, 정지, 재 시작 기능이 있다.
@@ -46,12 +48,16 @@
 
 ![](https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif)
 
+--------
+
 ### 4. 업로드
 - 레코딩 한 기록을 타임라인에 올릴 수 있다.
 - 기록일지의 제목과 내용을 함께 올릴 수 있다.
 
 
 ![](https://media.giphy.com/media/MBaYXAcF9uZfuJe7at/giphy.gif)
+
+--------
 
 ### 4.타임라인
 - 내가 팔로우 한 사람들과 자신의 기록일지(거리, 최고 고도)를 볼 수 있다.
@@ -61,6 +67,8 @@
 - 타임라인의 내용을 클릭 시, 상세정보(거리, 이동시간, 평균속도, 걸음 수)를 확인 할 수 있다.
 
 ![](https://media.giphy.com/media/LMWd1kVwxwybBMbcjE/giphy.gif)
+
+--------
 
 ### 5.팔로우 추가
 - 계정 설정란에 들어가서 친구(팔로우) 찾기를 클릭 후, 아이디를 검색하여 친구를 추가 할 수 있다.
