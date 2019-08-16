@@ -38,6 +38,8 @@
 ### 4. 업로드
 - 레코딩 한 기록을 타임라인에 올릴 수 있다.
 - 기록일지의 제목과 내용을 함께 올릴 수 있다.
+
+
 ![](https://media.giphy.com/media/MBaYXAcF9uZfuJe7at/giphy.gif)
 
 ### 4.타임라인
