@@ -37,7 +37,7 @@
 - 한 번 로그인이 된 상황에서는 앱을 재 시작할 때마다 자동 로그인이 된다.
 <div>
   
-<img width="280"	src="https://media.giphy.com/media/mBSpX90OiVjto0didN/gi	phy.gif">
+<img width="280" src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif">
 
 <img width="280" src="https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif">
 
