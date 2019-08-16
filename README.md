@@ -4,11 +4,11 @@
 <img width="300" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
 
-## 서로 걸으면서 움직였던 지도 사진을 공유하는 어플
+- 서로 걸으면서 움직였던 지도 사진을 공유하는 어플
 
-1. 자신이 걸으면서 시간, 평균속도, 거리, 걸음 수를 측정할 수 있다.
+    - 1. 자신이 걸으면서 시간, 평균속도, 거리, 걸음 수를 측정할 수 있다.
 
-2. 저장된 지도상의 출발지와 목적지등을 팔로워들과 공유, 소통할 수 있다.
+    - 2. 저장된 지도상의 출발지와 목적지등을 팔로워들과 공유, 소통할 수 있다.
 
 
 --------
@@ -24,8 +24,6 @@
 
 
 ![](https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif)
-
-<img src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif" width="40%" height="40%"}>
 
 
 
