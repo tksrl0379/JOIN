@@ -77,10 +77,11 @@
 ## 개발일지
 
 - 1주차
-  7월 11~12일 아이디어 토론. Strava란 어플의 토픽을 사용. 운동하기를 도와주는 어플을 실버분들께 적용하기로 생각함.
+  7월 11~12일 아이디어 토론. 
+  Strava란 어플의 토픽을 사용. 운동하기를 도와주는 어플을 실버분들께 적용하기로 생각함.
   Join이라는 어플 이름 제작.
   
-![image](https://user-images.githubusercontent.com/52390975/63145414-56487e00-c032-11e9-92ec-90c5a3d0f043.png)
+  <img width="200" src="https://user-images.githubusercontent.com/52390975/63145414-56487e00-c032-11e9-92ec-90c5a3d0f043.png">
 
 
 
