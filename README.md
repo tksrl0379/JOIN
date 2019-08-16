@@ -30,7 +30,7 @@
 
 - 한 번 로그인이 된 상황에서는 앱을 재 시작할 때마다 자동 로그인이 된다.
 
-https://media.giphy.com/media/PizkT13Pa5tidimDjh/giphy.gif
+![](https://media.giphy.com/media/PizkT13Pa5tidimDjh/giphy.gif)
 
 ### 3.레코딩
 - 시작지점에서 레코딩 할 수 있으며, 정지, 재 시작 기능이 있다.
