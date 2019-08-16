@@ -8,21 +8,51 @@
         tools:context=".Main.Activity.MainActivity"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
-                                       android:layout_height="55dp" android:id="@+id/my_toolbar">
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="55dp" android:id="@+id/my_toolbar"
+            android:background="@color/colorMAIN"
+    >
 
         <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <!--
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                        android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
+            -->
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                        android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
                        android:visibility="gone"/>
         </FrameLayout>
 
+        <RelativeLayout
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity = "center"
+        >
+            <TextView
+                    android:id="@+id/Toolbar_title"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
+                    android:textColor="@color/colorWhite" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
-                  android:layout_gravity="center" android:textColor="@color/colorMAIN"/>
+            <TextView
+                    android:id="@+id/Toolbar_subtitle"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/Toolbar_title" android:layout_marginTop="5dp"
+                    android:text="for walk" android:textStyle="bold" android:textSize="15dp"
+                    android:textColor="@color/colorWhite" />
+
+            <ImageView
+                    android:layout_width="16dp" android:layout_height="16dp"
+                    android:layout_toRightOf="@id/Toolbar_subtitle" android:layout_marginTop="8dp"
+                    android:src="@drawable/footsteps"
+
+            />
+
+        </RelativeLayout>
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
 

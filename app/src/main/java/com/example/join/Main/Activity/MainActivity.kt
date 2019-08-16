@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
         // Toolbar Write 버튼 리스너 등록
+        /*
         main_toolbar_write_btn.setOnClickListener {
             // 권한 확인
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "스토리지 권한이 없습니다", Toast.LENGTH_SHORT).show()
             }
         }
+        */
 
         // Toolbar Back 버튼 리스너 등록
         main_toolbar_back_btn.setOnClickListener {
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().
                     replace(R.id.fragment_container, fragment).commit()
 
-            main_toolbar_write_btn.visibility = View.VISIBLE
+            //main_toolbar_write_btn.visibility = View.VISIBLE
             main_toolbar_back_btn.visibility = View.GONE
         }
 
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 // 활동
                 R.id.bnv_activity -> {
-                    main_toolbar_write_btn.visibility = View.VISIBLE
+                    //main_toolbar_write_btn.visibility = View.VISIBLE
                     main_toolbar_back_btn.visibility = View.GONE
 
                     val fragment = fragment_activity()
@@ -153,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         //super.onBackPressed() // 이걸 없애면 뒤로가기 눌러도 Activity가 finish()되지 않음
 
         mBackListener!!.onBack()
-        main_toolbar_write_btn.visibility = View.VISIBLE
+        //main_toolbar_write_btn.visibility = View.VISIBLE
         main_toolbar_back_btn.visibility = View.GONE
     }
 }

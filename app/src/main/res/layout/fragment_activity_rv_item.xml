@@ -30,9 +30,10 @@
         <TextView
                 android:id="@+id/activity_item_continueDay_textview"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/activity_item_user_email_textview" android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp" android:background="@drawable/edge"
-                android:text="5000" android:textColor="@color/colorWhite"/>
+                android:layout_toRightOf="@+id/activity_item_user_email_textview"
+                android:layout_marginTop="23dp" android:layout_marginLeft="7dp"
+                android:background="@drawable/edge"
+                android:text="  10일 개근  " android:textSize="13dp" android:textColor="@color/colorWhite"/>
 
         <TextView
                 android:id="@+id/activity_item_date_textview"
@@ -48,7 +49,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="95dp">
         <TextView
                 android:id="@+id/activity_item_title"
                 android:layout_width="wrap_content"
@@ -143,11 +144,11 @@
     <ImageView
             android:id="@+id/activity_item_map_imageview"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:src="@drawable/ic_account_circle_black_24dp"/>
     <View android:layout_width="match_parent" android:layout_height="10dp"
-          android:layout_marginTop="10dp"
-          android:background="#B6B2B2"/>
+          android:layout_marginTop="5dp"
+          android:background="@drawable/gradation"/>
 
 
 
