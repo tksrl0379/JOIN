@@ -24,20 +24,24 @@
 ![](https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif)
 
 ### 3.레코딩
-
-- 분활 화면
+- 시작지점에서 레코딩 할 수 있으며, 정지, 재 시작 기능이 있다.
+- 걸어가면서 자신이 걸은 경로를 볼 수 있으며, 총 걸은 시간, 평균 속도, 총 거리, 만보기 기능을 확인 할 수 있다.
+  - 분활 화면
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
 </div>
 
-- animated gif
+  - animated gif
 
 ![](https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif)
 
----------
+### 4. 업로드
+- 레코딩 한 기록을 타임라인에 올릴 수 있다.
+- 기록일지의 제목과 내용을 함께 올릴 수 있다.
+![](https://media.giphy.com/media/MBaYXAcF9uZfuJe7at/giphy.gif)
 
 ### 4.타임라인
-
+-내가 팔로우 한 사람들과 자신의 기록일지를 볼 수 있다.
 ![](https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif)
 
 ### 5.팔로우 추가
