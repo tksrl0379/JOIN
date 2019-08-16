@@ -24,15 +24,15 @@
 ![](https://media.giphy.com/media/J3GBgYOgtQ3ePFbqXY/giphy.gif)
 
 ### 3.레코딩
+
+- 분활 화면
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="200" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
 </div>
 
+- animated gif
+![](https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif)
 ---------
-
-### 4.레코딩_gif
-![](https://media.giphy.com/media/L3RR4tt7RqivcF9ebQ/giphy.gif)
-
 
 ### 4.타임라인
 
