@@ -3,7 +3,6 @@
 
 <img width="300" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png">
 
---------
 
 ## 서로 걸으면서 움직였던 지도 사진을 공유하는 어플
 
@@ -16,11 +15,16 @@
 
 
 ## screenshot/GIF
+
+
 ### 1.시작화면
 
 - 앱 실행시 짧은 로딩화면과 함께 로그인 화면이 출력된다.
 
+
 <img src="https://media.giphy.com/media/mBSpX90OiVjto0didN/giphy.gif" width="40%" height="40%"}>
+
+
 
 --------
 
