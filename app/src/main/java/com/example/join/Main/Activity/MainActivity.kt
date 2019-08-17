@@ -1,16 +1,20 @@
 package com.example.join.Main.Activity
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.join.Main.Fragment.fragment_activity
+import com.example.join.Main.Fragment.fragment_ranking
 import com.example.join.Main.Fragment.fragment_settings
 import com.example.join.Map.RecordMapActivity
 import com.example.join.R
@@ -19,32 +23,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_activity_rv_item.*
 import kotlin.collections.HashMap
+import androidx.core.view.ViewCompat.canScrollVertically
+import android.util.Log
+import androidx.fragment.app.FragmentActivity
+import androidx.core.view.ViewCompat.canScrollVertically
+import kotlinx.android.synthetic.main.fragment_activity.*
+
 
 class MainActivity : AppCompatActivity() {
 
     val PICK_PROFILE_FROM_ALBUM = 10
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.example.join.R.layout.activity_main)
 
-
-        /*
-        var cal = Calendar.getInstance()
-
-        cal.set(2019, 1, 29)
-        cal.add(Calendar.DATE, 5)
-
-        var mformat = SimpleDateFormat("yyyy.MM.dd")
-        println(mformat.format(cal.time))
-
-        */
-
-        //val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
-        //toolbar_write_btn.startAnimation(animation)
 
         // 스토리지 권한 요청
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
@@ -66,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         main_toolbar_back_btn.setOnClickListener {
             val fragment = fragment_activity()
             supportFragmentManager.beginTransaction().
-                    replace(R.id.fragment_container, fragment).commit()
+                    replace(com.example.join.R.id.fragment_container, fragment).commit()
 
             //main_toolbar_write_btn.visibility = View.VISIBLE
             main_toolbar_back_btn.visibility = View.GONE
@@ -80,36 +76,44 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 // 활동
-                R.id.bnv_activity -> {
+                com.example.join.R.id.bnv_activity -> {
                     //main_toolbar_write_btn.visibility = View.VISIBLE
                     main_toolbar_back_btn.visibility = View.GONE
 
                     val fragment = fragment_activity()
                     supportFragmentManager.beginTransaction().
-                        replace(R.id.fragment_container, fragment).commit()
+                        replace(com.example.join.R.id.fragment_container, fragment).commit()
                     return@OnNavigationItemSelectedListener true
                 }
 
                 // 활동 기록
-                R.id.bnv_activityrecord->{
+                com.example.join.R.id.bnv_activityrecord->{
                     val intent = Intent(this, RecordMapActivity::class.java)
                     startActivity(intent)
                     return@OnNavigationItemSelectedListener true
                 }
 
+                // 랭킹 보기
+                com.example.join.R.id.bnv_ranking->{
+                    val fragment = fragment_ranking()
+                    supportFragmentManager.beginTransaction().
+                        replace(com.example.join.R.id.fragment_container, fragment).commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+
                 // 계정 설정
-                R.id.bnv_settings -> {
+                com.example.join.R.id.bnv_settings -> {
                     val fragment = fragment_settings()
                     supportFragmentManager.beginTransaction().
-                        replace(R.id.fragment_container, fragment).commit()
+                        replace(com.example.join.R.id.fragment_container, fragment).commit()
                     return@OnNavigationItemSelectedListener true
                 }
             }
             true
         })
 
-        val bottomNavigationView = findViewById<View>(R.id.navigationView) as BottomNavigationView
-        bottomNavigationView.selectedItemId = R.id.bnv_activity
+        val bottomNavigationView = findViewById<View>(com.example.join.R.id.navigationView) as BottomNavigationView
+        bottomNavigationView.selectedItemId = com.example.join.R.id.bnv_activity
 
     } // [End of onCreate]
 
