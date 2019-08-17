@@ -15,7 +15,7 @@
             android:icon="@drawable/ic_add_circle_outline_black_24dp"
             android:title="활동 기록" />
     <item
-            android:id="@+id/bnv_group"
+            android:id="@+id/bnv_ranking"
             android:icon="@drawable/ic_people_black_24dp"
             android:title="그룹" />
     <item
