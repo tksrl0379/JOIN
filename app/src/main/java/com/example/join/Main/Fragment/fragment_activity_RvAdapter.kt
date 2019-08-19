@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_activity_rv_item.view.*
 import java.text.SimpleDateFormat
@@ -62,7 +63,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                     // userDTO의 자료형은 toObject() 괄호 안에 들어가는 DTO 자료형에 맞춰줘야함.
                     var userDTO = task.result!!.toObject(FollowDTO::class.java)
                     if(userDTO?.followings != null) {
-                        getContinueDay(userDTO?.followings)
                         getContents(userDTO?.followings)
                     }
                 }
@@ -92,61 +92,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                     notifyDataSetChanged()
                 }
     }
-
-    // 반복문 2번 돌고 addSnapshotListener 2번 돌음. 리스너는 등록개념이라는 걸 숙지해야함.
-    fun getContinueDay(followers: MutableMap<String, Boolean>?){
-
-        // 팔로잉한 사람들의 uid를 이용하여 연속 일 수 계산
-        for((key, value) in followers!!) {
-            // 비교를 위한 변수
-            firestore?.collection("Activity")?.whereEqualTo("uid", key)?.
-                orderBy("timeStamp", Query.Direction.DESCENDING)?.
-                addSnapshotListener{querySnapshot, firebaseFirestoreException ->
-
-                    beforeDate = null
-                    continueCount = 1
-                    totalCount = 0
-
-                    // querySnapshot 이 null 나오는 경우가 무슨 상황인지 알아보기
-                    if(querySnapshot == null) return@addSnapshotListener
-
-                    for(snapshot in querySnapshot!!.documents){
-                        var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
-
-                        // 누적 활동 횟수
-                        totalCount++
-                        println("누적 활동 횟수: " + totalCount)
-
-                        // 비교
-                        if(beforeDate.equals(null)) {
-                            cal.set(Integer.parseInt((item.date)!!.substring(0,4)),
-                                Integer.parseInt((item.date)!!.substring(4,6)) - 1,
-                                Integer.parseInt((item.date)!!.substring(6,8)))
-                            // 비교를 위해 활동 기록
-                            beforeDate = mformat.format(cal.time)
-                        }else{
-                            cal.set(Integer.parseInt((item.date)!!.substring(0,4)),
-                                Integer.parseInt((item.date)!!.substring(4,6)) - 1,
-                                Integer.parseInt((item.date)!!.substring(6,8)) + 1)
-
-                            // 이전 기간과 현재 기간이 1일차면 카운트
-                            if(beforeDate.equals(mformat.format(cal.time))) {
-                                continueCount++
-                                println("연속 횟수: " + continueCount)
-                                cal.add(Calendar.DATE, -1 )
-                                println("지금 보는 게시글 날짜: " + mformat.format(cal.time))
-                                // 비교를 위해 활동 기록
-                                beforeDate = mformat.format(cal.time)
-                            }
-                        }
-                        // 저장
-                        continueCountArray[key] = continueCount
-                        totalCountArray[key] = totalCount
-                    }
-                }
-        }
-    }
-
 
 
     // 어댑터를 등록할 곳의 context를 얻어올 때 parent.context?
@@ -183,44 +128,27 @@ class fragment_activity_RvAdapter (activity : MainActivity)
         var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
         viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
-        // 연속 활동 일 수 뱃지 부여 ( 연속 활동한 일 수 뱃지 부여 )
-        viewHolder.activity_item_continueDay_textview.text = "  " + continueCountArray.get(contentDTOs[position].uid)!!.toString() + "일 연속  "
-
-        // 개근상 메달 ( 퍼센트에 기반한 메달 부여)
-        // 20% -> 동, 40% -> 은, 60% -> 금
-        var totalDate = 0L // 가입한 이후 현재까지의 총 일 수 (timeMills는 long 형 타입)
-
-        firestore?.collection("userid")?.document(contentDTOs[position].uid!!)!!.get()
-            .addOnCompleteListener{task ->
+        // 연속일 표시  / 개근일(누적 활동일 수) 메달 부여
+        firestore?.collection("userid")!!.document(contentDTOs[position].uid!!)
+            .get().addOnCompleteListener{task->
                 if(task.isSuccessful){
-                    // 회원 가입 일자 구함
-                    var signUpDate = SimpleDateFormat("yyyyMMdd").
-                        parse(task.result!!["signUpDate"].toString())
-                    var todayDate = System.currentTimeMillis()
+                    var continueDay = task.result!!["continueDay"]
+                    viewHolder.activity_item_continueDay_textview.text =
+                        "  " + continueDay.toString() + "일 연속  "
 
-                    totalDate = todayDate - signUpDate.time
-
-                    println("총 일 수: " + totalDate/(24*60*60*1000))
-
-                    // (총 누적 활동 일 수 / 총 일 수)
-                    var datePercent = Math.round(((totalCountArray.get(contentDTOs[position].uid)!!).toDouble() /
-                            (totalDate/(24*60*60*1000))) * 100)
-
-                    println("퍼센티지:" + datePercent)
-
-                    if(datePercent > 60)
+                    var percentage = Integer.parseInt(task.result!!["percentage"].toString())
+                    if(percentage > 60)
                         viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.goldmedal)
-                    else if(datePercent > 40 )
+                    else if(percentage > 40 )
                         viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.silvermedal)
-                    else if(datePercent > 20)
+                    else if(percentage > 20)
                         viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.bronzemedal)
                     else
                         viewHolder.activity_item_continue_medal_imageview.setImageResource(R.drawable.encourage)
                 }
             }
 
-
-        // 만보 걷기 메달( 6000 -> 상, 5000 -> 중, 4000 -> 하 )
+        // 만보 걷기 뱃지( 6000 -> 상, 5000 -> 중, 4000 -> 하 )
         var pedometer = Integer.parseInt(contentDTOs[position].pedometer!!)
         if(pedometer > 6000)
             viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.first)

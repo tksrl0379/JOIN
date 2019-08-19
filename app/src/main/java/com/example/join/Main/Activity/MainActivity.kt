@@ -29,17 +29,144 @@ import androidx.core.view.ViewCompat.canScrollVertically
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.core.view.ViewCompat.canScrollVertically
+import com.example.join.DTO.Activity_ContentDTO
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.fragment_activity.*
+import kotlinx.android.synthetic.main.fragment_activity_rv_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     val PICK_PROFILE_FROM_ALBUM = 10
 
+//    var userlist = HashMap<String, Any>()
+//    // 연속 일 수를 구하기 위한 변수들
+//    var cal = Calendar.getInstance()
+//    var mformat = SimpleDateFormat("yyyy.MM.dd")
+//    var beforeDate: String? = null
+//
+//    var continueCount = 1
+//    var totalCount = 0
+//    var continueCountArray = HashMap<String, Int>()
+//    var totalCountArray = HashMap<String, Int>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.join.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
+
+        /*
+        var firestore = FirebaseFirestore.getInstance()
+
+        firestore?.collection("userid")!!.get().
+            addOnSuccessListener { result ->
+                for (document in result) {
+                    userlist[document["userId"].toString()] = 0
+                    //println(document["userEmail"])
+                }
+
+                for((key, value) in userlist!!) {
+                    // 비교를 위한 변수
+                    firestore?.collection("Activity")?.whereEqualTo("uid", key)?.
+                        orderBy("timeStamp", Query.Direction.DESCENDING)?.
+                        addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+                            beforeDate = null
+                            continueCount = 1
+                            totalCount = 0
+
+                            // querySnapshot 이 null 나오는 경우가 무슨 상황인지 알아보기
+                            if (querySnapshot == null) return@addSnapshotListener
+
+                            for (snapshot in querySnapshot!!.documents) {
+                                var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
+
+                                // 비교
+                                if (beforeDate.equals(null)) {
+                                    cal.set(
+                                        Integer.parseInt((item.date)!!.substring(0, 4)),
+                                        Integer.parseInt((item.date)!!.substring(4, 6)) - 1,
+                                        Integer.parseInt((item.date)!!.substring(6, 8))
+                                    )
+                                    // 비교를 위해 활동 기록
+                                    beforeDate = mformat.format(cal.time)
+                                    totalCount++
+                                } else {
+                                    cal.set(
+                                        Integer.parseInt((item.date)!!.substring(0, 4)),
+                                        Integer.parseInt((item.date)!!.substring(4, 6)) - 1,
+                                        Integer.parseInt((item.date)!!.substring(6, 8))
+                                    )
+
+                                    // 이전 일과 현재 일이 일치하지 않는 경우 누적일 수 카운트
+                                    if(!beforeDate.equals(mformat.format(cal.time))) {
+                                        totalCount++
+                                        println(key +"의 누적일 수: " + totalCount)
+                                    }
+
+                                    cal.add(Calendar.DATE, 1)
+                                    // 이전 기간과 현재 기간이 1일차면 카운트(연속인 경우)
+                                    if (beforeDate.equals(mformat.format(cal.time))) {
+                                        continueCount++
+                                        println("연속 횟수: " + continueCount)
+                                        cal.add(Calendar.DATE, -1)
+                                        println("지금 보는 게시글 날짜: " + mformat.format(cal.time))
+                                        // 비교를 위해 활동 기록
+                                        beforeDate = mformat.format(cal.time)
+                                    } else {
+                                        // 연속이 아닌 경우
+                                        cal.add(Calendar.DATE, -1)
+                                        beforeDate = mformat.format(cal.time)
+                                    }
+                                }
+
+                                // 저장
+                                continueCountArray[key] = continueCount
+                                totalCountArray[key] = totalCount
+
+                            }//
+
+
+                            if (totalCountArray.containsKey(key)) {
+                                var totalDate = 0L // 가입한 이후 현재까지의 총 일 수 (timeMills는 long 형 타입)
+
+                                firestore?.collection("userid")?.document(key!!)!!.get()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            // 회원 가입 일자 구함
+                                            var signUpDate =
+                                                SimpleDateFormat("yyyyMMdd").parse(task.result!!["signUpDate"].toString())
+                                            var todayDate = System.currentTimeMillis()
+
+                                            totalDate = todayDate - signUpDate.time
+
+                                            println("총 일 수: " + totalDate / (24 * 60 * 60 * 1000))
+
+                                            // (총 누적 활동 일 수 / 총 일 수)
+                                            var datePercent = Math.round(
+                                                ((totalCountArray.get(key!!)!!.toDouble() /
+                                                        (totalDate / (24 * 60 * 60 * 1000))) * 100)
+                                            )
+
+                                            println(key + "의 퍼센티지:" + datePercent)
+
+                                            // ranking fragment로 값 넘기기
+                                            var percentArray = HashMap<String, Int>()
+                                            percentArray["percentage"] = datePercent.toInt()
+
+                                            firestore?.collection("userid")?.document(key!!)!!
+                                                .set(percentArray, SetOptions.merge())
+                                        }
+                                    }
+                            }
+                        }
+                }
+            } //
+
+*/
 
 
         // 스토리지 권한 요청

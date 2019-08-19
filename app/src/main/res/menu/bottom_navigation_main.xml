@@ -18,7 +18,7 @@
             android:id="@+id/bnv_ranking"
 
             android:icon="@drawable/ic_people_black_24dp"
-            android:title="그룹" />
+            android:title="랭킹" />
     <item
             android:id="@+id/bnv_settings"
             android:icon="@drawable/ic_settings_black_24dp"

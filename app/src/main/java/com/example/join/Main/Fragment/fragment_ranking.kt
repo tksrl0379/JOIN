@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.join.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_ranking.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -21,8 +22,11 @@ class fragment_ranking : Fragment() {
     // Firebase
     private lateinit var firestore: FirebaseFirestore
 
-    // 점수 해쉬맵
+    // 랭킹점수 해쉬맵
     var rankingPoint = HashMap<String, Double>()
+
+    // 개근율 해쉬맵
+    var percentage = HashMap<String, Int?>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +44,15 @@ class fragment_ranking : Fragment() {
         // firestore 객체 생성
         firestore = FirebaseFirestore.getInstance()
 
-        // userId 목록 가져오기
+
+        // userId 가져오기
         firestore?.collection("userid").get().
             addOnSuccessListener {result->
                 for(document in result){
-                    rankingPoint[document["userEmail"].toString()] = 0.0
+                    var key = document["userEmail"].toString()
+                    rankingPoint[key] = 0.0
                     println(document["userEmail"])
-                }
 
-                // 가져온 userid 목록으로 랭킹 거리 계산
-                for( (key, value) in rankingPoint) {
                     firestore?.collection("Activity").whereEqualTo("userEmail", key)
                         .addSnapshotListener{querySnapshot, firebaseFirestoreException ->
                             for( document in querySnapshot!!.documents){
@@ -63,16 +66,46 @@ class fragment_ranking : Fragment() {
                             println(key + "의 누적거리: " + rankingPoint[key])
                         }
                 }
+
+                // 누적 거리에 따른 순위 계산
+                var it = rankingPoint.toList().sortedByDescending{ (_, value) -> value }.toMap()
+
+                var i = 0
+                for(entry in it){
+                    if(i == 0)
+                        ranking_goldmedal_textview.text = entry.key
+                    else if(i == 1)
+                        ranking_silvermedal_textview.text = entry.key
+                    else if(i == 2)
+                        ranking_bronzemedal_textview.text = entry.key
+                    i++
+                }
+
+                // 개근율 계산
+                for(document in result){
+                    percentage[document["userEmail"]!!.toString()] =
+                        Integer.parseInt(document["percentage"].toString())
+                }
+
+                var it2 = percentage.toList().sortedByDescending { (_, value) -> value }.toMap()
+                i = 0
+                for(entry in it2){
+                    if(i == 0)
+                        ranking_first_textview.text = entry.key
+                    else if(i == 1)
+                        ranking_second_textview.text = entry.key
+                    else if(i == 2)
+                        ranking_third_textview.text = entry.key
+                    i++
+                }
+
+
+
+
             }
 
 
-
-
-
-
-
-
-
+        // 개근
 
         return fragmentView
     }

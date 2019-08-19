@@ -33,7 +33,7 @@
                 android:layout_toRightOf="@+id/activity_item_user_email_textview"
                 android:layout_marginTop="23dp" android:layout_marginLeft="7dp"
                 android:background="@drawable/edge"
-                android:text="  10일 개근  " android:textSize="13dp" android:textColor="@color/colorWhite"/>
+                android:text="          " android:textSize="13dp" android:textColor="@color/colorWhite"/>
 
         <TextView
                 android:id="@+id/activity_item_date_textview"
