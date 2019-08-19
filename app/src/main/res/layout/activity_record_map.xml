@@ -66,15 +66,23 @@
 
     </FrameLayout>
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="125dp">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="100dp">
         <!--레코드 시작 버튼-->
+
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorMAIN"/>
+
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/recordStartFab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
@@ -90,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
@@ -107,7 +115,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
@@ -125,7 +133,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
@@ -143,7 +151,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="120dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:layout_toStartOf="@+id/recordPauseFab"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
@@ -159,7 +167,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="118dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="16dp"
                 android:layout_toEndOf="@+id/recordPauseFab"
                 android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"

@@ -222,7 +222,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         startTimer()
 
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
-        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).commit()
+        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).hide(detailfr).commit()
+
+
 
 
         MapToDetails()
