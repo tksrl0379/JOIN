@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,58 +8,58 @@
         tools:context=".Main.Activity.MainActivity"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="50dp" android:id="@+id/my_main_toolbar"
-            android:background="@color/colorMAIN"
-            app:layout_scrollFlags="scroll"
-            android:elevation="10dp"
-    >
-
-        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-            <!--
-            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
-            -->
-            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
-                       android:visibility="gone"/>
-        </FrameLayout>
-
-        <RelativeLayout
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_gravity = "center"
+    <com.google.android.material.appbar.AppBarLayout android:layout_width="match_parent"
+                                                     android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="55dp" android:id="@+id/my_main_toolbar"
+                android:background="@color/colorMAIN"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:elevation="20dp"
         >
-            <TextView
-                    android:id="@+id/Toolbar_title"
+
+            <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <!--
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
+                -->
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
+                           android:visibility="gone"/>
+            </FrameLayout>
+
+            <RelativeLayout
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
-                    android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
-                    android:textColor="@color/colorWhite" />
+                    android:layout_gravity = "center"
+            >
+                <TextView
+                        android:id="@+id/Toolbar_title"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginLeft="45dp"
+                        android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
+                        android:textColor="@color/colorWhite" />
 
-            <TextView
-                    android:id="@+id/Toolbar_subtitle"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/Toolbar_title" android:layout_marginTop="5dp"
-                    android:text="for walk" android:textStyle="bold" android:textSize="15dp"
-                    android:textColor="@color/colorWhite" />
+                <TextView
+                        android:id="@+id/Toolbar_subtitle"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/Toolbar_title" android:layout_marginTop="5dp"
+                        android:text="for walk" android:textStyle="bold" android:textSize="15dp"
+                        android:textColor="@color/colorWhite" />
 
-            <ImageView
-                    android:layout_width="16dp" android:layout_height="16dp"
-                    android:layout_toRightOf="@id/Toolbar_subtitle" android:layout_marginTop="8dp"
-                    android:src="@drawable/footsteps"
+                <ImageView
+                        android:layout_width="16dp" android:layout_height="16dp"
+                        android:layout_toRightOf="@id/Toolbar_subtitle" android:layout_marginTop="8dp"
+                        android:src="@drawable/footsteps"
 
-            />
+                />
 
-        </RelativeLayout>
-
-
-
-    </androidx.appcompat.widget.Toolbar>
-
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
             android:id="@+id/fragment_container"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -78,4 +78,4 @@
             app:menu="@menu/bottom_navigation_main"
     ></com.google.android.material.bottomnavigation.BottomNavigationView>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
