@@ -16,6 +16,7 @@
             android:title="활동 기록" />
     <item
             android:id="@+id/bnv_ranking"
+
             android:icon="@drawable/ic_people_black_24dp"
             android:title="그룹" />
     <item
