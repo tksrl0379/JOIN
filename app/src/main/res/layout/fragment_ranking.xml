@@ -1,11 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".Main.Fragment.fragment_ranking">
 
+    <ImageView
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:src="@drawable/diagonal" android:layout_above="@+id/ranking_view"/>
+
+    <View
+            android:id="@+id/ranking_view"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent" android:layout_height="60dp"
+          />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="누적거리상"/>
+
+    <RelativeLayout
+            android:id="@+id/ranking_relativeview"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp" android:layout_centerHorizontal="true">
+
+        <ImageView
+                android:id="@+id/ranking_goldmedal_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/goldmedal"/>
+        <TextView
+                android:id="@+id/ranking_goldmedal_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="금메달" android:layout_toRightOf="@id/ranking_goldmedal_imageview"
+        />
+
+        <ImageView
+                android:id="@+id/ranking_silvermedal_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/silvermedal" android:layout_below="@id/ranking_goldmedal_imageview"/>
+        <TextView
+                android:id="@+id/ranking_silvermedal_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="은메달"
+                android:layout_below="@id/ranking_goldmedal_imageview" android:layout_toRightOf="@id/ranking_silvermedal_imageview"
+        />
+
+        <ImageView
+                android:id="@+id/ranking_bronzemedal_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/bronzemedal" android:layout_below="@id/ranking_silvermedal_imageview"/>
+        <TextView
+                android:id="@+id/ranking_bronzemedal_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="동메달"
+                android:layout_below="@id/ranking_silvermedal_imageview" android:layout_toRightOf="@id/ranking_bronzemedal_imageview"/>
+
+    </RelativeLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="개근상" android:layout_above="@+id/ranking_relativeview2"/>
+
+    <RelativeLayout
+            android:id="@+id/ranking_relativeview2"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" android:layout_above="@+id/ranking_view">
+
+        <ImageView
+                android:id="@+id/ranking_first_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/goldmedal"/>
+        <TextView
+                android:id="@+id/ranking_first_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="금메달" android:layout_toRightOf="@id/ranking_first_imageview"
+        />
+
+        <ImageView
+                android:id="@+id/ranking_second_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/silvermedal" android:layout_below="@id/ranking_first_imageview"/>
+        <TextView
+                android:id="@+id/ranking_second_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="은메달"
+                android:layout_below="@id/ranking_first_imageview" android:layout_toRightOf="@id/ranking_second_imageview"
+        />
+
+        <ImageView
+                android:id="@+id/ranking_third_imageview"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:src="@drawable/bronzemedal" android:layout_below="@id/ranking_second_imageview"/>
+        <TextView
+                android:id="@+id/ranking_third_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="동메달"
+                android:layout_below="@id/ranking_second_imageview" android:layout_toRightOf="@id/ranking_second_imageview"/>
+
+    </RelativeLayout>
 
 
 
-</FrameLayout>
+
+
+
+
+</RelativeLayout>
