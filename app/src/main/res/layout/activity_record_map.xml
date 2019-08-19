@@ -8,11 +8,62 @@
                 android:orientation="vertical"
                 android:background="@color/colorBackgroundDefault">
 
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:id="@+id/my_main_toolbar"
+            android:background="@color/colorMAIN"
+            app:layout_scrollFlags="scroll"
+            android:elevation="10dp"
+            >
+
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <!--
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
+            -->
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
+                    android:visibility="gone"/>
+        </FrameLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity = "center"
+                >
+            <TextView
+                    android:id="@+id/Toolbar_title"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:text="JOIN" android:textStyle="bold" android:textSize="35dp"
+                    android:textColor="@color/colorWhite" />
+
+            <TextView
+                    android:id="@+id/Toolbar_subtitle"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/Toolbar_title" android:layout_marginTop="5dp"
+                    android:text="for walk" android:textStyle="bold" android:textSize="15dp"
+                    android:textColor="@color/colorWhite" />
+
+            <ImageView
+                    android:layout_width="16dp" android:layout_height="16dp"
+                    android:layout_toRightOf="@id/Toolbar_subtitle" android:layout_marginTop="8dp"
+                    android:src="@drawable/footsteps"
+
+                    />
+
+        </RelativeLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
     <FrameLayout
             android:id="@+id/mainFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
+
+
     </FrameLayout>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="125dp">
@@ -24,7 +75,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="#F9A602"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
                 android:tint="#FFFFFF"
@@ -40,14 +91,14 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="#F9A602"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
                 android:tint="#FFFFFF"
                 android:visibility="invisible"
 
                 app:fabSize="normal"
-                app:srcCompat="@drawable/record_pause"/>
+                app:srcCompat="@drawable/record_pause" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/detailsFab"
@@ -57,7 +108,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
                 android:tint="#F9A602"
@@ -75,7 +126,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="#F9A602"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
 
                 android:tint="#FFFFFF"
@@ -94,7 +145,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="30dp"
                 android:layout_toStartOf="@+id/recordPauseFab"
-                android:backgroundTint="#F9A602"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
                 android:tint="#FFFFFF"
                 android:visibility="invisible"
@@ -110,7 +161,7 @@
                 android:layout_marginEnd="118dp"
                 android:layout_marginBottom="30dp"
                 android:layout_toEndOf="@+id/recordPauseFab"
-                android:backgroundTint="#F9A602"
+                android:backgroundTint="@color/colorMAIN"
                 android:clickable="true"
                 android:tint="#FFFFFF"
                 android:visibility="invisible"
