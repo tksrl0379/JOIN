@@ -6,9 +6,19 @@
              tools:context=".Main.Fragment.fragment_ranking">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+    <!--누적 걸음 수 랭킹-->
+
+
     <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="bye" />
 
 </FrameLayout>
