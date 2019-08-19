@@ -105,23 +105,23 @@
 
 
         <View
-                android:id="@+id/boundaryLine1"
+                android:id="@+id/boundaryLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/min"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="0dp"
-                android:background="#000000" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorMAIN" />
 
 
         <TextView
                 android:id="@+id/avgSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/boundaryLine1"
+                android:layout_below="@id/boundaryLine"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_centerHorizontal="true"
@@ -148,10 +148,10 @@
                 android:layout_below="@+id/averageSpeed"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="0dp"
-                android:background="#000000" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorMAIN" />
 
 
         <TextView
@@ -186,10 +186,10 @@
                 android:layout_below="@+id/distanceKm"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="0dp"
-                android:background="#000000" />
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorMAIN" />
 
         <TextView
                 android:id="@+id/recordPedometerTextView"
