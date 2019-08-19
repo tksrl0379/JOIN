@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.join.R
+import com.google.android.material.appbar.AppBarLayout
 
 class fragment_ranking : Fragment() {
 
@@ -21,6 +22,11 @@ class fragment_ranking : Fragment() {
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_fragment_ranking, container, false)
 
+        // 다른 Fragment에서는 Toolbar가 작동되도록 하는 코드
+        var toolbarView = activity!!.findViewById<View>(R.id.my_main_toolbar)
+        var p = toolbarView.layoutParams as AppBarLayout.LayoutParams
+        p.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
+        toolbarView.setLayoutParams(p)
 
 
 

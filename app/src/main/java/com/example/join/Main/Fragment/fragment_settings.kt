@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.join.DTO.FollowDTO
 import com.example.join.Main.Activity.SearchFriendActivity
 import com.example.join.R
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -50,6 +51,13 @@ class fragment_settings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentView = inflater.inflate(R.layout.fragment_settings, container, false)
+
+        // 다른 Fragment에서는 Toolbar가 작동되도록 하는 코드
+        var toolbarView = activity!!.findViewById<View>(R.id.my_main_toolbar)
+        var p = toolbarView.layoutParams as AppBarLayout.LayoutParams
+        p.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
+        toolbarView.setLayoutParams(p)
+
 
         // firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance()
