@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerview_layout_for_ranking">
+
+    <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="164dp">
+
+
+        <TextView
+                android:id="@+id/numberRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="110dp"
+                android:text="1" />
+
+        <TextView
+                android:id="@+id/nameRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="146dp"
+                android:layout_marginTop="108dp"
+                android:text="아무개" />
+
+        <TextView
+                android:id="@+id/pedometerRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="107dp"
+                android:layout_marginEnd="133dp"
+                android:text="0" />
+    </RelativeLayout>
+
+</LinearLayout>

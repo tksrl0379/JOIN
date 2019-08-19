@@ -66,7 +66,7 @@ class UploadActivity : AppCompatActivity() {
 
 
         // google static map 기본 주소
-        var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x450&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:3"
+        var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x400&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:3"
 
         // 위도+경도 옵션 주소
         var latlngString: String? = null
