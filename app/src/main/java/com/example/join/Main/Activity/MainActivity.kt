@@ -117,14 +117,18 @@ class MainActivity : AppCompatActivity() {
 
             var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
+            var userEmail = FirebaseAuth.getInstance().currentUser!!.email.toString()
+
             val storageRef = FirebaseStorage.getInstance().
                 reference.child("userProfileImages").child(uid)
             // 파일 업로드
+
             storageRef.putFile(imageUri!!).addOnSuccessListener {
                 // 파일 다운로드
                 storageRef.downloadUrl.addOnSuccessListener {uri ->
                     val map = HashMap<String, Any>()
                     map["images"] = uri.toString()
+                    map["userEmail"]= userEmail
                     FirebaseFirestore.getInstance()
                         .collection("profileImages").document(uid).set(map)
                 }

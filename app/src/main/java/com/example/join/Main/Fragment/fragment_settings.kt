@@ -21,6 +21,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.lang.Exception
@@ -81,9 +82,12 @@ class fragment_settings : Fragment() {
                     READ_EXTERNAL_STORAGE ) == PackageManager.PERMISSION_GRANTED){
                 var photoPickerIntent = Intent(Intent.ACTION_GET_CONTENT)
                 photoPickerIntent.type = "*/*"
-                activity!!.startActivityForResult(photoPickerIntent, PICK_PROFILE_FROM_ALBUM)
+                activity!!.startActivityForResult(photoPickerIntent, PICK_PROFILE_FROM_ALBUM )
+
+                println("포토url : "+ photoPickerIntent)
             }
         }
+
 
         // 친구 검색 버튼 클릭
         fragmentView.searchfriend_btn.setOnClickListener {
