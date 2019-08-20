@@ -67,8 +67,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     MapFragment.OnConnectedListener,
     SensorEventListener {
 
-
-    //private lateinit var mainfrgmt: Fragment
     private var mMap: GoogleMap? = null
     private var REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -83,20 +81,14 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     //private  static String FRAGMENT_TAG = "FRAGMENTB_TAG"
     private var detailTag: String = "DetailTag"
 
-
     private var time = -1
     private var timeTask: Timer? = null
 
-    var mapfr: Fragment = MapFragment()       //MapFrgmt()
+    var mapfr: Fragment = MapFragment()
     var detailfr: Fragment = RecordFragment() //
 
-    //구글 지도를 img로 스냅샷 할 변수
     val builder = LatLngBounds.builder()
-
-
-    val extStorageDirectory: String =
-        Environment.getExternalStorageDirectory().toString()
-
+    //val extStorageDirectory: String =  Environment.getExternalStorageDirectory().toString()
 
     // 기록 시작 버튼 클릭 여부 확인
     var recordPressed = false
@@ -141,11 +133,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    //구글 지도를 img로 스냅샷 할 변수
-    //val builder = LatLngBounds.builder()
-    //val extStorageDirectory: String =  Environment.getExternalStorageDirectory().toString()
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -169,13 +156,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_map)
 
-
         locationInit()
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, mapfr).commit()
-
-        if (savedInstanceState == null) {
-
-        }
 
         recordStartFab.setOnClickListener(this)
         recordPauseFab.setOnClickListener(this)
@@ -223,8 +205,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
             SensorManager.SENSOR_DELAY_NORMAL
         )
 
-        //Todo:이곳에서 RealmData에 저장, Polyline실행
-
         recordStartFab.hide()   //시작버튼 기능 종료
         recordPauseFab.show()   //중지버튼 기능 시작.
 
@@ -237,9 +217,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
         supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag)
             .hide(detailfr).commit()
-
-
-
 
         MapToDetails()
     }
@@ -258,7 +235,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         recordResumeFab.show()
         recordUploadFab.show()
 
-
     }
 
     private fun ResumeFab() {
@@ -273,7 +249,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
 
         startTimer() //중지했던 시간을 계속하여 측정한다.
         recordPressed = true
-        recordStart = true
+        //recordStart = true
         recordResumeFab.hide()
         recordUploadFab.hide()
         recordPauseFab.show()
@@ -281,14 +257,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
 
     }
 
-
     /*private fun UploadFab() {
 
         //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
         //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
         val bounds = builder.build()
         mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
-
 
         val cache : File = cacheDir
 
@@ -302,7 +276,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
             GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
                     bitmap: Bitmap -> Bitmap.createBitmap(1080, 400, Bitmap.Config.ARGB_8888)
 
-
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
                 outputStream.flush()
@@ -311,7 +284,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
                 //var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
                 //println(snapshotUri)
-
             }
         val snapshotMap = mMap?.snapshot(snapshotReadyCallback)   //구글맵 스크린샷.
         if(snapshotMap != null){       //저장되었는지 확인.
@@ -320,20 +292,17 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
         }else{
             toast("실패")
         }
-
-
         startActivityForResult<UploadActivity>(100,
             "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
             "averSpeed" to averSpeed, "pedometer" to pedometer)
-
-
     }*/
-    private fun DetailsToMap() {
-        //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
 
+    private fun DetailsToMap() {
+
+        // fragment 전환 및 애니메이션 효과(setCustomAnimations)
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.from_right, R.anim.to_left).hide(detailfr).commit()
-        //supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.from_right,R.anim.to_left).hide(detailfr).commit()
+
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.from_right, R.anim.to_left).show(mapfr).commit()
 
@@ -343,8 +312,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun MapToDetails() {
-        //Todo: 이 함수가 불리면 현재 맵 프래그먼트에서 타임랩(시간,거리) 프래그먼트로 이동.
-
 
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.from_left, R.anim.to_right).hide(mapfr).commit()
@@ -357,7 +324,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     }
 
 
-    //TODO -> 그럼 해제하면 안되지 않는지? 확인해보기
     override fun onResume() {
         super.onResume()
         permissionCheck(cancel = { showPermissionInfoDialog() },
@@ -528,14 +494,12 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
                     println("시속: " + (total_distance * (3600 / total_sec)) + "km")
 
 
-                    //insertLatlng(latitude,longitude)
+                    // Latlng(latitude,longitude) 을 이용하여 지도에 선 그리기
                     polylineOptions.add(latLng)
                     polylineOptions.width(13f)
-                    polylineOptions.visible(true)   // 선이 보여질지/안보여질지 옵션. startBtn시 visible을 True로 하고 visibile이 True시 Realm에 데이터 저장.
+                    polylineOptions.visible(true)   // 선이 보여질지/안보여질지 옵션.
 
                     mMap?.addPolyline(polylineOptions)
-
-
                 }
             }
 
@@ -554,7 +518,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
     }
 
 
-    // TODO: 호출한 엑티비티가 끝나도 호출되는건지 ?
+    // UploadActivity에서 upload_success 신호를 보내면 finish()
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK)
             if (requestCode == 100) {

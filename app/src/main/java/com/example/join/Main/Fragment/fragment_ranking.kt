@@ -67,7 +67,7 @@ class fragment_ranking : Fragment() {
                         }
                 }
 
-                // 누적 거리에 따른 순위 계산
+                // 누적 거리에 따른 순위 계산 ( value값에 따라 hashmap 정렬)
                 var it = rankingPoint.toList().sortedByDescending{ (_, value) -> value }.toMap()
 
                 var i = 0
@@ -98,17 +98,7 @@ class fragment_ranking : Fragment() {
                         ranking_third_textview.text = entry.key
                     i++
                 }
-
-
-
-
             }
-
-
-        // 개근
-
         return fragmentView
     }
-
-
 }

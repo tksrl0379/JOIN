@@ -23,13 +23,6 @@ class fragment_activity : Fragment() {
     var user: FirebaseUser? = null
     var firestore: FirebaseFirestore? = null
 
-    // View 객체 변수 선언
-    var mainView: View? = null
-
-    // 스크롤중인지 확인
-    var scrolling = false
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

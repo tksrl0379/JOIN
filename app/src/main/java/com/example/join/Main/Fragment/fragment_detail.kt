@@ -22,9 +22,7 @@ import java.util.*
 
 class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private  lateinit var firebaseStorage: FirebaseStorage
 
     var timeStamp: Long? = null
 
@@ -55,7 +53,6 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
         1. query문(ex) whereequalto)-> 람다식 querySnapshot. 활용 아래 참고
         2. doc 찾기-> 람다식 task. 활용-> uid = task.result["field name"]
          */
-
 
         firestore.collection("Activity")
             .whereEqualTo("timeStamp", timeStamp).get()
@@ -97,9 +94,6 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                 // 거리
                 mainView.detail_distance_textview.text = contentDTO.distance
 
-                // 거리 latlng
-                //mainView.detail_map_endpointLatlng.text = contentDTO.distanceLatlng.toString()
-
                 // 이동 시간
                 mainView.detail_consuming_time_textview.text = contentDTO.time
 
@@ -109,7 +103,6 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
                 // 걸음 수
                 mainView.detail_pedometer_textview.text = contentDTO.pedometer
 
-
             }
         return mainView
     }
@@ -117,8 +110,9 @@ class fragment_detail : Fragment(), MainActivity.OnBackPressedListener {
 
     // 뒤로가기 눌렀을 때 Activity가 종료되지 않도록 하는 부분
     override fun onBack() {
-        (activity as MainActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment_activity()).commit()
+        if(activity != null)
+            (activity as MainActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment_activity()).commit()
     }
 
     // fragment가 호출될 때 불러지는 메소드.

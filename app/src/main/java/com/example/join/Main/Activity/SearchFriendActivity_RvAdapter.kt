@@ -77,7 +77,6 @@ class SearchFriendActivity_RvAdapter(val context: Context?, val userInfoDTO: Arr
                 followDTO = FollowDTO()
                 followDTO.followingCount = 1
                 followDTO.followings[uid!!] = true
-                //followDTO.followings.put(uid!!, true) 이거랑 동일?
 
                 transaction.set(tsDocFollwing, followDTO)
                 //transaction.update(tsDocFollwing, "follow",3)

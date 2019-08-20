@@ -23,13 +23,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var mapView: MapView
     private lateinit var rootview: View
-    private var REQUEST_ACCESS_FINE_LOCATION = 1000
 
     lateinit var onConnectedListener : OnConnectedListener
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,13 +41,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         mapView.getMapAsync(this)
 
-
-        /*try{
-            MapsInitializer.initialize(this.getActivity());
-        }catch (e : GooglePlayServicesNotAvailableException){
-            e.printStackTrace()
-        }*/
-
         return rootview
     }
 
@@ -62,12 +52,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(37.340201, 126.734721)))  //초기설정.KPU G동
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10f))
-        //  RecordMapActivity의 onConnect() 실행
+        //  RecordMapActivity의 onConnect() 실행하여 맵 객체를 불러와 MapFragment에서 맵을 띄울 수 있게 해줌.
         onConnectedListener.onConnect(mMap)
-
-
-        //그동안의 목적기 히스토리 마커표시, firebase 연동해야할듯.
-
 
         mMap.setOnMapLoadedCallback{
             try{
@@ -76,8 +62,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
-    //
     interface OnConnectedListener{
         fun onConnect(mMap: GoogleMap)
     }
