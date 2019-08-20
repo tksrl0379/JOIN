@@ -74,12 +74,33 @@
 -->
 
 
+    <ImageView
+            android:id="@+id/mapPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/award" />
+
+    <View
+            android:id="@+id/boundaryLine"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_above="@+id/activity_upload__title_textinput"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorMAIN" />
 
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:id="@+id/activity_upload__title_textinput"
-            android:layout_below="@+id/my_main_toolbar">
+            android:layout_above="@+id/activity_upload_explain_textinput"
+            android:layout_marginBottom="8dp"
+            >
         <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/activity_upload_title_edittext" android:hint="활동 이름"
                   android:layout_margin="10dp"/>
@@ -90,25 +111,26 @@
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:id="@+id/activity_upload_explain_textinput"
-            android:layout_below="@+id/activity_upload__title_textinput">
+            android:layout_above="@+id/activity_upload_btn"
+            android:layout_marginBottom="8dp"
+            >
         <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/activity_upload_explain_edittext"
                   android:hint="내용" android:layout_margin="10dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <Button
             android:id="@+id/activity_upload_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/activity_upload_explain_textinput"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/colorMAIN"
             android:text="업로드"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
 </RelativeLayout>

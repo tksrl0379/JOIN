@@ -2,10 +2,15 @@ package com.example.join.Map
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.join.DTO.Activity_ContentDTO
 import com.example.join.R
 import com.google.android.gms.maps.model.LatLng
@@ -27,7 +32,9 @@ class UploadActivity : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var firebaseStorage: FirebaseStorage
 
-      var userlist = HashMap<String, Any>()
+    var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x400&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:3"
+
+    var userlist = HashMap<String, Any>()
     // 연속 일 수를 구하기 위한 변수들
     var cal = Calendar.getInstance()
     var mformat = SimpleDateFormat("yyyy.MM.dd")
@@ -59,14 +66,44 @@ class UploadActivity : AppCompatActivity() {
         var averSpeed = intent.extras?.getString("averSpeed")
         var pedometer = intent.extras?.getInt("pedometer")
 
+
+        making_map(latlngArray!!) //google map with Latlng.
+
+
         activity_upload_btn.setOnClickListener {
-            upload_data(distanceKm!!, total_time!!, latlngArray!!, max_altitude!!,
+            upload_data(distanceKm!!, total_time!!, max_altitude!!,
                 averSpeed!!, pedometer!!)
         }
     }
 
-    fun upload_data(distanceKm: Double, total_time: Int, latlngArray: ArrayList<Pair<Double,Double>>
-                    , max_altitude: Double, averSpeed: String, pedometer: Int){
+    fun making_map(latlngArray: ArrayList<Pair<Double,Double>>){
+
+        // google static map 기본 주소
+
+        // 위도+경도 옵션 주소
+        var latlngString: String? = null
+
+        for(latlng in latlngArray ){
+            if(latlngString == null)
+                latlngString = "|" + latlng.first + "," + latlng.second
+            else
+                latlngString = latlngString + "|" + latlng.first + "," + latlng.second
+        }
+
+        // 시작, 도착 지점 Marker
+        val startPoint = "&markers=icon:http://bitly.kr/vTGodx|" +
+                latlngArray[0].first + "," + latlngArray[0].second
+        val endPoint = "&markers=icon:http://bitly.kr/xVQKMY|" +
+                latlngArray[latlngArray.size-1].first + "," + latlngArray[latlngArray.size-1].second
+
+        googleMapUrI = googleMapUrI + latlngString + startPoint + endPoint  //complete making googlemapUrI.
+
+        Glide.with(this).load(googleMapUrI).into(mapPreview)    //Preview on activity_upload.xml
+
+
+    }
+
+    fun upload_data(distanceKm: Double, total_time: Int, max_altitude: Double, averSpeed: String, pedometer: Int){
         var map = HashMap<String, Any>()
         var date = SimpleDateFormat("yyyyMMdd").format(Date())
 
@@ -78,7 +115,7 @@ class UploadActivity : AppCompatActivity() {
 
         var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
-
+/*
         // google static map 기본 주소
         var googleMapUrI = "https://maps.googleapis.com/maps/api/staticmap?size=1080x400&key=AIzaSyApWtGe4CCILuskfO3V0ErIEkF3KEM1-mk&path=color:0xff0000ff|weight:3"
 
@@ -100,6 +137,7 @@ class UploadActivity : AppCompatActivity() {
 
         googleMapUrI = googleMapUrI + latlngString + startPoint + endPoint
         println("주소: " + googleMapUrI)
+*/
 
         map["imageUrI"] = googleMapUrI
         map["title"] = activity_upload_title_edittext.text.toString()
