@@ -38,7 +38,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/distanceGoldenPrize"
                 android:layout_centerHorizontal="true"
-                android:text="홍길동" />
+                android:background="@color/colorGold"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                />
 
         <TextView
                 android:id="@+id/distanceGoldenNum"
@@ -46,7 +49,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/distanceGoldenName"
                 android:layout_centerHorizontal="true"
-                android:text="10KM" />
+                android:text="KM"
+                android:background="@color/colorGold"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"/>
 
 
         <ImageView
@@ -74,7 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/distanceSilverPrize"
                 android:layout_marginStart="60dp"
-                android:text="홍길동" />
+
+                android:background="@color/colorSilver"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
                 android:id="@+id/distanceSilverNum"
@@ -82,7 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/distanceSilverName"
                 android:layout_marginStart="60dp"
-                android:text="10KM" />
+                android:text="KM"
+                android:background="@color/colorSilver"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"/>
 
 
         <ImageView
@@ -112,7 +124,9 @@
                 android:layout_below="@+id/distanceBronzePrize"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="56dp"
-                android:text="홍길동" />
+                android:background="@color/colorBronze"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
                 android:id="@+id/distanceBronzeNum"
@@ -120,9 +134,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/distanceBronzeName"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="58dp"
-                android:text="10KM" />
-
+                android:layout_marginEnd="57dp"
+                android:background="@color/colorBronze"
+                android:text="KM"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"/>
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -182,7 +198,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/attendanceGoldenPrize"
                     android:layout_centerHorizontal="true"
-                    android:text="홍길동" />
+                    android:background="@color/colorGold"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"/>
 
             <TextView
                     android:id="@+id/attnedanceGoldenNum"
@@ -190,7 +208,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/attendanceGoldenName"
                     android:layout_centerHorizontal="true"
-                    android:text="10KM" />
+                    android:text="%"
+                    android:background="@color/colorGold"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"/>
 
             <ImageView
                     android:id="@+id/attendanceSilverPrize"
@@ -218,7 +239,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/attendanceSilverPrize"
                     android:layout_marginStart="60dp"
-                    android:text="홍길동" />
+                    android:background="@color/colorSilver"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
             <TextView
                     android:id="@+id/attendanceSilverNum"
@@ -226,7 +250,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/attendanceSilverName"
                     android:layout_marginStart="60dp"
-                    android:text="10KM" />
+                    android:text="%"
+                    android:background="@color/colorSilver"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"/>
 
 
             <ImageView
@@ -257,16 +284,23 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="56dp"
-                    android:text="홍길동" />
+
+                    android:background="@color/colorBronze"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"/>
 
             <TextView
                     android:id="@+id/attendanceBronzeNum"
-                    android:layout_below="@id/attendanceBronzeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/attendanceBronzeName"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="58dp"
-                    android:text="10KM" />
+                    android:layout_marginEnd="57dp"
+                    android:text="%"
+
+                    android:background="@color/colorBronze"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"/>
 
             <ImageView
                     android:id="@+id/distanceGoldenPerson"
