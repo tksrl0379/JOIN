@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+
+    <TextView
+            android:id="@+id/distanceRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="누적거리상"
+            android:background="@color/colorMAIN"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    <ImageView
+            android:id="@+id/distanceGoldenPrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            app:srcCompat="@drawable/goldmedal" />
+
+
+    <ImageView
+            android:id="@+id/distanceGoldenPerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="183dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <TextView
+            android:id="@+id/distanceGoldenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/distanceGoldenPrize"
+            android:layout_centerHorizontal="true"
+            android:text="홍길동" />
+
+    <TextView
+            android:id="@+id/distnaceGoldenNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distanceGoldenName"
+            android:layout_centerHorizontal="true"
+            android:text="10KM" />
+
+
+
+    <ImageView
+            android:id="@+id/distanceSilverPrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="173dp"
+            app:srcCompat="@drawable/silvermedal" />
+
+    <ImageView
+            android:id="@+id/distanceSilverPerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="214dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <TextView
+            android:id="@+id/distanceSilverName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/distanceSilverPrize"
+            android:layout_marginStart="63dp"
+            android:text="홍길동" />
+
+    <TextView
+            android:id="@+id/distnaceSilverNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distanceSilverName"
+            android:layout_marginStart="63dp"
+            android:text="10KM" />
+
+
+
+    <ImageView
+            android:id="@+id/distanceBronzePrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="173dp"
+            android:layout_marginEnd="30sp"
+            app:srcCompat="@drawable/bronzemedal" />
+
+    <ImageView
+            android:id="@+id/distanceBronzePerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="214dp"
+            android:layout_marginEnd="53dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <TextView
+            android:id="@+id/distanceBronzeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/distanceBronzePrize"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="58dp"
+            android:text="홍길동" />
+
+    <TextView
+            android:id="@+id/distnaceBronzeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distanceBronzeName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="58dp"
+            android:text="10KM" />
+
+
+
+
+
+
+    <View
+            android:id="@+id/boundaryLine"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorMAIN" />
+
+
+
+    <TextView
+            android:id="@+id/attendanceRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="누적거리상"
+            android:background="@color/colorMAIN"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    <ImageView
+            android:id="@+id/attendanceGoldenPrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            app:srcCompat="@drawable/goldmedal" />
+
+
+    <ImageView
+            android:id="@+id/attendanceGoldenPerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_marginStart="183dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <ImageView
+            android:id="@+id/attendanceSliverPrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="173dp"
+            app:srcCompat="@drawable/silvermedal" />
+
+    <ImageView
+            android:id="@+id/attendanceSilverPerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="214dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+
+    <ImageView
+            android:id="@+id/attendanceBronzePrize"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="173dp"
+            android:layout_marginEnd="30sp"
+            app:srcCompat="@drawable/bronzemedal" />
+
+    <ImageView
+            android:id="@+id/attendanceBronzePerson"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/boundaryLine"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="214dp"
+            android:layout_marginEnd="53dp"
+            android:src="@drawable/ic_account_circle_black_24dp" />
+
+
+</RelativeLayout>
