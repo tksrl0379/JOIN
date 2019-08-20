@@ -131,7 +131,6 @@ class fragment_settings : Fragment() {
 
     }
 
-    // TODO: 로그아웃할 때 이게 왜 실행되는지? 일단 try catch로 막아둠
     // 팔로잉 표시
     fun getFollowing(){
 

@@ -37,18 +37,6 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
     val mainActivity = activity
 
-
-    // 연속 일 수를 구하기 위한 변수들
-    var cal = Calendar.getInstance()
-    var mformat = SimpleDateFormat("yyyy.MM.dd")
-    var beforeDate: String? = null
-
-    var continueCount = 1
-    var totalCount = 0
-    var continueCountArray = HashMap<String, Int>()
-    var totalCountArray = HashMap<String, Int>()
-
-
     init{
 
         firestore = FirebaseFirestore.getInstance()
@@ -192,11 +180,10 @@ class fragment_activity_RvAdapter (activity : MainActivity)
             mainActivity.supportFragmentManager.beginTransaction().
                 replace(R.id.fragment_container, fragment).commit()
             //mainActivity.main_toolbar_write_btn.visibility = View.GONE
-            mainActivity.main_toolbar_back_btn.visibility = View.VISIBLE
+            //mainActivity.main_toolbar_back_btn.visibility = View.VISIBLE
         }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
 }
 
