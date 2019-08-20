@@ -22,10 +22,11 @@
                 <!--
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:id="@+id/main_toolbar_write_btn" android:src="@drawable/ic_add_black_24dp"/>
-                -->
+
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:id="@+id/main_toolbar_back_btn" android:src="@drawable/ic_keyboard_backspace_black_24dp"
                            android:visibility="gone"/>
+                           -->
             </FrameLayout>
 
             <RelativeLayout
