@@ -139,6 +139,7 @@ class UploadActivity : AppCompatActivity() {
         println("주소: " + googleMapUrI)
 */
 
+
         map["imageUrI"] = googleMapUrI
         map["title"] = activity_upload_title_edittext.text.toString()
         map["explain"] = activity_upload_explain_edittext.text.toString()

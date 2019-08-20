@@ -59,12 +59,12 @@ import kotlin.concurrent.timer
 //Updated
 
 
-
 //Updated
 //To another project.
 
 // TODO: 1. 만보기 기능(걸음 수 측정) 2. 기록(거리, 걸음 수, 맵 사진 등) Firebase에 업로드
-class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment.OnConnectedListener,
+class RecordMapActivity : AppCompatActivity(), View.OnClickListener,
+    MapFragment.OnConnectedListener,
     SensorEventListener {
 
 
@@ -117,7 +117,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     var averSpeed: String? = null
 
     //만보기
-    var pedometer : Int = 0
+    var pedometer: Int = 0
 
 
     private val sensorManager by lazy {
@@ -133,8 +133,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         event.let {
             if (event.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
                 Log.d("Sensor ", "Success")
-                if (event.values[0] == 1.0f){
-                    pedometer +=1
+                if (event.values[0] == 1.0f) {
+                    pedometer += 1
                     recordPedometer.text = pedometer.toString()   //만보기 기능.
                 }
             }
@@ -195,13 +195,22 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             R.id.mapFab -> MapToDetails()
             R.id.recordResumeFab -> ResumeFab()
 
-            R.id.recordUploadFab ->{
-                //UploadFab()
-                startActivityForResult<UploadActivity>(100,
-                "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
-                    "averSpeed" to averSpeed, "pedometer" to pedometer)}
+            R.id.recordUploadFab -> {
 
-//            R.id.recordUploadFab-> UploadFab()
+                if(latlngArray.size == 0){
+                    toast("아직 이동하지 않으셨습니다.")
+                }else{
+                    startActivityForResult<UploadActivity>(
+                        100,
+                        "distance" to total_distance,
+                        "time" to time,
+                        "latlng" to latlngArray,
+                        "max_altitude" to max_altitude,
+                        "averSpeed" to averSpeed,
+                        "pedometer" to pedometer
+                    )
+                }
+            }
         }
     }
 
@@ -226,7 +235,8 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         startTimer()
 
         //시작을 눌렀을때 기능이 실행해야하므로 여기서 프래그먼트 add. ( RecordFragment)
-        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag).hide(detailfr).commit()
+        supportFragmentManager.beginTransaction().add(R.id.mainFrame, detailfr, detailTag)
+            .hide(detailfr).commit()
 
 
 
@@ -272,7 +282,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
     }
 
 
-    private fun UploadFab() {
+    /*private fun UploadFab() {
 
         //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
         //지금까지 그어진 폴리라인 선들을 한 화면에 볼 수 있게 함.
@@ -317,7 +327,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
             "averSpeed" to averSpeed, "pedometer" to pedometer)
 
 
-    }
+    }*/
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
 
@@ -435,7 +445,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
             time++  //절대적 시간초.  <-Todo:이 time을 가지고 속도를 구할수 있다.
             // 총 초시간 저장
-            total_sec  = time
+            total_sec = time
 
             var sec = time % 60
             var min = time / 60 % 60
@@ -458,7 +468,6 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
         timeTask?.cancel()  //Timer의 객체로써 null일수 있기에 timetask 옆에 ? 붙음.
     }
-
 
 
     //TODO : start 누르는 순간 기록 시작. upload 누를 시 firestore에 업로드
@@ -487,7 +496,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                 if (recordStart) {
 
-                    if(altitude > max_altitude)
+                    if (altitude > max_altitude)
                         max_altitude = altitude
 
                     println("고도: " + max_altitude)
@@ -506,7 +515,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                         arrayex
                     )
 
-                    total_distance += arrayex[0]/1000
+                    total_distance += arrayex[0] / 1000
 
                     // 거리 표시
                     distanceKm.text = String.format("%.2f", total_distance)
@@ -516,7 +525,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
                     println("거리:" + total_distance)
                     println("초:" + total_sec)
-                    println("시속: "+ (total_distance * (3600 / total_sec)) + "km")
+                    println("시속: " + (total_distance * (3600 / total_sec)) + "km")
 
 
                     //insertLatlng(latitude,longitude)
@@ -547,9 +556,9 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     // TODO: 호출한 엑티비티가 끝나도 호출되는건지 ?
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(resultCode == RESULT_OK)
-            if(requestCode == 100) {
-                if(data!!.getStringExtra("result").equals("upload_success"))
+        if (resultCode == RESULT_OK)
+            if (requestCode == 100) {
+                if (data!!.getStringExtra("result").equals("upload_success"))
                     finish()
             }
     }
