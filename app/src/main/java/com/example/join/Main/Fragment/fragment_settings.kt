@@ -83,8 +83,6 @@ class fragment_settings : Fragment() {
                 var photoPickerIntent = Intent(Intent.ACTION_GET_CONTENT)
                 photoPickerIntent.type = "*/*"
                 activity!!.startActivityForResult(photoPickerIntent, PICK_PROFILE_FROM_ALBUM )
-
-                println("포토url : "+ photoPickerIntent)
             }
         }
 

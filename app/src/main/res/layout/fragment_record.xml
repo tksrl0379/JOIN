@@ -20,7 +20,11 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:text="시간"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@color/colorMAIN"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                />
 
         <!--Hour-->
         <TextView
@@ -107,7 +111,7 @@
         <View
                 android:id="@+id/boundaryLine"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="3dp"
                 android:layout_below="@+id/min"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -127,7 +131,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:text="평균속도(km/h)"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@color/colorMAIN"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/averageSpeed"
@@ -144,7 +151,7 @@
         <View
                 android:id="@+id/boundaryLine2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="3dp"
                 android:layout_below="@+id/averageSpeed"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -164,7 +171,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:text="거리(km)"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@color/colorMAIN"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"/>
 
 
         <TextView
@@ -182,7 +192,7 @@
         <View
                 android:id="@+id/boundaryLine3"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="3dp"
                 android:layout_below="@+id/distanceKm"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -199,7 +209,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:text="걸음 수"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@color/colorMAIN"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"/>
 
 
         <TextView
