@@ -29,7 +29,6 @@ import androidx.core.view.ViewCompat.canScrollVertically
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.core.view.ViewCompat.canScrollVertically
-import com.example.join.DTO.Activity_ContentDTO
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.fragment_activity.*
