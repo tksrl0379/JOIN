@@ -44,6 +44,9 @@ import kotlinx.android.synthetic.main.activity_record_map.*
 import kotlinx.android.synthetic.main.fragment_record.*
 import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback
 import org.jetbrains.anko.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -198,6 +201,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
                 "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
                     "averSpeed" to averSpeed, "pedometer" to pedometer)}
 
+//            R.id.recordUploadFab-> UploadFab()
         }
     }
 
@@ -267,7 +271,7 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
 
     }
 
-    /*
+
     private fun UploadFab() {
 
         //스냅샷 하기 이전에 현재까지 이동한 선들을 한 화면에 표시하기.
@@ -276,46 +280,44 @@ class RecordMapActivity : AppCompatActivity(), View.OnClickListener, MapFragment
         mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
 
 
-        val file = File(extStorageDirectory, "snapTest.png")    //파일명지정
+        val cache : File = cacheDir
+
+        val file = File(cache, "mapPreview.png")    //파일명지정
+        //val file = File(extStorageDirectory, "snapTest.png")    //파일명지정
+        println("파일 이름: "+file)
         var outputStream: OutputStream = FileOutputStream(file)
 
 
-        val snapshotReadyCallback = GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
-                bitmap: Bitmap ->
+        val snapshotReadyCallback =
+            GoogleMap.SnapshotReadyCallback {  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
+                    bitmap: Bitmap -> Bitmap.createBitmap(1080, 400, Bitmap.Config.ARGB_8888)
 
 
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.flush()
+                outputStream.close()
 
-            outputStream.flush()
-            outputStream.close()
+                //var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
 
-            //var snapshotUri = Uri.fromFile(File("/sdcard/snapTest.png"))
+                //println(snapshotUri)
 
-            //println(snapshotUri)
-
-
-
-
-        val snapshotReadyCallback = SnapshotReadyCallback{  //mMap.snapshot누를시 호출 되는 함수로 여기서 화면 캡쳐 기능 구현.
-
-                bitmap : Bitmap->
-                Bitmap.createBitmap(
-                    1090, 1920,
-                    Bitmap.Config.ARGB_8888
-                )
-
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-
-            println(bitmap)
-
-            outputStream.flush()
-            outputStream.close()
+            }
+        val snapshotMap = mMap?.snapshot(snapshotReadyCallback)   //구글맵 스크린샷.
+        if(snapshotMap != null){       //저장되었는지 확인.
+            toast("성공")
+            println()
+        }else{
+            toast("실패")
+        }
 
 
-    */
+        startActivityForResult<UploadActivity>(100,
+            "distance" to total_distance, "time" to time, "latlng" to latlngArray, "max_altitude" to max_altitude,
+            "averSpeed" to averSpeed, "pedometer" to pedometer)
 
 
+    }
     private fun DetailsToMap() {
         //Todo: 이 함수가 불리면 현재 타임랩(시간,거리) 프래그먼트에서 맵 프래그먼트로 이동.
 
