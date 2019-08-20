@@ -59,13 +59,9 @@ class fragment_ranking : Fragment() {
                 //var key = document["userEmail"].toString()
                 var key = document["userEmail"].toString()
 
-                var uid = document["uid"].toString()
+                rankingPoint[key] = 0.0 //누적거리
+                percentage[key] = 0 //개근율
 
-                rankingPoint[key] = 0.0
-
-
-                //rankingPoint[1, key] = 0.0
-                println(document["userEmail"])
 
                 firestore?.collection("Activity").whereEqualTo("userEmail", key)
                     .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
@@ -93,100 +89,116 @@ class fragment_ranking : Fragment() {
                                             distanceGoldenName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
                                             distanceGoldenNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])+"KM"
+                                                String.format(
+                                                    "%.2f",
+                                                    rankingPoint[entry.key]
+                                                ) + "KM"
                                             val url = snapshot["images"]
 
-                                            Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(distanceGoldenPerson)
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(distanceGoldenPerson)
 
                                         } else if (i == 1) {
                                             distanceSilverName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
                                             distanceSilverNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])+"KM"
+                                                String.format(
+                                                    "%.2f",
+                                                    rankingPoint[entry.key]
+                                                ) + "KM"
 
                                             val url = snapshot["images"]
 
-                                            Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(distanceSilverPerson)
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(distanceSilverPerson)
 
                                         } else if (i == 2) {
                                             distanceBronzeName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
                                             distanceBronzeNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])+"KM"
+                                                String.format(
+                                                    "%.2f",
+                                                    rankingPoint[entry.key]
+                                                ) + "KM"
                                             val url = snapshot["images"]
-                                            Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(distanceBronzePerson)
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(distanceBronzePerson)
                                         }
                                         i++
                                     }
-
-
                                 }
+                        }
+                    }
 
-                            /*
-                                    for(snapshot in querySnapshot!!.doc)
-                                    if (task.isSuccessful) {
+
+                firestore?.collection("Activity").whereEqualTo("userEmail", key)
+                    .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+                        // 개근율 계산
+                        for (document in result) {
+                            percentage[document["userEmail"]!!.toString()] =
+                                Integer.parseInt(document["percentage"].toString())
+                        }
+
+
+                        var it =
+                            percentage.toList().sortedByDescending { (_, value) -> value }.toMap()
+
+                        var i = 0
+                        for (entry in it) {
+                            firestore?.collection("profileImages")
+                                ?.whereEqualTo("userEmail", entry.key)
+                                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                                    for (snapshot in querySnapshot!!.documents) {
                                         if (i == 0) {
-                                            distanceGoldenName.text =
+                                            attendanceGoldenName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
-                                            distanceGoldenNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])
-                                            val url = task.result!!["images"]
-                                            println(url)
-                                            Glide.with(this).load(url).into(distanceGoldenPerson)
+                                            attnedanceGoldenNum.text =
+                                                percentage[entry.key].toString() + "%"
+                                            val url = snapshot["images"]
+
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(attendanceGoldenPerson)
 
                                         } else if (i == 1) {
-                                            distanceSilverName.text =
+                                            attendanceSilverName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
-                                            distanceSilverNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])
+                                            attendanceSilverNum.text =
+                                                percentage[entry.key].toString() + "%"
 
-                                            val url = task.result!!["images"]
-                                            println(url)
-                                            Glide.with(this).load(url).into(distanceSilverPerson)
+                                            val url = snapshot["images"]
+
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(attendanceSilverPerson)
 
                                         } else if (i == 2) {
-                                            distanceBronzeName.text =
+                                            attendanceBronzeName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
-                                            distanceBronzeNum.text =
-                                                String.format("%.2f", rankingPoint[entry.key])
-                                            val url = task.result!!["images"]
-                                            println(url)
-                                            Glide.with(this).load(url).into(distanceBronzePerson)
-
+                                            attendanceBronzeNum.text =
+                                                percentage[entry.key].toString() + "%"
+                                            val url = snapshot["images"]
+                                            Glide.with(this).load(url)
+                                                .apply(RequestOptions().circleCrop())
+                                                .into(attendanceBronzePerson)
                                         }
                                         i++
                                     }
-                                }*/
-
-
+                                }
                         }
                     }
             }
 
 
-            /*
-            // 개근율 계산
-            for(document in result){
-                percentage[document["userEmail"]!!.toString()] =
-                    Integer.parseInt(document["percentage"].toString())
-            }
-
-            var it2 = percentage.toList().sortedByDescending { (_, value) -> value }.toMap()
-            i = 0
-            for(entry in it2){
-                if(i == 0)
-                    ranking_first_textview.text = entry.key
-                else if(i == 1)
-                    ranking_second_textview.text = entry.key
-                else if(i == 2)
-                    ranking_third_textview.text = entry.key
-                i++
-            }*/
         }
 
         // 개근
-
         return fragmentView
+
     }
 
 
