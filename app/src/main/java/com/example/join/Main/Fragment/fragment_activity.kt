@@ -31,14 +31,14 @@ class fragment_activity : Fragment() {
 
 
         // VIew 초기화 (fragment_activity.xml)
-        val mainView = inflater.inflate(com.example.join.R.layout.fragment_activity, container, false)
+        val mainView = inflater.inflate(R.layout.fragment_activity, container, false)
 
         // Firebase 초기화
         user = FirebaseAuth.getInstance().currentUser
         firestore = FirebaseFirestore.getInstance()
 
         // RecyclerView 초기화
-        var recyclerView = mainView.findViewById<RecyclerView>(com.example.join.R.id.activityRecyclerView)
+        var recyclerView = mainView.findViewById<RecyclerView>(R.id.activityRecyclerView)
         recyclerView.setHasFixedSize(true)
 
         // Toolbar 초기화 ( MainActivity에서 가져옴)
