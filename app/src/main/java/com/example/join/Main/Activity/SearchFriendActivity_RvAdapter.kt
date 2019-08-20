@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.join.DTO.FollowDTO
 import com.example.join.R
@@ -68,6 +69,7 @@ class SearchFriendActivity_RvAdapter(val context: Context?, val userInfoDTO: Arr
     fun requestFollow() {
         val firestoreRef = firestore!!.collection("friend")
 
+        // 내 친구(following) 목록 변경
         var tsDocFollwing = firestoreRef!!.document(currentUserUid!!)
         firestore?.runTransaction { transaction ->
             // firestore db에 접근해서 friend/(uid) 경로에 있는 데이터들 followDTO에 가져옴
@@ -83,10 +85,12 @@ class SearchFriendActivity_RvAdapter(val context: Context?, val userInfoDTO: Arr
                 return@runTransaction
             }
 
+            // 친구추가 되있는 경우 제거
             if (followDTO?.followings?.containsKey(uid)!!) {
                 followDTO?.followingCount = followDTO?.followingCount - 1
                 followDTO?.followings.remove(uid)
             } else {
+                // 친구추가 안되있는 경우 추가
                 followDTO?.followingCount = followDTO?.followingCount + 1
                 followDTO?.followings[uid!!] = true
             }
@@ -94,6 +98,7 @@ class SearchFriendActivity_RvAdapter(val context: Context?, val userInfoDTO: Arr
             return@runTransaction
         }
 
+        // 상대방의 친구목록 변경
         var tsDocFollower = firestoreRef!!.document(uid!!)
         firestore?.runTransaction { transaction ->
             var followDTO = transaction.get(tsDocFollower).toObject(FollowDTO::class.java)
@@ -105,12 +110,16 @@ class SearchFriendActivity_RvAdapter(val context: Context?, val userInfoDTO: Arr
                 return@runTransaction
             }
 
+            // 친구추가가 되있으면 제거
             if (followDTO?.followers?.containsKey(currentUserUid!!)!!) {
                 followDTO!!.followerCount = followDTO!!.followerCount - 1
                 followDTO!!.followers.remove(currentUserUid!!)
+
             } else {
+                // 안 되있으면 추가
                 followDTO!!.followerCount = followDTO!!.followerCount + 1
                 followDTO!!.followers[currentUserUid!!] = true
+
             }
             transaction.set(tsDocFollower, followDTO!!)
             return@runTransaction
