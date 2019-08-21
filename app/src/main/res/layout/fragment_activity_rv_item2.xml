@@ -24,7 +24,7 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:layout_below="@+id/fragment_activity2_textview2"
             android:layout_marginLeft="20dp" android:layout_marginTop="5dp"
-            android:text="100km" android:textSize="15dp" android:textColor="@color/colorPrimaryDark"/>
+            android:text="0km" android:textSize="15dp" android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
             android:id="@+id/fragment_activity2_textview3"
@@ -36,7 +36,7 @@
     <TextView
             android:id="@+id/fragment_activity2_differ_pedometer"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="100걸음" android:textSize="15dp" android:textColor="@color/colorPrimaryDark"
+            android:text="0걸음" android:textSize="15dp" android:textColor="@color/colorPrimaryDark"
             android:layout_toRightOf="@id/fragment_activity2_differ_distance"
             android:layout_below="@+id/fragment_activity2_textview3"
             android:layout_marginTop="5dp" android:layout_marginLeft="70dp"/>
