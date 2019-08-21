@@ -17,7 +17,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@color/colorMAIN"
-                android:text="누적거리상"
+                android:text=" 누적거리상 "
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -166,7 +166,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorMAIN"
-                    android:text="개근상"
+                    android:text=" 개근상 "
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp"
                     android:textStyle="bold" />
