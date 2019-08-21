@@ -115,10 +115,11 @@ class fragment_settings : Fragment() {
 
                     if (documentSnapshot?.data != null) {
                         var url = documentSnapshot?.data!!["images"]
-
-                        // firebase db에서 url 가져와서 프로필에 등록
-                        Glide.with(activity!!).load(url).apply(RequestOptions().circleCrop()).
-                            into(fragmentView.settings_profile_iv)
+                        try {
+                            // firebase db에서 url 가져와서 프로필에 등록
+                            Glide.with(activity!!).load(url).apply(RequestOptions().circleCrop())
+                                .into(fragmentView.settings_profile_iv)
+                        }catch(e: NullPointerException){}
                     }
                 }
         }catch(e: Exception){

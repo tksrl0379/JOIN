@@ -14,6 +14,7 @@ import com.example.join.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_ranking.*
+import java.lang.NullPointerException
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -65,6 +66,8 @@ class fragment_ranking : Fragment() {
 
                 firestore?.collection("Activity").whereEqualTo("userEmail", key)
                     .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                        if(querySnapshot == null) return@addSnapshotListener
+
                         for (document in querySnapshot!!.documents) {
                             // 거리 누적
                             var distanceString =
@@ -156,41 +159,46 @@ class fragment_ranking : Fragment() {
                             firestore?.collection("profileImages")
                                 ?.whereEqualTo("userEmail", entry.key)
                                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                                    if(querySnapshot == null) return@addSnapshotListener
+
                                     for (snapshot in querySnapshot!!.documents) {
-                                        if (i == 0) {
-                                            attendanceGoldenName.text =
-                                                StringTokenizer(entry.key, "@").nextToken()
-                                            attnedanceGoldenNum.text =
-                                                percentage[entry.key].toString() + "%"
-                                            val url = snapshot["images"]
+                                        try {
+                                            if (i == 0) {
+                                                attendanceGoldenName?.text =
+                                                    StringTokenizer(entry.key, "@").nextToken()
+                                                attnedanceGoldenNum?.text =
+                                                    percentage[entry.key].toString() + "%"
+                                                val url = snapshot["images"]
 
-                                            Glide.with(this).load(url)
-                                                .apply(RequestOptions().circleCrop())
-                                                .into(attendanceGoldenPerson)
+                                                Glide.with(this).load(url)
+                                                    .apply(RequestOptions().circleCrop())
+                                                    .into(attendanceGoldenPerson)
 
-                                        } else if (i == 1) {
-                                            attendanceSilverName.text =
-                                                StringTokenizer(entry.key, "@").nextToken()
-                                            attendanceSilverNum.text =
-                                                percentage[entry.key].toString() + "%"
+                                            } else if (i == 1) {
+                                                attendanceSilverName.text =
+                                                    StringTokenizer(entry.key, "@").nextToken()
+                                                attendanceSilverNum.text =
+                                                    percentage[entry.key].toString() + "%"
 
-                                            val url = snapshot["images"]
+                                                val url = snapshot["images"]
 
-                                            Glide.with(this).load(url)
-                                                .apply(RequestOptions().circleCrop())
-                                                .into(attendanceSilverPerson)
+                                                Glide.with(this).load(url)
+                                                    .apply(RequestOptions().circleCrop())
+                                                    .into(attendanceSilverPerson)
 
-                                        } else if (i == 2) {
-                                            attendanceBronzeName.text =
-                                                StringTokenizer(entry.key, "@").nextToken()
-                                            attendanceBronzeNum.text =
-                                                percentage[entry.key].toString() + "%"
-                                            val url = snapshot["images"]
-                                            Glide.with(this).load(url)
-                                                .apply(RequestOptions().circleCrop())
-                                                .into(attendanceBronzePerson)
+                                            } else if (i == 2) {
+                                                attendanceBronzeName.text =
+                                                    StringTokenizer(entry.key, "@").nextToken()
+                                                attendanceBronzeNum.text =
+                                                    percentage[entry.key].toString() + "%"
+                                                val url = snapshot["images"]
+                                                Glide.with(this).load(url)
+                                                    .apply(RequestOptions().circleCrop())
+                                                    .into(attendanceBronzePerson)
+                                            }
+                                            i++
                                         }
-                                        i++
+                                        catch(e: NullPointerException){}
                                     }
                                 }
                         }
