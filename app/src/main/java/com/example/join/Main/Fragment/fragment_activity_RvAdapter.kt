@@ -33,7 +33,7 @@ var imagesSnapshot: ListenerRegistration? = null
 class fragment_activity_RvAdapter (activity : MainActivity)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    val contentDTOs: ArrayList<Activity_ContentDTO>
+    val contentDTOs: ArrayList<Activity_ContentDTO?>
     val contentUidList: ArrayList<String>
 
     val mainActivity = activity
@@ -72,6 +72,8 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                 addSnapshotListener{querySnapshot, firebaseFirestoreException ->
                     contentDTOs.clear()
                     contentUidList.clear()
+                    // position = 0 일 때 저번 주/ 이번 주 기록을 비교하기 때문에 position = 0 에는 아무 자료도 안들어가게 해야 함
+                    contentDTOs.add(null)
                     if(querySnapshot == null) return@addSnapshotListener
                     for(snapshot in querySnapshot.documents){
                         var item = snapshot.toObject(Activity_ContentDTO::class.java)!!
@@ -204,7 +206,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
             val viewHolder = holder.itemView
 
             // Profile Image 가져오기
-            firestore?.collection("profileImages")?.document(contentDTOs[position].uid!!)?.
+            firestore?.collection("profileImages")?.document(contentDTOs[position]?.uid!!)?.
                 get()?.addOnCompleteListener{task->
                 if(task.isSuccessful){
                     val url = task.result!!["images"]
@@ -216,11 +218,11 @@ class fragment_activity_RvAdapter (activity : MainActivity)
             }
 
             // 유저 아이디
-            var userId = StringTokenizer(contentDTOs[position].userEmail, "@")
+            var userId = StringTokenizer(contentDTOs[position]?.userEmail, "@")
             viewHolder.activity_item_user_email_textview.text = userId.nextToken()
 
             // 연속일 표시  / 개근일(누적 활동일 수) 메달 부여
-            firestore?.collection("userid")!!.document(contentDTOs[position].uid!!)
+            firestore?.collection("userid")!!.document(contentDTOs[position]?.uid!!)
                 .get().addOnCompleteListener{task->
                     if(task.isSuccessful){
                         var continueDay = task.result!!["continueDay"]
@@ -240,7 +242,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
                 }
 
             // 만보 걷기 뱃지( 6000 -> 상, 5000 -> 중, 4000 -> 하 )
-            var pedometer = Integer.parseInt(contentDTOs[position].pedometer!!)
+            var pedometer = Integer.parseInt(contentDTOs[position]?.pedometer!!)
             if(pedometer > 6000)
                 viewHolder.activity_item_walk_medal_imageview.setImageResource(R.drawable.first)
             else if(pedometer > 5000 )
@@ -252,23 +254,23 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
 
             // 제목 가져오기
-            viewHolder.activity_item_title.text = contentDTOs[position].title
+            viewHolder.activity_item_title.text = contentDTOs[position]?.title
 
             // 거리 가져오기
-            viewHolder.activity_item_distance_input_textview.text = contentDTOs[position].distance
+            viewHolder.activity_item_distance_input_textview.text = contentDTOs[position]?.distance
 
             // 고도 가져오기
-            viewHolder.activity_item_altitude_input_textview?.text = contentDTOs[position].max_altitude
+            viewHolder.activity_item_altitude_input_textview?.text = contentDTOs[position]?.max_altitude
 
             // 날짜 가져오기
-            var date = contentDTOs[position].date
+            var date = contentDTOs[position]?.date
             viewHolder.activity_item_date_textview.text =
                 date.toString().substring(0,4) + "년 " +
                         date.toString().substring(4,6) + "월 " + date.toString().substring(6,8) + "일"
 
             // 가운데 이미지
             Glide.with(holder.itemView.context)
-                .load(contentDTOs[position].imageUrI)
+                .load(contentDTOs[position]?.imageUrI)
                 .into(viewHolder.activity_item_map_imageview)
 
             // 리사이클러뷰 선택 시 프래그먼트 전환
@@ -277,7 +279,7 @@ class fragment_activity_RvAdapter (activity : MainActivity)
 
                 // 어댑터-> 프래그먼트 data 넘김 (Bundle()객체 선언해야함)
                 var bundle = Bundle()
-                bundle.putLong("timeStamp", contentDTOs[position].timeStamp!!)
+                bundle.putLong("timeStamp", contentDTOs[position]?.timeStamp!!)
                 fragment.arguments = bundle
 
                 mainActivity.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()

@@ -14,7 +14,8 @@ import com.example.join.R
 import com.example.join.DTO.UserInfoDTO
 import com.google.firebase.firestore.FirebaseFirestore
 
-/* UserInfoDTO 를 타입으로 가지는 ArrayList에 검색결과 나온 사용자들의 이메일들을 담아서 RvAdapter에 넘겨준 후
+/*
+UserInfoDTO 를 타입으로 가지는 ArrayList에 검색결과 나온 사용자들의 이메일들을 담아서 RvAdapter에 넘겨준 후
 그 중 친구추가하려는 사용자의 이메일과 일치하는 사용자의 Uid를 찾아서(findUserId) 팔로우를 요청(requestFollow)한다.
  */
 

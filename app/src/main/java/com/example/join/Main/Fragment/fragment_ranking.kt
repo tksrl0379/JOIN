@@ -84,8 +84,11 @@ class fragment_ranking : Fragment() {
                             firestore?.collection("profileImages")
                                 ?.whereEqualTo("userEmail", entry.key)
                                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                                    if(querySnapshot == null) return@addSnapshotListener
+
                                     for (snapshot in querySnapshot!!.documents) {
                                         if (i == 0) {
+                                            println("이름: "+ entry.key)
                                             distanceGoldenName.text =
                                                 StringTokenizer(entry.key, "@").nextToken()
                                             distanceGoldenNum.text =
@@ -147,6 +150,7 @@ class fragment_ranking : Fragment() {
                         var it =
                             percentage.toList().sortedByDescending { (_, value) -> value }.toMap()
 
+                        // profile image를 등록해야만 순위에 등록될 수 있음.
                         var i = 0
                         for (entry in it) {
                             firestore?.collection("profileImages")
