@@ -204,12 +204,16 @@ JOIN어플에 필요한 기능에 대하여 공부하기로 결정.
 
 <center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557611-4ca6c300-6efd-11ea-9fa2-e9f55d40ff06.jpg"></center>
 
-<center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557588-46184b80-6efd-11ea-9af0-4108d95b7f41.jpg"></center>
+<center><img width="300" src="https://user-images.githubusercontent.com/20080283/77558201-03a33e80-6efe-11ea-9b58-e1155e1aa1db.gif"></center>
 
 <center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557602-4a446900-6efd-11ea-8967-0c22a0ef8483.jpg"></center>
 
+<center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557588-46184b80-6efd-11ea-9af0-4108d95b7f41.jpg"></center>
 
-<center><img width="300" src="https://user-images.githubusercontent.com/20080283/77558201-03a33e80-6efe-11ea-9b58-e1155e1aa1db.gif"></center>
+
+
+
+
 
 
 
