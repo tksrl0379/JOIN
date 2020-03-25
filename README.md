@@ -70,7 +70,7 @@
 <div>
   <img width = "260" src="https://media.giphy.com/media/YrZfTthvfxE2PH5qN4/giphy.gif">
   <img width = "260" src="https://media.giphy.com/media/LMWd1kVwxwybBMbcjE/giphy.gif">
-</div>
+</div> 
 
 --------
 
@@ -93,7 +93,7 @@
 - Language : Kotlin
 - OS : Android
 - Database : Firebase
-- Library : Google Maps Flatform
+- Library : Google Maps Platform
 
 ## Reference
 
@@ -105,7 +105,6 @@
 
 1주차 (7.11 ~ 7.12)
  - 7월 11~12일 아이디어 토론. 
- - Strava란 어플의 토픽(자전거로 운동한 거리를 표시하는 앱)을 사용.
  - 운동(걷기)를 도와주는 어플을 실버분들께 적용하기로 생각함.
  - Join이라는 어플 이름 제작.
   
@@ -118,7 +117,7 @@
 JOIN어플에 필요한 기능에 대하여 공부하기로 결정. 
 
 심영민 : SNS의 기능을 공부. 
-- 파이어베이스 연동 ,Content DTO 구현
+- Firebase 연동 ,Content DTO 구현
 - 로그인 페이지
 - 사진 업로드 
 - 내비게이션 뷰 
@@ -167,7 +166,7 @@ JOIN어플에 필요한 기능에 대하여 공부하기로 결정.
  박진서 :
 - 레코드 디테일(총 시간, 평균 속도, 거리) xml 및 기능 구현
 - 프래그먼트 간 애니메이션 기능
-- 지도 스냅샷 기능(스크린샷 메소드를 이용)
+- 지도 스냅샷 기능(스크린샷 메소드를 이용) -> 사용 X
 
 
 공통 : 
@@ -209,12 +208,3 @@ JOIN어플에 필요한 기능에 대하여 공부하기로 결정.
 <center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557602-4a446900-6efd-11ea-8967-0c22a0ef8483.jpg"></center>
 
 <center><img width="300" src="https://user-images.githubusercontent.com/20080283/77557588-46184b80-6efd-11ea-9af0-4108d95b7f41.jpg"></center>
-
-
-
-
-
-
-
-
-
