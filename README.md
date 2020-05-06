@@ -45,7 +45,7 @@
 ## 3.레코딩
 - 시작지점에서 레코딩 할 수 있으며, 정지, 재 시작 기능이 있다.
 - 걸어가면서 자신이 걸은 경로를 볼 수 있으며, 총 걸은 시간, 평균 속도, 총 거리, 그리고 걸음 수를 확인 할 수 있다.
-  - 분활 화면
+
 <div>
   <img width="220" src="https://user-images.githubusercontent.com/52390975/63000272-b6f97e80-beab-11e9-8c08-ae4904a9b177.png">   <img width="220" src="https://user-images.githubusercontent.com/52390975/63000274-b6f97e80-beab-11e9-8ce9-e82e3fe3d616.png"> 
   <img width="200" src="https://media.giphy.com/media/ZeR4XemQDEMcfe9J0K/giphy.gif"> 
