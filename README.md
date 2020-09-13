@@ -1,11 +1,32 @@
 
 # JOIN
 
+## 발표자료
+
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0001](https://user-images.githubusercontent.com/20080283/93018420-ae253000-f60a-11ea-83fb-8745cb2edfd1.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0002](https://user-images.githubusercontent.com/20080283/93018422-af565d00-f60a-11ea-95e3-b02678ce70ee.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0003](https://user-images.githubusercontent.com/20080283/93018423-afeef380-f60a-11ea-9c82-06b591fa934a.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0004](https://user-images.githubusercontent.com/20080283/93018424-afeef380-f60a-11ea-8fa6-9d7cc6f4f371.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0005](https://user-images.githubusercontent.com/20080283/93018425-b0878a00-f60a-11ea-88dd-4dfd8833c14f.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0006](https://user-images.githubusercontent.com/20080283/93018426-b1202080-f60a-11ea-99c7-8e231b50fee3.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0007](https://user-images.githubusercontent.com/20080283/93018427-b1202080-f60a-11ea-8d93-af4c9e7118d2.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0008](https://user-images.githubusercontent.com/20080283/93018428-b1b8b700-f60a-11ea-9a26-fc58cb885769.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0009](https://user-images.githubusercontent.com/20080283/93018429-b1b8b700-f60a-11ea-8207-b1cd41bc0b82.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0010](https://user-images.githubusercontent.com/20080283/93018430-b2514d80-f60a-11ea-8b84-30fa8cbfddd6.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0011](https://user-images.githubusercontent.com/20080283/93018431-b2514d80-f60a-11ea-853d-5a492276ee65.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0012](https://user-images.githubusercontent.com/20080283/93018432-b2e9e400-f60a-11ea-9c72-2b583264e8cf.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0013](https://user-images.githubusercontent.com/20080283/93018433-b2e9e400-f60a-11ea-9c62-cfadcbe0698f.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0014](https://user-images.githubusercontent.com/20080283/93018434-b3827a80-f60a-11ea-829d-09611ec96faf.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0015](https://user-images.githubusercontent.com/20080283/93018435-b41b1100-f60a-11ea-882e-4e953a7265a7.jpg)
+![d884f33d-ac92-4093-bf50-30c3f12a9da0 pdf-0016](https://user-images.githubusercontent.com/20080283/93018436-b41b1100-f60a-11ea-9fe1-67598e3e4891.jpg)
+
+
+
 <center><img width="350" src="https://user-images.githubusercontent.com/52390975/63001150-e7dab300-bead-11e9-837c-918a6f33a519.png"></center>
 
 -----
 
-# JOIN 이란
+## JOIN 이란
 - 실버분들이 서로 걸으면서 운동하며 저장한 지도 사진을 공유하는 어플
 
     - 1. 자신이 걸으면서 시간, 평균속도, 거리, 걸음 수를 측정할 수 있다.
